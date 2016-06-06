@@ -329,7 +329,7 @@ public class GeneralProduct extends ActionSupport  {
 		}
 		rtnMap.put("productData", (ProductListDTO) this.getData(this.paramMap));
 		rtnMap.put("sizeData", (List<SizeMapDTO>) this.getSizeMapData(this.paramMap));
-		rtnMap.put("colorData", (List<ColorMapDTO>) this.getSizeMapData(this.paramMap));
+		rtnMap.put("colorData", (List<ColorMapDTO>) this.getColorMapData(this.paramMap));
 //		rtnMap.put("colorData", Arrays.asList(((ProductListDTO)rtnMap.get("productData")).getColor_list().split(",")));
 		rtnMap.put("tagData", (List<TagListDTO>) this.getTagListData(this.paramMap));
 		this.paramMap.put("photo_type", 1);
@@ -342,6 +342,7 @@ public class GeneralProduct extends ActionSupport  {
 	public String getEditor() throws Exception{
 		init();
 		setSizeList();
+		setColorList();
 		
 		if(Boolean.valueOf(this.isUpdateMode).booleanValue()){
 			Map<String, Object> data = getOriginalData(this.seq);

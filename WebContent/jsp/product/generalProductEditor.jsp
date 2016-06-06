@@ -179,7 +179,7 @@
 							<tbody>
 								<s:set name="productData" value="productListDTO" />
 								<s:set name="sizeData" value="sizeMap" />
-								<s:set name="colorData" value="color_list" />
+								<s:set name="colorData" value="colorMap" />
 								<s:set name="tagData" value="tagList" />
 								<s:if test = "#session.isAdmin">
 									<tr>
@@ -213,63 +213,54 @@
 								<tr>
 									<th scope="col">색상</th>
 									<td class="tl" tabIndex="5" id="colorArray_check">
-										<s:iterator value="colorData" status="stat" var="element">
-											<p class="vm mr10 colorSelected ellipse" style="background-color: <s:property value="#element"/> ;">
-												<i class="openPop ml10 fa fa-plus" data-pop-id="colorSelector" title="색상추가"></i>
-											<input type="text" id="color_list" name="color_list" class="validate arrayData hide" value="<s:property value="#element"/>" readonly /></p>
-										</s:iterator>
-										<s:if test = "colorData==null || colorData.size<10">
-											<p class="colorReady vm mr10">
-												<i class="openPop ml10 fa fa-plus" data-pop-id="colorSelector" title="색상추가"></i>
-											</p>
+										<s:if test='isUpdateMode.equals("true")'>
+											<s:select id="colorArray" name="colorArray" cssClass="colorPreview validate" list="colorList" listKey="color_id" listValue="color_name+'('+color_val+')'" listTitle="color_val" multiple="true" value="%{#colorData.{color_id}}" />
 										</s:if>
-										<span class="ml5">(최대 10개 선택)</span>
+										<s:else>
+											<s:select id="colorArray" name="colorArray" cssClass="colorPreview validate" list="colorList" listKey="color_id" listValue="color_name+'('+color_val+')'" listTitle="color_val" multiple="true" value="" />
+										</s:else>
+										<span class="ml5">(Ctrl 혹은 Shift 키를 누른상태로 클릭하면 복수선택 가능)</span>
 									</td>
 								</tr>
 								<tr>
 									<th scope="col">사이즈</th>
 									<td class="tl" tabIndex="6" id="sizeArray_check">
 										<s:if test='isUpdateMode.equals("true")'>
-											<s:select id="sizeArray" name="sizeArray" cssClass="validate" list="sizeList" listKey="size_id" listValue="size_val" multiple="true" value="%{#sizeData.{size_id}}" />
+											<s:select id="sizeArray" name="sizeArray" cssClass="validate" data-test="test" list="sizeList" listKey="size_id" listValue="size_val" multiple="true" value="%{#sizeData.{size_id}}" />
 										</s:if>
 										<s:else>
-											<s:select id="sizeArray" name="sizeArray" cssClass="validate" list="sizeList" listKey="size_id" listValue="size_val" multiple="true" value="" />
+											<s:select id="sizeArray" name="sizeArray" cssClass="validate" data-test="test" list="sizeList" listKey="size_id" listValue="size_val" multiple="true" value="" />
 										</s:else>
 										<span class="ml5">(Ctrl 혹은 Shift 키를 누른상태로 클릭하면 복수선택 가능)</span>
 									</td>
 								</tr>
 								<tr>
-									<th scope="col" colspan="2" class="center">&lt;사진등록시 주의사항&gt;</th>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<span>메인, 서브이미지</span>
-										<span>
-										가로: 세로 비율 = 1 : 1.275<br/>
-										ex) 104
-										</span>
-										
-									</td>
-								</tr>
-								<tr>
 									<th scope="col">메인이미지</th>
-									<td class="tl" tabIndex="7" id="p_main_url_check">
+									<td class="tl imageArea" tabIndex="7" id="p_main_url_check">
+										<span>메인, 서브이미지 가로: 세로 비율 = 1 : 1.275<br/>ex) 104</span>
 										<input type="file" id="p_main_url" class="validate p_main_url" name="p_main_url" autocomplete="off" multiple="multiple" />
 									</td>
 								</tr>
 								<tr>
 									<th scope="col">서브이미지(슬라이드)</th>
-									<td class="tl" tabIndex="8" id="sub_url_check">
+									<td class="tl imageArea" tabIndex="8" id="sub_url_check">
+										<span>메인, 서브이미지 가로: 세로 비율 = 1 : 1.275<br/>ex) 104</span>
 										<input type="file" id="sub_url" class="validate sub_url" name="sub_url" autocomplete="off" multiple="multiple" />
 									</td>
 								</tr>
 								<tr>
 									<th scope="col">상세이미지</th>
-									<td class="tl" tabIndex="9" id="detail_url_check"><input type="file" id="detail_url" class="validate detail_url" name="detail_url" autocomplete="off" multiple="multiple" /></td>
+									<td class="tl imageArea" tabIndex="9" id="detail_url_check">
+										<span>메인, 서브이미지 가로: 세로 비율 = 1 : 1.275<br/>ex) 104</span>
+										<input type="file" id="detail_url" class="validate detail_url" name="detail_url" autocomplete="off" multiple="multiple" />
+									</td>
 								</tr>
 								<tr>
 									<th scope="col">코디이미지</th>
-									<td class="tl" tabIndex="10" id="lookup_url_check"><input type="file" id="lookup_url" class="validate lookup_url" name="lookup_url" autocomplete="off" multiple="multiple" /></td>
+									<td class="tl imageArea" tabIndex="10" id="lookup_url_check">
+										<span>메인, 서브이미지 가로: 세로 비율 = 1 : 1.275<br/>ex) 104</span>
+										<input type="file" id="lookup_url" class="validate lookup_url" name="lookup_url" autocomplete="off" multiple="multiple" />
+									</td>
 								</tr>
 								<tr>
 									<th scope="col">3D 코드</th>
@@ -316,8 +307,6 @@
 				</div>
 			</div>
 		</div>
-		
 		<jsp:include page="/jsp/product/pop/shopSearch.jsp" flush="false" />
-		<jsp:include page="/jsp/product/pop/colorSelector.jsp" flush="false" />
 	</body>
 </html>

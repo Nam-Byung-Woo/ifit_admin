@@ -203,7 +203,7 @@ public class FormValidate{
 			// 일반상품 코디 이미지 체크
 			this.rtnMap.put("msg", alertMessage.getGeneralProductCodiImageError());
 			this.rtnMap.put("elementID", "lookup_url_check");
-		}else if(!paramMap.containsKey("tag_list") || paramMap.get("tag_list") == null || ((List<String>)paramMap.get("color_list")).size()>10){
+		}else if(!paramMap.containsKey("tag_list") || paramMap.get("tag_list") == null || ((List<String>)paramMap.get("tag_list")).size()>10){
 			// 일반상품 태그 체크
 			this.rtnMap.put("msg", alertMessage.getGeneralProductTagError());
 			this.rtnMap.put("elementID", "tag_list_check");

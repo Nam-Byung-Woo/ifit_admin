@@ -337,11 +337,37 @@ form[name="generalProductEditor"] p.colorSelected{
 form[name="generalProductEditor"] p.colorSelected i{
 	display:none;
 }
+form[name="generalProductEditor"] #colorArray + div{ 
+	width:250px !important; 
+}
+form[name="generalProductEditor"] #colorArray + div>.wSelect-options-holder{ 
+	width:250px !important; 
+}
+form[name="generalProductEditor"] #colorArray + div .wSelect-option-value p{ 
+	width: 18px;
+    height: 18px;
+    border: 1px solid black;
+    background-color: black;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
 form[name="generalProductEditor"] #sizeArray + div{ 
 	width:100px !important; 
 }
 form[name="generalProductEditor"] #sizeArray + div>.wSelect-options-holder{ 
 	width:100px !important; 
+}
+
+form[name="generalProductEditor"] td.imageArea{
+	position:relative;
+}
+
+form[name="generalProductEditor"] td.imageArea>span{
+	position: absolute;
+    top: 7px;
+    left: 440px;
 }
 
 form[name="generalProductEditor"] textarea#detail_info{

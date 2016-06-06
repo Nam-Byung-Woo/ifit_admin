@@ -7,6 +7,15 @@ $(function(){
 	
 	$.fn.wSelect.defaults.size = 6;
 	$("select").wSelect();
+	if($("select.colorPreview").length>0){
+		var selectObj = $("select.colorPreview");
+		var wSelectObj = selectObj.next();
+		wSelectObj.find(".wSelect-option-value").each(function(index){
+			$(this).html("<p></p>" + $(this).html());
+			$(this).find("p").css("background-color", selectObj.find("option:eq("+index+")").attr("title"));
+		});
+	}
+	
 	$("#loginBtn").click(function(){
 		$("#loginForm").submit();
 	});
