@@ -13,25 +13,28 @@ import util.system.StringUtil;
 public class FileManager {
 
 	private Code code = new Code();
+	private String dataServer_url;		// 데이터 서버 url
+	private String dataMode;			// 업로드 mode
 	private String FilePath_full; 		// 파일 전체 경로
 	private String FilePath_basic;		// 저장경로
 	private String FilePath_detail; 		// 파일 전체 경로
 	private int maxSize = 10;			// MB단위
 
 	public FileManager(String mode, String dir){
-		FilePath_basic = StringUtil.getPropertiesValue("path.properties", mode+"FileServerPath");	// 저장경로
-		this.FilePath_detail = "/" + dir + "/";
+		this.dataServer_url = StringUtil.getPropertiesValue("path.properties", "dataServerURL");
+		this.dataMode = mode + "/";
+		this.FilePath_basic = StringUtil.getPropertiesValue("path.properties", "fileServerPath");	// 저장경로
+		this.FilePath_detail = dir + "/";
 	}
 	
 	public String fileUpload(List<String> fileName, List<File> getUploads, int idx, int option) throws IOException{
-
-		FilePath_full = FilePath_basic + FilePath_detail;
+		FilePath_full = this.FilePath_basic + this.dataMode + this.FilePath_detail;
 		GetDate yymmkk = new GetDate();
 		String yyyyMMddHHmmss = yymmkk.yyyyMMddHHmmss();
 		String saveFileName = yyyyMMddHHmmss + idx + option + fileName.get(idx).substring(fileName.get(idx).lastIndexOf("."));
 		File destFile = new File(FilePath_full + yyyyMMddHHmmss + idx + option + fileName.get(idx).substring(fileName.get(idx).lastIndexOf(".")));			       
 		FileUtils.copyFile(getUploads.get(idx), destFile);
-		return FilePath_detail + saveFileName;
+		return this.dataServer_url + this.dataMode + FilePath_detail + saveFileName;
 	}
 	
 	public boolean fileValidation(List<File> getUploads, List<String> fileName, List<File> uploads) throws IOException{			// 파일validation

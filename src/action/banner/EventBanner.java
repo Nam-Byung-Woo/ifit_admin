@@ -195,7 +195,6 @@ public class EventBanner extends ActionSupport  {
 		// 메인이미지 업로드
 		for (int i = 0; i < this.banner_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getBanner_urlFileName(), getBanner_url(), i, 0);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.eventBannerDTO.setBanner_url(saveFileName);
 		}	
 		/****************** 이미지파일 Insert & upload END ******************/
@@ -247,7 +246,6 @@ public class EventBanner extends ActionSupport  {
 		
 		for (int i = 0; i < this.banner_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getBanner_urlFileName(), getBanner_url(), i, 0);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.eventBannerDTO.setBanner_url(saveFileName);
 		}
 		

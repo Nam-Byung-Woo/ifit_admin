@@ -421,13 +421,11 @@ public class GeneralProduct extends ActionSupport  {
 		// 메인이미지 업로드
 		for (int i = 0; i < this.p_main_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getP_main_urlFileName(), getP_main_url(), i, 0);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.productListDTO.setP_main_url(saveFileName);
 		}
 		// 코디이미지 업로드
 		for (int i = 0; i < this.lookup_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getLookup_urlFileName(), getLookup_url(), i, 1);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.productListDTO.setLookup_url(saveFileName);
 		}		
 		product_seq = this.productListDAO.write(this.productListDTO);
@@ -438,7 +436,6 @@ public class GeneralProduct extends ActionSupport  {
 		// 서브이미지  업로드
 		for (int i = 0; i < this.sub_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getSub_urlFileName(), getSub_url(), i, 2);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.subPhotoDTO.setPhoto_url(saveFileName);
 			this.subPhotoDTO.setPhoto_type(1);
 			this.subPhotoDAO.write(this.subPhotoDTO);
@@ -447,7 +444,6 @@ public class GeneralProduct extends ActionSupport  {
 		// 상세이미지 업로드
 		for (int i = 0; i < this.detail_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getDetail_urlFileName(), getDetail_url(), i, 3);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.subPhotoDTO.setPhoto_url(saveFileName);
 			this.subPhotoDTO.setPhoto_type(2);
 			this.subPhotoDAO.write(this.subPhotoDTO);
@@ -600,13 +596,11 @@ public class GeneralProduct extends ActionSupport  {
 		// 메인이미지 업로드
 		for (int i = 0; i < this.p_main_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getP_main_urlFileName(), getP_main_url(), i, 0);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.productListDTO.setP_main_url(saveFileName);
 		}
 		// 코디이미지 업로드
 		for (int i = 0; i < this.lookup_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getLookup_urlFileName(), getLookup_url(), i, 1);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.productListDTO.setLookup_url(saveFileName);
 		}		
 		
@@ -621,7 +615,6 @@ public class GeneralProduct extends ActionSupport  {
 		// 서브이미지  업로드
 		for (int i = 0; i < this.sub_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getSub_urlFileName(), getSub_url(), i, 2);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.subPhotoDTO.setPhoto_url(saveFileName);
 			this.subPhotoDTO.setPhoto_type(1);
 			this.subPhotoDAO.write(this.subPhotoDTO);
@@ -630,7 +623,6 @@ public class GeneralProduct extends ActionSupport  {
 		// 상세이미지 업로드
 		for (int i = 0; i < this.detail_url.size(); i++) { 
 			saveFileName = fileManager.fileUpload(getDetail_urlFileName(), getDetail_url(), i, 3);	//파일업로드
-			saveFileName = request.getServerName()+":"+request.getServerPort()+"/upload"+ saveFileName;
 			this.subPhotoDTO.setPhoto_url(saveFileName);
 			this.subPhotoDTO.setPhoto_type(2);
 			this.subPhotoDAO.write(this.subPhotoDTO);
