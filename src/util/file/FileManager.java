@@ -20,7 +20,7 @@ public class FileManager {
 
 	public FileManager(String mode, String dir){
 		FilePath_basic = StringUtil.getPropertiesValue("path.properties", mode+"FileServerPath");	// 저장경로
-		this.FilePath_detail = "/" + mode + "/";
+		this.FilePath_detail = "/" + dir + "/";
 	}
 	
 	public String fileUpload(List<String> fileName, List<File> getUploads, int idx, int option) throws IOException{
