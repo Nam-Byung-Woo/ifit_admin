@@ -361,7 +361,7 @@ public class GeneralProduct extends ActionSupport  {
 	public String writeAction() throws Exception {	
 		init();
 		
-		FileManager fileManager = new FileManager("generalProduct");
+		FileManager fileManager = new FileManager("image","generalProduct");
 		
 		int product_seq=0;
 		Gson gson = new Gson();
@@ -489,7 +489,7 @@ public class GeneralProduct extends ActionSupport  {
 	public String updateAction() throws Exception {	
 		init();
 		
-		FileManager fileManager = new FileManager("generalProduct");
+		FileManager fileManager = new FileManager("image","generalProduct");
 		
 		Gson gson = new Gson();
 		
@@ -672,7 +672,7 @@ public class GeneralProduct extends ActionSupport  {
 	public String deleteAction() throws Exception{
 		init();
 
-		FileManager fileManager = new FileManager("generalProduct");
+		FileManager fileManager = new FileManager("image", "generalProduct");
 		
 		Gson gson = new Gson();
 		

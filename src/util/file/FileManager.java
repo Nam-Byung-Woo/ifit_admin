@@ -14,11 +14,12 @@ public class FileManager {
 
 	private Code code = new Code();
 	private String FilePath_full; 		// 파일 전체 경로
-	private String FilePath_basic = StringUtil.getPropertiesValue("path.properties",StringUtil.getPropertiesValue("struts.properties","struts.devMode").equals("true") ? "testFileServerPath" : "realFileServerPath");	// 저장경로
+	private String FilePath_basic;		// 저장경로
 	private String FilePath_detail; 		// 파일 전체 경로
 	private int maxSize = 10;			// MB단위
 
-	public FileManager(String mode){
+	public FileManager(String mode, String dir){
+		FilePath_basic = StringUtil.getPropertiesValue("path.properties", mode+"FileServerPath");	// 저장경로
 		this.FilePath_detail = "/" + mode + "/";
 	}
 	

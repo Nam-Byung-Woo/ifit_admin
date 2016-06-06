@@ -169,7 +169,7 @@ public class EventBanner extends ActionSupport  {
 	public String writeAction() throws Exception {	
 		init();
 		
-		FileManager fileManager = new FileManager("eventBanner");
+		FileManager fileManager = new FileManager("image", "eventBanner");
 		
 		Gson gson = new Gson();
 		
@@ -211,7 +211,7 @@ public class EventBanner extends ActionSupport  {
 	public String updateAction() throws Exception {	
 		init();
 		
-		FileManager fileManager = new FileManager("eventBanner");
+		FileManager fileManager = new FileManager("image", "eventBanner");
 		
 		Gson gson = new Gson();
 		
@@ -265,7 +265,7 @@ public class EventBanner extends ActionSupport  {
 	public String deleteAction() throws Exception{
 		init();
 		
-		FileManager fileManager = new FileManager("eventBanner");
+		FileManager fileManager = new FileManager("image", "eventBanner");
 
 		this.paramMap.put("banner_seq", this.seq);
 		this.paramMap.put("seq", this.seq);
