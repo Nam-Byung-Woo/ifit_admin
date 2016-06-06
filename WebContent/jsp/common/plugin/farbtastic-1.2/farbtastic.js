@@ -235,7 +235,6 @@ jQuery._farbtastic = function (container, callback) {
 
     // Saturation/Luminance gradient
     $('.color', e).css('backgroundColor', fb.pack(fb.HSLToRGB([fb.hsl[0], 1, 0.5])));
-
     // Linked elements or callback
     if (typeof fb.callback == 'object') {
       // Set background/foreground color
@@ -256,6 +255,8 @@ jQuery._farbtastic = function (container, callback) {
     else if (typeof fb.callback == 'function') {
       fb.callback.call(fb, fb.color);
     }
+    
+	$(fb.callback).trigger("change");	//이벤트 추가
   }
 
   /**

@@ -551,12 +551,12 @@ form[name="adminTagList"] table{
 /* 컬러맵 관리 */
 form[name="colorList"] div#colorEditArea{
 	width: 675px;
-	height: 323px;
+	height: 430px;
 	padding: 10px;
 	border: 1px solid #CCCCCC;
 }
 form[name="colorList"] div#colorEditArea>div:first-child{
-	height: 318px;
+	height: 425px;
     width: 289px;
 	overflow-y: auto;
 }
@@ -605,15 +605,26 @@ form[name="colorList"] #colorDetailAreaDefault{
 }
 
 form[name="colorList"] #colorDetailAreaInput{
-	height: 80px;
-	padding-top:70px;
+	height: 270px;
+	padding-top:0px;
 	text-align:center;
 }
+
+form[name="colorList"] #colorDetailAreaInput #colorpicker{
+	height: 200px;
+}
+
 form[name="colorList"] #colorDetailAreaInput input[type="button"]{
 	width: 30px;
     text-indent: 0;
     border: 1px solid #000000;
     border-radius: 0;
+}
+
+form[name="colorList"] #colorDetailAreaInput input[type="button"]#colorDeleteBtn{
+	height: 40px;
+    width: 50px;
+    margin-top: 8px;
 }
 
 /* 사이즈맵 관리 */

@@ -23,18 +23,21 @@
 					var inputHTML = '<li class="pointer ui-state-default">';
 					inputHTML += '<input type="hidden" name="color_id" value="0" />';
 					inputHTML += '<input type="hidden" name="color_val" value="#000000" />';
-					inputHTML += '<span>검정(#000000)</span>';
+					inputHTML += '<input type="hidden" name="color_name" value="검정" />';
+					inputHTML += '<span>검정</span>(<span>#000000</span>)';
 					inputHTML += '</li>';
 					$("#sortable").append(inputHTML);
 					$("#sortable li").last().trigger("click");
 				});
 				
 				$("#colorDeleteBtn").click(function(){
-					if(confirm("[" + $(this).prev().val() + "] 컬러를 삭제하시겠습니까?")){
+					if(confirm("[" + $(this).prev().find("#new_color_name").val() + "] 컬러를 삭제하시겠습니까?")){
 						var inputHTML = '<input type="hidden" name="deleteColorList" value="' + $(".ui-selected").find("input[name='color_id']").val() + '" />';
 						$("#colorList").append(inputHTML);
 						$(".ui-selected").remove();
-						$(this).prev().val("");
+						$(this).prev().find("#new_color_name").val("");
+						$(this).prev().find("#new_color_val").val("");
+						$(this).prev().find("#new_color_val").trigger("change");
 						$("#colorDetailAreaInput").hide();
 					}
 				});
@@ -45,11 +48,27 @@
 				$(this).addClass("ui-selected");
 				$("#colorDetailAreaInput").show();
 				$("#colorDetailAreaInput #new_color_val").val($(this).find("input[name='color_val']").val());
+				$("#colorDetailAreaInput #new_color_name").val($(this).find("input[name='color_name']").val());
+				var colorpicker = $.farbtastic('#colorpicker');
+				colorpicker.setColor($(this).find("input[name='color_val']").val());
 			});
 			
-			$(document).on("keyup","#new_color_val",function(e){
+			$(document).on("keyup","#new_color_name",function(e){
+				$(".ui-selected").find("input[name='color_name']").val($(this).val());
+				$(".ui-selected").find("span:first").html($(this).val());
+			});
+			
+			$(document).on("keyup change","#new_color_val",function(e){
+				if(e.type=="change"){
+					var pattern = /^#?([a-f0-9]{6}|[a-f0-9]{3})$/;
+					if(!pattern.test($(this).val())){
+						var colorpicker = $.farbtastic('#colorpicker');
+						$(this).val(colorpicker.color);
+						colorpicker.setColor(colorpicker.color);
+					}
+				}
 				$(".ui-selected").find("input[name='color_val']").val($(this).val());
-				$(".ui-selected").find("span").html($(this).val());
+				$(".ui-selected").find("span:last").html($(this).val());
 			});
 		</script>
 	</head>
@@ -65,7 +84,12 @@
 							<div class="dib fl">
 								<ul id="sortable">
 									<s:iterator value="dataList" status="stat">
-										<li class="pointer ui-state-default"><input type="hidden" name="color_id" value="<s:property value="color_id"/>" /><input type="hidden" name="color_val" value="<s:property value="color_val"/>" /><span><s:property value="color_val"/></span></li>
+										<li class="pointer ui-state-default">
+											<input type="hidden" name="color_id" value="<s:property value="color_id"/>" />
+											<input type="hidden" name="color_val" value="<s:property value="color_val"/>" />
+											<input type="hidden" name="color_name" value="<s:property value="color_name"/>" />
+											<span><s:property value="color_name"/></span>(<span><s:property value="color_val"/></span>)
+										</li>								
 									</s:iterator>
 								</ul>
 								<p id="colorAddBtn" class="pointer">
@@ -74,10 +98,18 @@
 							</div>
 							<div id="colorDetailArea" class="fl dib">
 								<div class="hide" id="colorDetailAreaInput">
-									<span class="mr10">컬러명</span>
-									<div class="dib" id="colorpicker"></div>
-									<input type="text" autocomplete="off" id="new_color_val" value="#000000" />
-									<input type="button" id="colorDeleteBtn" value="삭제" />
+									<div class="" id="colorpicker"></div>
+									<div class="dib">
+										<div>
+										<span class="mr10">컬러명</span>
+										<input type="text" autocomplete="off" id="new_color_name" value="검정" />
+										</div>
+										<div class="mt5">
+										<span class="mr10">RGB값</span>
+										<input type="text" autocomplete="off" id="new_color_val" value="#000000" />
+										</div>
+									</div>
+									<input type="button" id="colorDeleteBtn" class="fr" value="삭제" />
 								</div>
 								<div id="colorDetailAreaDefault">
 									<h4>컬러맵 설정 안내</h4>
