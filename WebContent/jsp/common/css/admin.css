@@ -1,0 +1,685 @@
+.indexBG{
+	background-color: #edac7d;
+	background: -webkit-linear-gradient(top, #31b7d7 0%, #edac7d 100%);
+	background: -moz-linear-gradient(top, #31b7d7 0%, #edac7d 100%);
+	background: -ms-linear-gradient(top, #31b7d7 0%, #edac7d 100%);
+	background: -o-linear-gradient(top, #31b7d7 0%, #edac7d 100%);
+	background: linear-gradient(to bottom, #31b7d7 0%, #edac7d 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, StartColorStr='#31b7d7', EndColorStr='#edac7d');
+	background-attachment: fixed;
+    height: initial;
+}
+
+/* admin index */
+#loginForm{
+	text-align:center;
+}
+
+.logo{
+	background-image: url('../img/logo.png');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 140px;
+    height: 80px;
+    width: 160px;
+}
+
+.mainLogo{
+	background-image: url('../img/logo2.png');
+    background-size: 229px;
+    width: 100%;
+    height: 100px;
+}
+
+.loginDiv{
+	width:500px;
+}
+
+#loginForm #admin_id, #loginForm #admin_pw{
+	width:217px; height: 24px; padding:10px;}
+}
+
+.btn1{
+	width:229px;
+	height:68px;
+	border:0;
+}
+/****************/
+
+/* admin container영역 */
+.admin_container{width:5000px;}
+
+/* admin gnb영역 */
+.adminGnbArea hr{
+	border: 3px solid #4A4A4A;
+}
+
+/* 버튼 공통 */
+#logoutBtn{
+	width: 100px;
+}
+.writeBtn, .writeActionBtn, .updateActionBtn, .submitBtn, .selectBtn{
+	background-color:#A5FFEB;
+	border:1px solid #78C7F4;
+}
+.simpleBtn{
+	width: 100px;
+}
+
+/* admin lnb영역 */
+.adminLnbArea{float:left;}
+.lnb_ul{border: 1px solid #4A4A4A;}
+.lnb_ul>li{width:170px;border-bottom: 3px solid #4A4A4A;}
+.lnb_ul>li>p{background: #9B9B9B; padding: 9px 0 10px 9px;}
+.lnb_ul>li>ul>li>p{padding: 7px 0 7px 20px;}
+
+/* admin 컨텐츠 영역 */
+.adminContentArea{width:900px; float:left; padding:30px 50px 30px 50px;}
+.adminContentArea .contentBody{margin-bottom:30px;}
+.adminContentArea h2{
+	border-bottom: 2px solid #4A4A4A;
+	padding-bottom: 8px;
+}
+.adminContentArea h2 span{
+	border-left: 4px solid #4A4A4A;
+    padding-left: 8px;
+    height: 18px;
+    line-height: 18px;
+    display:inline-block;
+}
+.contentBody form{
+	width:100%;
+}
+.contentBody form #countPerPage + div{ 
+	width:60px !important; 
+}
+.contentBody form #countPerPage + div>.wSelect-options-holder{ 
+	width:60px !important; 
+}
+
+/* admin table */
+table{border-collapse: collapse;width:100%;  border-top:2px solid #CCCCCC; border-bottom:2px solid #CCCCCC;}
+table thead th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }
+table tbody th{background-color:#EBEBEB;}
+table td{padding:10px 0; border-bottom:1px solid #CCCCCC;}
+table td img{height: 150px;}
+
+/* list */
+table.table_write tbody th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }
+table.table_write td{padding:5px 0px 5px 20px; border-bottom:1px solid #CCCCCC;}
+
+/* write/edit */
+table.table_editor{
+    border: 1px solid #CCCCCC;
+}
+table.table_editor tr th{
+    border-right: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 10px 0 10px 20px;
+    width: 180px;
+    vertical-align: middle;
+}
+table.table_editor tr th:not(.center){
+    text-align: left;
+}
+table.table_editor tr td{
+    padding: 10px 12px;
+}
+table.table_editor tr td input[type="text"], table.table_editor tr td input[type="password"]{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+.listSort:hover{
+	cursor: pointer;
+	text-decoration:underline;
+}
+
+/*검색 공통*/
+.searchInput{
+	height:30px !important;
+	margin-top: 15px;
+	font-size:13px !important;
+	padding:1px;
+}
+
+/* 레이어 팝업 */
+.layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:100;}
+.layer .bg {position:absolute; top:0; left:0; width:100%; height:100%; background:#000; opacity:.5; filter:alpha(opacity=50);}
+.layer .pop-layer {
+	display:block;
+}
+ 
+.pop-layer{
+	display:none; 
+	position: absolute;
+	top: 50%; 
+	left: 50%; 
+	max-width: 900px; 
+	height:auto;  
+	background-color:#fff; 
+	border: 5px solid #4A4A4A; 
+	z-index: 10;
+}
+.pop-layer p{
+	font-size:15px;
+}
+.pop-layer input{
+	font-size:15px;
+}
+#pop-title{
+	font-size:20px;
+}
+.pop-layer .pop-container {padding: 20px 25px;}
+.pop-layer p.ctxt {color: #666; line-height: 25px;}
+.pop-layer .btn-r {
+	width: 100%;
+    position: absolute;
+    top: 0px;
+    text-align: right;
+    right: 0px;
+}
+.pop-title{
+	border-bottom:1px solid;
+}
+.pop-content-box{
+	width: 366px;
+    border: 1px groove #EBEBEB;
+    word-break: break-all;
+    padding: 0 5px;
+}
+
+/* 페이징 버튼 공통 */
+.paging{text-align:center; margin-top:20px; margin-top:20px;}
+.paging ul{display:inline-block;}
+.paging ul li{display:inline-block;}
+.paging .btnOn {display:inline-block; width:30px; height:34px; padding:10px 14px 0; border:1px solid #9B9B9B; background-color:#9B9B9B; font-size:13px; color:#fff; line-height:25px; margin-left: -1px; cursor: default;}
+.paging a.btnOff {display:inline-block; width:30px; height:34px; padding:10px 14px 0; border:1px solid #dddddd; font-size:13px; color:#000; line-height:25px; margin-left: -1px;}
+.paging a.btnOff:hover {border: 1px solid #EBEBEB; background-color:#EBEBEB; color:#000000;}
+
+/* 입점회원 */
+form#shopMember #searchCol + div{ 
+	width:130px !important; 
+}
+form#shopMember #searchCol + div>.wSelect-options-holder{ 
+	width:130px !important; 
+}
+
+form[name="shopMemberEditor"] #tel1 + div{ 
+	width:120px !important; 
+}
+form[name="shopMemberEditor"] #tel1 + div>.wSelect-options-holder{ 
+	width:120px !important; 
+}
+
+.layer-shopSearch>.pop-layer{
+	width:440px;
+	height: 530px;
+}
+.layer-shopSearch #result{
+	border-bottom: 1px solid #4A4A4A;
+}
+
+.layer-shopSearch #result>span:first-child{
+	width: 380px;
+    border-top: 1px solid #4A4A4A;
+    background-color: #EBEBEB;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.layer-shopSearch #result>div>div, .layer-shopSearch #result #listEmpty{
+	width:330px;
+	padding: 10px 30px;
+    border-top: 1px solid #CCCCCC;
+}
+.layer-shopSearch #result #listExist{
+	height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.layer-shopSearch #result dt{
+    color:#777;
+}
+.layer-shopSearch #result>div span{
+    color: #e52d38;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.layer-colorSelector>.pop-layer{
+	height: 360px;
+}
+.layer-colorSelector #colorpicker{
+	height:100px;
+}
+.layer-colorSelector #hexColor{
+	width:80px;
+}
+
+input#shop_id, input#shop_pw, input#shop_name{
+	width:326px;
+}
+input#shop_tel2,input#shop_tel3{
+	width:100px;
+}
+
+/* FAQ */
+form#faq #searchCol + div{ 
+	width:100px !important; 
+}
+form#faq #searchCol + div>.wSelect-options-holder{ 
+	width:100px !important; 
+}
+form[name="faqEditor"] input#title, form[name="faqEditor"] input#content{
+	width:99%;
+}
+
+/* 일반상품 */
+form#generalProduct #searchCol + div{ 
+	width:130px !important; 
+}
+form#generalProduct #searchCol + div>.wSelect-options-holder{ 
+	width:130px !important; 
+}
+
+.layer-generalProductView>.pop-layer{
+	width:640px;
+	height:600px;
+}
+
+.layer-generalProductView .contentsArea{
+	height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+span#generalProduct_admin_name{
+	width:180px;
+	background-color:#EBEBEB;
+    vertical-align: top;
+    height: 38px;
+    line-height: 38px;
+}
+form[name="generalProductEditor"] input#admin_name, form[name="generalProductEditor"] input#p_name{
+	width:99%;
+}
+form[name="generalProductEditor"] input#p_price{
+	width:230px;
+	margin-right:5px;
+}
+form[name="generalProductEditor"] #category + div{ 
+	width:140px !important; 
+}
+form[name="generalProductEditor"] #category + div>.wSelect-options-holder{ 
+	width:140px !important; 
+}
+form[name="generalProductEditor"] p.colorReady, p.colorSelected{
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+p.colorSelected{
+	border:1px solid black;
+}
+form[name="generalProductEditor"] p.colorSelected{
+	cursor:pointer;
+}
+
+form[name="generalProductEditor"] p.colorSelected i{
+	display:none;
+}
+form[name="generalProductEditor"] #sizeArray + div{ 
+	width:100px !important; 
+}
+form[name="generalProductEditor"] #sizeArray + div>.wSelect-options-holder{ 
+	width:100px !important; 
+}
+
+form[name="generalProductEditor"] textarea#detail_info{
+	width: 97%;
+	height: 200px;
+	resize:none;
+}
+
+.generalProductViewPop .photoArea{
+	margin:0;
+	width:130px;
+}
+
+/* 이벤트배너 */
+form[name="eventBannerList"] img#banner_img_preview{
+	width: 200px;
+    height: 100%;
+}
+
+/* 메인라벨관리 */
+form[name="mainLabelList"] div#mainLabelEditArea{
+	width: 675px;
+	height: 323px;
+	padding: 10px;
+	border: 1px solid #CCCCCC;
+}
+form[name="mainLabelList"] div#mainLabelEditArea>div:first-child{
+	height: 318px;
+    width: 289px;
+	overflow-y: auto;
+}
+form[name="mainLabelList"] div#mainLabelEditArea div#mainLabelDetailArea{
+	padding-left:20px;
+}
+form[name="mainLabelList"] div#mainLabelEditArea div#mainLabelDetailArea ul{
+    list-style-type: square;
+    margin-left:20px;
+}
+form[name="mainLabelList"] #sortable{ 
+	list-style-type: none; margin: 0; padding: 0;
+}
+form[name="mainLabelList"] #sortable li { 
+	margin: 0 5px 5px 5px; 
+	padding: 5px; 
+	font-size: 1.2em; 
+	height: 1.5em; 
+	width:250px;
+}
+form[name="mainLabelList"] #sortable li, form[name="mainLabelList"] .ui-state-highlight { 
+	height: 1.5em; line-height: 1.5em; 
+}
+
+form[name="mainLabelList"] #sortable + p{
+    height: 23px;    
+    width: 250px;
+    border: 1px solid #ccc;
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+form[name="mainLabelList"] #mainLabelDetailArea input{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+form[name="mainLabelList"] #mainLabelDetailAreaDefault{
+	height: 100px;
+    padding: 15px;
+}
+
+form[name="mainLabelList"] #mainLabelDetailAreaInput{
+	height: 80px;
+	padding-top:70px;
+	text-align:center;
+}
+form[name="mainLabelList"] #mainLabelDetailAreaInput input[type="button"]{
+	width: 30px;
+    text-indent: 0;
+    border: 1px solid #000000;
+    border-radius: 0;
+}
+
+/* 라벨컨텐츠 */
+form[name="labelProductEditor"] div#labelProductEditArea{
+	width: 675px;
+	height: 323px;
+	padding: 10px;
+	border: 1px solid #CCCCCC;
+}
+
+form[name="labelProductEditor"] div#labelProductEditArea>div:first-child{
+	height: 318px;
+    width: 289px;
+	overflow-y: auto;
+}
+
+form[name="labelProductEditor"] div#labelProductEditArea div#labelProductDetailArea{
+	padding-left:20px;
+}
+form[name="labelProductEditor"] div#labelProductEditArea div#labelProductDetailArea ul{
+    list-style-type: square;
+    margin-left:20px;
+}
+form[name="labelProductEditor"] #sortable{ 
+	list-style-type: none; margin: 0; padding: 0;
+}
+form[name="labelProductEditor"] #sortable li { 
+	margin: 0 5px 5px 5px; 
+	padding: 5px; 
+	font-size: 1.2em; 
+	height: 1.5em; 
+	width:250px;
+}
+form[name="labelProductEditor"] #sortable li, form[name="labelProductEditor"] .ui-state-highlight { 
+	height: 1.5em; line-height: 1.5em; 
+}
+
+form[name="labelProductEditor"] #sortable + p{
+    height: 23px;    
+    width: 250px;
+    border: 1px solid #ccc;
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+form[name="labelProductEditor"] #labelProductDetailArea input{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+form[name="labelProductEditor"] #labelProductDetailAreaDefault{
+	height: 100px;
+    padding: 15px;
+}
+
+form[name="labelProductEditor"] #labelProductDetailAreaInput{
+	height: 100px;
+	padding-top:70px;
+	text-align:center;
+}
+form[name="labelProductEditor"] #labelProductDetailAreaInput input[type="button"]{
+	width: 30px;
+    text-indent: 0;
+    border: 1px solid #000000;
+    border-radius: 0;
+}
+form[name="labelProductList"] #main_type + div{ 
+	width:200px !important; 
+	margin-left: 117px;
+    margin-bottom: 10px !important;
+}
+form[name="labelProductList"] #main_type + div>.wSelect-options-holder{ 
+	width:200px !important; 
+}
+
+.layer-productSearch>.pop-layer{
+	width:440px;
+	height: 530px;
+}
+.layer-productSearch #result{
+	border-bottom: 1px solid #4A4A4A;
+}
+
+.layer-productSearch #result>span:first-child{
+	width: 380px;
+    border-top: 1px solid #4A4A4A;
+    background-color: #EBEBEB;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.layer-productSearch #result>div>div, .layer-productSearch #result #listEmpty{
+	width:330px;
+	padding: 10px 30px;
+    border-top: 1px solid #CCCCCC;
+}
+.layer-productSearch #result #listExist{
+	height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.layer-productSearch #result dt{
+    color:#777;
+}
+.layer-productSearch #result>div span{
+    color: #e52d38;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+/* 태그관리 */
+form[name="adminTagList"] table{
+	width:40%;
+}
+
+/* 컬러맵 관리 */
+form[name="colorList"] div#colorEditArea{
+	width: 675px;
+	height: 323px;
+	padding: 10px;
+	border: 1px solid #CCCCCC;
+}
+form[name="colorList"] div#colorEditArea>div:first-child{
+	height: 318px;
+    width: 289px;
+	overflow-y: auto;
+}
+form[name="colorList"] div#colorEditArea div#colorDetailArea{
+	padding-left:20px;
+}
+form[name="colorList"] div#colorEditArea div#colorDetailArea ul{
+    list-style-type: square;
+    margin-left:20px;
+}
+form[name="colorList"] #sortable{ 
+	list-style-type: none; margin: 0; padding: 0;
+}
+form[name="colorList"] #sortable li { 
+	margin: 0 5px 5px 5px; 
+	padding: 5px; 
+	font-size: 1.2em; 
+	height: 1.5em; 
+	width:250px;
+}
+form[name="colorList"] #sortable li, form[name="colorList"] .ui-state-highlight { 
+	height: 1.5em; line-height: 1.5em; 
+}
+
+form[name="colorList"] #sortable + p{
+    height: 23px;    
+    width: 250px;
+    border: 1px solid #ccc;
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+form[name="colorList"] #colorDetailArea input{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+form[name="colorList"] #colorDetailAreaDefault{
+	height: 100px;
+    padding: 15px;
+}
+
+form[name="colorList"] #colorDetailAreaInput{
+	height: 80px;
+	padding-top:70px;
+	text-align:center;
+}
+form[name="colorList"] #colorDetailAreaInput input[type="button"]{
+	width: 30px;
+    text-indent: 0;
+    border: 1px solid #000000;
+    border-radius: 0;
+}
+
+/* 사이즈맵 관리 */
+form[name="sizeList"] div#sizeEditArea{
+	width: 675px;
+	height: 323px;
+	padding: 10px;
+	border: 1px solid #CCCCCC;
+}
+form[name="sizeList"] div#sizeEditArea>div:first-child{
+	height: 318px;
+    width: 289px;
+	overflow-y: auto;
+}
+form[name="sizeList"] div#sizeEditArea div#sizeDetailArea{
+	padding-left:20px;
+}
+form[name="sizeList"] div#sizeEditArea div#sizeDetailArea ul{
+    list-style-type: square;
+    margin-left:20px;
+}
+form[name="sizeList"] #sortable{ 
+	list-style-type: none; margin: 0; padding: 0;
+}
+form[name="sizeList"] #sortable li { 
+	margin: 0 5px 5px 5px; 
+	padding: 5px; 
+	font-size: 1.2em; 
+	height: 1.5em; 
+	width:250px;
+}
+form[name="sizeList"] #sortable li, form[name="sizeList"] .ui-state-highlight { 
+	height: 1.5em; line-height: 1.5em; 
+}
+
+form[name="sizeList"] #sortable + p{
+    height: 23px;    
+    width: 250px;
+    border: 1px solid #ccc;
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+form[name="sizeList"] #sizeDetailArea input{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+form[name="sizeList"] #sizeDetailAreaDefault{
+	height: 100px;
+    padding: 15px;
+}
+
+form[name="sizeList"] #sizeDetailAreaInput{
+	height: 80px;
+	padding-top:70px;
+	text-align:center;
+}
+form[name="sizeList"] #sizeDetailAreaInput input[type="button"]{
+	width: 30px;
+    text-indent: 0;
+    border: 1px solid #000000;
+    border-radius: 0;
+}

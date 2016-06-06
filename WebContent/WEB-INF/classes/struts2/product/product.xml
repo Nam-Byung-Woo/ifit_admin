@@ -1,0 +1,43 @@
+<!DOCTYPE struts PUBLIC    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"    
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="product" namespace="/product" extends="iFitAdmin">
+		<!-- 상품 리스트-->
+		<action name="generalProductList" class="action.product.GeneralProduct" method="getList">
+			<result>/jsp/product/generalProductList.jsp</result>
+		</action>
+		
+		<!-- 상품 등록/편집 폼-->
+		<action name="generalProductEditor" class="action.product.GeneralProduct" method="getEditor">
+			<result>/jsp/product/generalProductEditor.jsp</result>
+		</action>
+		
+		<action name="generalProductWriteAction" class="action.product.GeneralProduct" method="writeAction">
+			<result type="redirectAction">
+		  		<param name="actionName">generalProductList</param>
+    	  	</result>
+			<result name="validation">/jsp/product/generalProductList.jsp</result>
+		</action>
+		
+		<action name="generalProductUpdateAction" class="action.product.GeneralProduct" method="updateAction">
+			<result type="redirectAction">
+		  		<param name="actionName">generalProductList</param>
+    	  	</result>
+			<result name="validation">/jsp/product/generalProductList.jsp</result>
+		</action>
+		
+		<action name="generalProductDeleteAction" class="action.product.GeneralProduct" method="deleteAction">
+			<result type="redirectAction">
+		  		<param name="actionName">generalProductList</param>
+    	  	</result>
+    	  	<result name="validation">/jsp/product/generalProductList.jsp</result>
+		</action>
+		
+		<!--예시
+		<action name="ipApporveList" class="action.ip.IpAction" method="IpList">
+		  <result>/jsp/admin/ip/ipApporveList.jsp</result>
+		  <result name="EXCEL">/jsp/admin/ip/ipListExcelDownload.jsp</result>
+		</action>
+		-->
+	</package>
+</struts>

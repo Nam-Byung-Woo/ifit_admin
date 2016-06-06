@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+ 
+<struts>
+    <package name="iFitAdmin" extends="struts-default" namespace="/">
+
+        <interceptors>
+ 			<interceptor name="sessionInit" class="interceptor.SessionInterceptor"/>	 					
+ 			<interceptor-stack name="defaultSessionStack">
+              	<interceptor-ref name="sessionInit" />
+              	<interceptor-ref name="defaultStack"/>
+           	</interceptor-stack>
+		</interceptors> 
+  
+		<default-interceptor-ref name="defaultSessionStack" />
+  	
+		<default-action-ref name="exception" />
+		
+	    <global-results>
+	        <result name="login">/jsp/common/login.jsp</result>
+	        <result name="logout" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">logoutAction</param>
+	        </result> 
+	     <!-- <result name="exception">/jsp/common/error.jsp</result>	 --> 		<!-- 기타 모든 에러 -->
+	    </global-results>
+
+	    <!--
+	    개발완료시에는 exception숨겨야하므로 주석제거하여 적용
+		<global-exception-mappings>
+			<exception-mapping exception="java.sql.SQLException" result="exception"/>
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+			<exception-mapping exception="java.lang.IllegalArgumentException" result="exception" />
+			<exception-mapping exception="java.lang.NoSuchMethodException" result="exception" />
+			<exception-mapping exception="java.lang.Exception" result="exception"/> 
+			<exception-mapping exception="java.lang.Error" result="exception"/> 
+			<exception-mapping exception="java.lang.Throwable" result="exception"/>      
+    	</global-exception-mappings>
+		 -->
+
+	    <!-- 관리자메인 -->
+		<action name="index">
+			<result type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">index</param>
+		    </result>
+		</action>
+	    
+    </package>
+    
+    <include file="struts2/basic/basic.xml" />
+    <include file="struts2/member/member.xml" />
+    <include file="struts2/product/product.xml" />
+    <include file="struts2/help/help.xml" />
+    <include file="struts2/banner/banner.xml" />
+    <include file="struts2/contentManager/contentManager.xml" />
+    <include file="struts2/order/order.xml" />
+    
+</struts> 

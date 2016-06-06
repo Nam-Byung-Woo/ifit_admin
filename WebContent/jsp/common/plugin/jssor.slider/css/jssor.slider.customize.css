@@ -1,0 +1,93 @@
+.slider_image{width: 100%; height: 160px;}
+
+/* slider관련 */
+#jssor_1{
+	position: relative;
+	margin: 0 auto;
+	top: 0px;
+	left: 0px;
+	overflow: hidden; 
+	visibility: hidden;
+}
+
+#jssor_1_container{
+	cursor: default; 
+	position: relative; 
+	top: 0px; 
+	left: -0.2px; /*잔상이 남아 강제로 컨테이너 이동*/
+	overflow: hidden;
+}
+
+/*
+.jssorb05 div           (normal)
+.jssorb05 div:hover     (normal mouseover)
+.jssorb05 .av           (active)
+.jssorb05 .av:hover     (active mouseover)
+.jssorb05 .dn           (mousedown)
+*/
+.jssorb05 {
+    position: absolute;
+    /*네비게이터 요소 조절*/
+    bottom:16px;
+    right:16px;
+    
+}
+.jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+    position: absolute;
+    /* size of bullet elment */
+    width: 16px;
+    height: 16px;
+    background: url('../img/slider_navi.png') no-repeat;
+    overflow: hidden;
+    cursor: pointer;
+}
+.jssorb05 div { 
+	background-position: -7px -7px;
+	/*네비게이터 요소 조절*/ 
+	width:16px;
+	height:16px;
+}
+.jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+.jssorb05 .av { background-position: -67px -7px; }
+.jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+
+/* jssor slider arrow navigator skin 22 css */
+/*
+.jssora22l                  (normal)
+.jssora22r                  (normal)
+.jssora22l:hover            (normal mouseover)
+.jssora22r:hover            (normal mouseover)
+.jssora22l.jssora22ldn      (mousedown)
+.jssora22r.jssora22rdn      (mousedown)
+*/
+.jssora22l, .jssora22r {
+    display: block;
+    position: absolute;
+    /* size of arrow element */
+    width: 40px;
+    height: 58px;
+    cursor: pointer;
+    background: url('../img/slider_left_right.png') center center no-repeat;
+    overflow: hidden;
+}
+.jssora22l { 
+	/*좌측 이동아이콘 위치 조절*/
+	background-position: -10px -31px;
+    top:0px;
+    left:-7px;
+    width:40px;
+    height:58px;
+
+}
+.jssora22r { 
+	/*우측 이동아이콘 위치 조절*/
+	background-position: -70px -31px; 
+    top:0px;
+    right:-7px;
+    width:40px;
+    height:58px;
+}
+.jssora22l:hover { background-position: -130px -31px; }
+.jssora22r:hover { background-position: -190px -31px; }
+.jssora22l.jssora22ldn { background-position: -250px -31px; }
+.jssora22r.jssora22rdn { background-position: -310px -31px; }

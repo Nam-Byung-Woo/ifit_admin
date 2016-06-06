@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_ID" version="2.4">
+  <display-name>iFit 관리자</display-name>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    <init-param>
+      <param-name>struts.i18n.encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  
+  <welcome-file-list>
+		<welcome-file>/jsp/index.html</welcome-file>
+  </welcome-file-list>
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <security-constraint>
+    <display-name>JSP Protection</display-name>
+    <web-resource-collection>
+      <web-resource-name>SecureJSPPages</web-resource-name>
+      <url-pattern>*.jsp</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>nobody</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-role>
+    <description>Action을 통하지 않은 jsp 페이지 접근 방지</description>
+    <role-name>nobody</role-name>
+  </security-role>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/spring_context/applicationContext*.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/jsp/error/403error.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/jsp/error/404error.jsp</location>
+  </error-page>
+</web-app>

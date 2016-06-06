@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'NotoSansCJKkr-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../font/NotoSansCJKkr/NotoSansCJKkr-Regular.eot);
+  src: url(../font/NotoSansCJKkr/NotoSansCJKkr-Regular.eot?#iefix) format('embedded-opentype'),
+       url(../font/NotoSansCJKkr/NotoSansCJKkr-Regular.woff2) format('x-woff2'),
+       url(../font/NotoSansCJKkr/NotoSansCJKkr-Regular.woff) format('woff'),
+       url(../font/NotoSansCJKkr/NotoSansCJKkr-Regular.ttf) format('truetype'),
+       url(../font/NotoSansCJKkr/NotoSansCJKkr-Regular.svg#webfont) format('svg');
+}
