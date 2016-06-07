@@ -27,20 +27,20 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.IfitDAO;
-import dto.EventBannerDTO;
+import dto.PromotionListDTO;
 import lombok.Data;
 
 @Data
-public class EventBanner extends ActionSupport  {
+public class Promotion extends ActionSupport  {
 	private Map session;
 	private ActionContext context;
 	private WebApplicationContext wac;
 	private FormValidate formValidate = new FormValidate();
 	private Code code = new Code();
 	private AlertMessage alertMessage = new AlertMessage();
-	private IfitDAO eventBannerDAO;
-	private EventBannerDTO eventBannerDTO;
-	private List<EventBannerDTO> dataList;
+	private IfitDAO promotionListDAO;
+	private PromotionListDTO promotionListDTO;
+	private List<PromotionListDTO> dataList;
 	private Paging paging = new Paging();
 	private Map<String, Object> paramMap = new HashMap<String, Object>();
 	private Map<String, Object> searchMap = new HashMap<String, Object>();
@@ -61,33 +61,34 @@ public class EventBanner extends ActionSupport  {
     private String queryIncode = "";						//	쿼리스트링(인코딩)
     private String queryDecode = "";						//	쿼리스트링(디코딩)
     
-	private int banner_type;		
+    private String pro_name;
+	private int pro_use;		
 	private int seq;
 	
 	// 첨부파일 영역
-	private List<File> banner_url = new ArrayList<File>();								//	베너이미지
-	private List<String> banner_urlContentType = new ArrayList<String>(); 			//	베너이미지 첨부파일 종류
-	private List<String> banner_urlFileName = new ArrayList<String>(); 				//	베너이미지 첨부파일명
-	private List<String> banner_urlDeleteFileName = new ArrayList<String>();		//	베너이미지 삭제 요청시 파일명
+	private List<File> pro_url = new ArrayList<File>();								//	프로모션 이미지
+	private List<String> pro_urlContentType = new ArrayList<String>(); 			//	프로모션 이미지 첨부파일 종류
+	private List<String> pro_urlFileName = new ArrayList<String>(); 				//	프로모션 이미지 첨부파일명
+	private List<String> pro_urlDeleteFileName = new ArrayList<String>();		//	프로모션 이미지 삭제 요청시 파일명
 	
 	private String isUpdateMode = "";					// 편집모드
     
     private LinkedHashMap searchColKindMap = new LinkedHashMap() {{	// 검색 가능한 종류
     	// db상의 name과 매칭 
-    	put(0,"banner_url");					// 기본값
-    	put(1,"banner_url");						
+    	put(0,"pro_name");					// 기본값
+    	put(1,"pro_name");						
     }};
     
     private LinkedHashMap sortColKindMap = new LinkedHashMap() {{	// 정렬항목 정의
     	// db상의 name과 매칭
-		put(0,"banner_seq");		// 기본값 정렬
-		put(1,"banner_type");		// 베너 타입 정렬
+		put(0,"pro_seq");		// 기본값 정렬
+		put(1,"pro_name");
 	}};
 	
-	public EventBanner() {
+	public Promotion() {
 		ServletContext servletContext = ServletActionContext.getServletContext();
 	    this.wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-	    this.eventBannerDTO = new EventBannerDTO();
+	    this.promotionListDTO = new PromotionListDTO();
 	}
 	
 	public void setServletRequest(HttpServletRequest request) { 
@@ -101,7 +102,7 @@ public class EventBanner extends ActionSupport  {
 	
 	//	요소 초기화 및 세팅
 	public void init(){
-		this.eventBannerDAO = (IfitDAO)this.wac.getBean("eventBanner");
+		this.promotionListDAO = (IfitDAO)this.wac.getBean("promotionList");
 
 		this.context = ActionContext.getContext();	//session을 생성하기 위해
 		this.session = this.context.getSession();		// Map 사용시
@@ -120,7 +121,7 @@ public class EventBanner extends ActionSupport  {
 		this.paramMap.put("searchMap", this.searchMap);
 		this.paramMap.put("whereMap", this.whereMap);
 		paramMap.put("isCount",true);
-		int totalCount = (int)this.eventBannerDAO.getList(paramMap);
+		int totalCount = (int)this.promotionListDAO.getList(paramMap);
 		
 		this.pageNum = this.pageNum == 0 || (this.pageNum*this.countPerPage>totalCount && this.pageNum*this.countPerPage-totalCount >= this.countPerPage)  ? 1  : this.pageNum;
 		this.sortCol = this.sortColKindMap.containsKey(this.sortCol) ? this.sortCol : 0;
@@ -130,7 +131,7 @@ public class EventBanner extends ActionSupport  {
 		paramMap.put("countPerPage",this.countPerPage);
 		this.paramMap.put("sortCol", this.sortColKindMap.get(this.sortCol));
 		this.paramMap.put("sortVal", this.sortVal);
-		this.dataList = (List<EventBannerDTO>)this.eventBannerDAO.getList(paramMap);
+		this.dataList = (List<PromotionListDTO>)this.promotionListDAO.getList(paramMap);
 		
 		this.queryIncode = StringUtil.stringToHex(this.request.getQueryString()==null ? "" : this.request.getQueryString());
 		this.pagingHTML = paging.getPaging(totalCount, this.pageNum, this.countPerPage);
@@ -144,11 +145,11 @@ public class EventBanner extends ActionSupport  {
 		
 		this.whereMap.clear();
 		if(paramMap.containsKey("seq")){
-			this.whereMap.put("banner_seq", paramMap.get("seq"));
+			this.whereMap.put("pro_seq", paramMap.get("seq"));
 			this.paramMap.put("whereMap", this.whereMap);
 		}
 
-		return (EventBannerDTO) this.eventBannerDAO.getOneRow(this.paramMap);
+		return (PromotionListDTO) this.promotionListDAO.getOneRow(this.paramMap);
 	}
 	
 	public String getEditor() throws Exception{
@@ -156,7 +157,7 @@ public class EventBanner extends ActionSupport  {
 		
 		if(Boolean.valueOf(this.isUpdateMode).booleanValue()){
 			this.paramMap.put("seq", this.seq);
-			this.eventBannerDTO = (EventBannerDTO) getData(this.paramMap);
+			this.promotionListDTO = (PromotionListDTO) getData(this.paramMap);
 		}
 		
 		this.queryDecode = StringUtil.hexToString(this.queryIncode);
@@ -168,39 +169,41 @@ public class EventBanner extends ActionSupport  {
 	public String writeAction() throws Exception {	
 		init();
 		
-		FileManager fileManager = new FileManager("image", "eventBanner");
+		FileManager fileManager = new FileManager("image", "promotion");
 		
 		Gson gson = new Gson();
 		
-		paramMap.put("banner_type", this.banner_type);
-		paramMap.put("banner_url", this.banner_url.size());
+		this.pro_name = StringUtil.isNullOrSpace(this.pro_name,"").trim();
+		paramMap.put("pro_name", this.pro_name);
+		paramMap.put("pro_url", this.pro_url.size());
 		
-		this.validateMsgMap = formValidate.eventBannerEditorForm(paramMap);
+		this.validateMsgMap = formValidate.promotionEditorForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
-		}else if(!fileManager.fileValidation(getBanner_url(), getBanner_urlFileName(), this.banner_url)){
+		}else if(!fileManager.fileValidation(getPro_url(), getPro_urlFileName(), this.pro_url)){
 			validateMsgMap = formValidate.fileUploadError();
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
 		}
 		
-		this.eventBannerDTO.setBanner_type(this.banner_type);
+		this.promotionListDTO.setPro_name(this.pro_name);
+		this.promotionListDTO.setPro_use(1);
 		
 		/****************** 이미지파일 Insert & upload START ******************/
 		String saveFileName = "";
 		
 		// 메인이미지 업로드
-		for (int i = 0; i < this.banner_url.size(); i++) { 
-			saveFileName = fileManager.fileUpload(getBanner_urlFileName(), getBanner_url(), i, 0);	//파일업로드
-			this.eventBannerDTO.setBanner_url(saveFileName);
+		for (int i = 0; i < this.pro_url.size(); i++) { 
+			saveFileName = fileManager.fileUpload(getPro_urlFileName(), getPro_url(), i, 0);	//파일업로드
+			this.promotionListDTO.setPro_url(saveFileName);
 		}	
 		/****************** 이미지파일 Insert & upload END ******************/
 		
-		this.eventBannerDAO.write(this.eventBannerDTO);
+		this.promotionListDAO.write(this.promotionListDTO);
 		
-		this.session.put("alertMsg", this.alertMessage.getEventBannerWriteOK());
+		this.session.put("alertMsg", this.alertMessage.getPromotionWriteOK());
 		this.context.setSession(this.session);
 		
 		return SUCCESS;
@@ -209,51 +212,54 @@ public class EventBanner extends ActionSupport  {
 	public String updateAction() throws Exception {	
 		init();
 		
-		FileManager fileManager = new FileManager("image", "eventBanner");
+		FileManager fileManager = new FileManager("image", "promotion");
 		
 		Gson gson = new Gson();
 		
 		this.paramMap.put("seq", this.seq);
 		
-		EventBannerDTO bannerData = (EventBannerDTO) getData(this.paramMap);
+		PromotionListDTO promotionData = (PromotionListDTO) getData(this.paramMap);
 		
-		paramMap.put("banner_type", this.banner_type);
-		paramMap.put("banner_url", 1 - (banner_urlDeleteFileName.contains(bannerData.getBanner_url_name()) ? 1 : 0) + this.banner_url.size() );
+		this.pro_name = StringUtil.isNullOrSpace(this.pro_name,"").trim();
+		paramMap.put("pro_name", this.pro_name);
+		paramMap.put("pro_use", 1);
+		paramMap.put("pro_url", 1 - (pro_urlDeleteFileName.contains(promotionData.getPro_url_name()) ? 1 : 0) + this.pro_url.size() );
 		
-		this.validateMsgMap = formValidate.eventBannerEditorForm(paramMap);
+		this.validateMsgMap = formValidate.promotionEditorForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
-		}else if(!fileManager.fileValidation(getBanner_url(), getBanner_urlFileName(), this.banner_url)){
+		}else if(!fileManager.fileValidation(getPro_url(), getPro_urlFileName(), this.pro_url)){
 			validateMsgMap = formValidate.fileUploadError();
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";
 		}
 		
 		/****************** 기존 데이터 삭제 START ******************/
-		for(String str : this.banner_urlDeleteFileName){
+		for(String str : this.pro_urlDeleteFileName){
 			fileManager.fileDelete(str);
 		}
 		/****************** 기존 데이터 삭제 END ******************/
 		
-		this.eventBannerDTO.setBanner_seq(this.seq);
-		this.eventBannerDTO.setBanner_type(this.banner_type);
+		this.promotionListDTO.setPro_name(this.pro_name);
+		this.promotionListDTO.setPro_seq(this.seq);
+		this.promotionListDTO.setPro_use(1);
 		
 		/****************** 이미지파일 update & upload START ******************/
 		String saveFileName = "";
 		
-		for (int i = 0; i < this.banner_url.size(); i++) { 
-			saveFileName = fileManager.fileUpload(getBanner_urlFileName(), getBanner_url(), i, 0);	//파일업로드
-			this.eventBannerDTO.setBanner_url(saveFileName);
+		for (int i = 0; i < this.pro_url.size(); i++) { 
+			saveFileName = fileManager.fileUpload(getPro_urlFileName(), getPro_url(), i, 0);	//파일업로드
+			this.promotionListDTO.setPro_url(saveFileName);
 		}
 		
-		this.eventBannerDTO.setBanner_url((this.eventBannerDTO.getBanner_url() == null) ? bannerData.getBanner_url() : this.eventBannerDTO.getBanner_url());
+		this.promotionListDTO.setPro_url((this.promotionListDTO.getPro_url() == null) ? promotionData.getPro_url() : this.promotionListDTO.getPro_url());
 		/****************** 이미지파일 Insert & upload END ******************/
 		
-		this.eventBannerDAO.update(this.eventBannerDTO);
+		this.promotionListDAO.update(this.promotionListDTO);
 		
-		this.session.put("alertMsg", this.alertMessage.getEventBannerUpdateOK());
+		this.session.put("alertMsg", this.alertMessage.getPromotionUpdateOK());
 		this.context.setSession(this.session);
 		
 		return SUCCESS;
@@ -262,17 +268,17 @@ public class EventBanner extends ActionSupport  {
 	public String deleteAction() throws Exception{
 		init();
 		
-		FileManager fileManager = new FileManager("image", "eventBanner");
+		FileManager fileManager = new FileManager("image", "promotion");
 
-		this.paramMap.put("banner_seq", this.seq);
+		this.paramMap.put("pro_seq", this.seq);
 		this.paramMap.put("seq", this.seq);
 		
-		this.eventBannerDTO = (EventBannerDTO) getData(this.paramMap);
+		this.promotionListDTO = (PromotionListDTO) getData(this.paramMap);
 		
-		this.eventBannerDAO.delete(this.paramMap);
+		this.promotionListDAO.delete(this.paramMap);
 		
 		/****************** 기존 데이터 삭제 START ******************/		
-		fileManager.fileDelete(this.eventBannerDTO.getBanner_url_name());
+		fileManager.fileDelete(this.promotionListDTO.getPro_url_name());
 		/****************** 기존 데이터 삭제 END ******************/
 		
 		this.session.put("alertMsg", this.alertMessage.getDeleteOK());

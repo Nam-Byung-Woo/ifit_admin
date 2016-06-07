@@ -60,7 +60,7 @@ public class FileManager {
 	}
 	
 	public void fileDelete(String fileName) throws IOException{
-		FilePath_full = FilePath_basic + FilePath_detail;
+		this.FilePath_full = this.FilePath_basic + this.dataMode + this.FilePath_detail;
 		File selectFile = new File(FilePath_full + fileName);
 		selectFile.delete();
 	}

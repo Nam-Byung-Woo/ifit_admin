@@ -33,6 +33,49 @@
     	  	<result name="validation">/jsp/banner/eventBannerList.jsp</result>
 		</action>
 		
+		<!-- promotion 리스트-->
+		<action name="promotionList" class="action.banner.Promotion" method="getList">
+			<result>/jsp/banner/promotionList.jsp</result>
+		</action>
+		
+		<!-- promotion 등록/편집 폼-->
+		<action name="promotionEditor" class="action.banner.Promotion" method="getEditor">
+			<result>/jsp/banner/promotionEditor.jsp</result>
+		</action>
+		
+		<action name="promotionWriteAction" class="action.banner.Promotion" method="writeAction">
+			<result type="redirectAction">
+		  		<param name="actionName">promotionList</param>
+    	  	</result>
+			<result name="validation">/jsp/banner/promotionList.jsp</result>
+		</action>
+		
+		<action name="promotionUpdateAction" class="action.banner.Promotion" method="updateAction">
+			<result type="redirectAction">
+		  		<param name="actionName">promotionList</param>
+    	  	</result>
+			<result name="validation">/jsp/banner/promotionList.jsp</result>
+		</action>
+		
+		<action name="promotionDeleteAction" class="action.banner.Promotion" method="deleteAction">
+			<result type="redirectAction">
+		  		<param name="actionName">promotionList</param>
+    	  	</result>
+    	  	<result name="validation">/jsp/banner/promotionList.jsp</result>
+		</action>
+		
+		<action name="promotionContentList" class="action.banner.PromotionContent" method="getList">
+			<result>/jsp/banner/promotionContentList.jsp</result>
+		</action>
+		
+		<action name="promotionContentUpdateAction" class="action.banner.PromotionContent" method="updateAction">
+			<result type="redirectAction">
+		  		<param name="actionName">promotionContentList</param>
+		  		<param name="pro_seq">${pro_seq}</param>
+    	  	</result>
+			<result name="validation">/jsp/banner/promotionContentList.jsp</result>
+		</action>
+		
 		<!--예시
 		<action name="ipApporveList" class="action.ip.IpAction" method="IpList">
 		  <result>/jsp/admin/ip/ipApporveList.jsp</result>

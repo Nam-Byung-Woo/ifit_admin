@@ -62,6 +62,17 @@ public class AlertMessage{
 	private String EventBannerTypeError = "올바른 타입을 선택해 주세요.";
 	private String EventBannerImageError = "배너이미지를 등록해 주세요.";
 	
+	//*******************프로모션 관련*******************/
+	private String PromotionWriteOK = "프로모션이 등록되었습니다.";
+	private String PromotionUpdateOK = "프로모션이 수정되었습니다.";
+	private String PromotionNameError = "프로모션 이름을 입력해 주세요.";
+	private String PromotionImageError = "프로모션 이미지를 등록해 주세요.";
+	
+	//*******************프로모션컨텐츠 관련*******************/
+	private String PromotionContentWriteOK = "프로모션컨텐츠가 등록되었습니다.";
+	private String PromotionContentUpdateOK = "프로모션컨텐츠가 저장되었습니다.";
+//	private String MainLabelError = "올바른 태그를 입력해 주세요.";
+	
 	//*******************태그 관련*******************/
 	private String AdminTagWriteOK = "태그가 등록되었습니다.";
 	private String AdminTagUpdateOK = "태그가 저장되었습니다.";
@@ -70,6 +81,11 @@ public class AlertMessage{
 	//*******************라벨 관련*******************/
 	private String MainLabelWriteOK = "라벨이 등록되었습니다.";
 	private String MainLabelUpdateOK = "라벨이 저장되었습니다.";
+//	private String MainLabelError = "올바른 태그를 입력해 주세요.";
+	
+	//*******************라벨컨텐츠 관련*******************/
+	private String LabelProductWriteOK = "라벨컨텐츠가 등록되었습니다.";
+	private String LabelProductUpdateOK = "라벨컨텐츠가 저장되었습니다.";
 //	private String MainLabelError = "올바른 태그를 입력해 주세요.";
 	
 	//*******************사이즈맵 관련*******************/

@@ -387,6 +387,99 @@ form[name="eventBannerList"] img#banner_img_preview{
     height: 100%;
 }
 
+/* 프로모션 */
+form[name="promotionList"] img#pro_img_preview{
+	width: 200px;
+    height: 100%;
+}
+form#promotion #searchCol + div{ 
+	width:150px !important; 
+}
+form#promotion #searchCol + div>.wSelect-options-holder{ 
+	width:150px !important; 
+}
+form[name="promotionEditor"] input#pro_name{
+	width:398px;
+}
+
+/* 프로모션컨텐츠 */
+form[name="promotionContentEditor"] div#promotionContentEditArea{
+	width: 675px;
+	height: 323px;
+	padding: 10px;
+	border: 1px solid #CCCCCC;
+}
+
+form[name="promotionContentEditor"] div#promotionContentEditArea>div:first-child{
+	height: 318px;
+    width: 289px;
+	overflow-y: auto;
+}
+
+form[name="promotionContentEditor"] div#promotionContentEditArea div#promotionContentDetailArea{
+	padding-left:20px;
+}
+form[name="promotionContentEditor"] div#promotionContentEditArea div#promotionContentDetailArea ul{
+    list-style-type: square;
+    margin-left:20px;
+}
+form[name="promotionContentEditor"] #sortable{ 
+	list-style-type: none; margin: 0; padding: 0;
+}
+form[name="promotionContentEditor"] #sortable li { 
+	margin: 0 5px 5px 5px; 
+	padding: 5px; 
+	font-size: 1.2em; 
+	height: 1.5em; 
+	width:250px;
+}
+form[name="promotionContentEditor"] #sortable li, form[name="promotionContentEditor"] .ui-state-highlight { 
+	height: 1.5em; line-height: 1.5em; 
+}
+
+form[name="promotionContentEditor"] #sortable + p{
+    height: 23px;    
+    width: 250px;
+    border: 1px solid #ccc;
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+form[name="promotionContentEditor"] #promotionContentDetailArea input{
+	margin: 0;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    height: 24px;
+    line-height: 20px;
+    border-radius: 3px;
+    text-indent: 5px;
+}
+
+form[name="promotionContentEditor"] #promotionContentDetailAreaDefault{
+	height: 100px;
+    padding: 15px;
+}
+
+form[name="promotionContentEditor"] #promotionContentDetailAreaInput{
+	height: 100px;
+	padding-top:70px;
+	text-align:center;
+}
+form[name="promotionContentEditor"] #promotionContentDetailAreaInput input[type="button"]{
+	width: 30px;
+    text-indent: 0;
+    border: 1px solid #000000;
+    border-radius: 0;
+}
+form[name="promotionContentList"] #pro_seq + div{ 
+	width:250px !important; 
+	margin-left: 117px;
+    margin-bottom: 10px !important;
+}
+form[name="promotionContentList"] #pro_seq + div>.wSelect-options-holder{ 
+	width:250px !important; 
+}
+
 /* 메인라벨관리 */
 form[name="mainLabelList"] div#mainLabelEditArea{
 	width: 675px;

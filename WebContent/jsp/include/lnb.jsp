@@ -50,7 +50,8 @@
 				<ul>
 					<li>
 						<p><a href="<s:url namespace="/banner" action="eventBannerList" />">- 이벤트배너</a></p>
-						<p><a class="yet" href="#">- 기획전</a></p>
+						<p><a href="<s:url namespace="/banner" action="promotionList" />">- 프로모션관리</a></p>
+						<p><a href="<s:url namespace="/banner" action="promotionContentList" />">- 프로모션컨텐츠</a></p>
 					</li>
 				</ul>
 			</li>

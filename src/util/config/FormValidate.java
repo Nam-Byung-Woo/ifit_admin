@@ -234,6 +234,41 @@ public class FormValidate{
 		return this.rtnMap;
 	}
 	
+	// 프로모션 등록/수정 체크(validation)
+	public Map<String, Object> promotionEditorForm(Map<String, Object> paramMap){
+		if(!paramMap.containsKey("pro_name") || paramMap.get("pro_name").equals("")){
+			// 프로모션 이름 체크
+			this.rtnMap.put("msg", alertMessage.getPromotionNameError());
+			this.rtnMap.put("elementID", "pro_name_check");
+		}else if(!paramMap.containsKey("pro_url") || Integer.parseInt(paramMap.get("pro_url").toString()) <= 0 ){
+			// 프로모션 이미지 체크
+			this.rtnMap.put("msg", alertMessage.getPromotionImageError());
+			this.rtnMap.put("elementID", "pro_url_check");
+		}else if(false){
+			// 추가 가능
+		}else{
+			this.rtnMap.put("res", true);
+		}
+		
+		return this.rtnMap;
+	}
+	
+	// 프로모션 컨텐츠 등록/수정 체크(validation)
+	public Map<String, Object> promotionContentEditorForm(Map<String, Object> paramMap){
+//		if(!paramMap.containsKey("tag") || paramMap.get("tag") == null || ((List<String>)paramMap.get("tag")).size()<=0 || ((List<String>)paramMap.get("tag")).size()>3){
+//			// tag 체크
+//			this.rtnMap.put("msg", alertMessage.getAdminTagTagError());
+//			this.rtnMap.put("elementID", "tag_check");
+//		}else if(false){
+		if(false){
+			// 추가 가능
+		}else{
+			this.rtnMap.put("res", true);
+		}
+		
+		return this.rtnMap;
+		}
+	
 	// 라벨 등록/수정 체크(validation)
 	public Map<String, Object> mainLabelEditorForm(Map<String, Object> paramMap){
 //		if(!paramMap.containsKey("tag") || paramMap.get("tag") == null || ((List<String>)paramMap.get("tag")).size()<=0 || ((List<String>)paramMap.get("tag")).size()>3){

@@ -1,4 +1,4 @@
-package action.contentManager;
+package action.banner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,23 +25,23 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.IfitDAO;
-import dto.MainLabelListDTO;
-import dto.MainProductListDTO;
+import dto.PromotionListDTO;
+import dto.PromotionMapDTO;
 import lombok.Data;
 
 @Data
-public class LabelProduct extends ActionSupport  {
+public class PromotionContent extends ActionSupport  {
 	private Map session;
 	private ActionContext context;
 	private WebApplicationContext wac;
 	private FormValidate formValidate = new FormValidate();
 	private Code code = new Code();
 	private AlertMessage alertMessage = new AlertMessage();
-	private IfitDAO mainProductListDAO;
-	private IfitDAO labelListDAO;
-	private MainProductListDTO mainProductListDTO;
-	private List<MainProductListDTO> dataList;
-	private List<MainLabelListDTO> labelList;
+	private IfitDAO promotionMapDAO;
+	private IfitDAO promotionListDAO;
+	private PromotionMapDTO promotionMapDTO;
+	private List<PromotionMapDTO> dataList;
+	private List<PromotionListDTO> promotionList;
 	private Paging paging = new Paging();
 	private Map<String, Object> paramMap = new HashMap<String, Object>();
 	private Map<String, Object> searchMap = new HashMap<String, Object>();
@@ -64,9 +64,9 @@ public class LabelProduct extends ActionSupport  {
     
 	private List<String> p_id = new ArrayList<String>();
 	private List<String> deleteContentList = new ArrayList<String>();
-	private int product_order;
-	private int main_type;
-	private List<String> m_p_seq = new ArrayList<String>();
+	private int map_order;
+	private int pro_seq;
+	private List<String> pro_map_seq = new ArrayList<String>();
 	private int seq;
 	
 	private String isUpdateMode = "";					// 편집모드
@@ -78,13 +78,13 @@ public class LabelProduct extends ActionSupport  {
     
     private LinkedHashMap sortColKindMap = new LinkedHashMap() {{	// 정렬항목 정의
     	// db상의 name과 매칭
-		put(0,"product_order");		// 기본값 정렬
+		put(0,"map_order");		// 기본값 정렬
 	}};
 	
-	public LabelProduct() {
+	public PromotionContent() {
 		ServletContext servletContext = ServletActionContext.getServletContext();
 	    this.wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-	    this.mainProductListDTO = new MainProductListDTO();
+	    this.promotionMapDTO = new PromotionMapDTO();
 	}
 	
 	public void setServletRequest(HttpServletRequest request) { 
@@ -98,8 +98,8 @@ public class LabelProduct extends ActionSupport  {
 	
 	//	요소 초기화 및 세팅
 	public void init(){
-		this.mainProductListDAO = (IfitDAO)this.wac.getBean("mainProductList");
-		this.labelListDAO = (IfitDAO)this.wac.getBean("mainLabelList");
+		this.promotionMapDAO = (IfitDAO)this.wac.getBean("promotionMap");
+		this.promotionListDAO = (IfitDAO)this.wac.getBean("promotionList");
 
 		this.context = ActionContext.getContext();	//session을 생성하기 위해
 		this.session = this.context.getSession();		// Map 사용시
@@ -109,15 +109,15 @@ public class LabelProduct extends ActionSupport  {
 	
 	public String getList() throws Exception{
 		init();
-		setLabelList();
+		setPromotionList();
 		
-		this.main_type = (this.main_type == 0) ? this.labelList.get(this.main_type).getMain_type() : this.main_type;  
+		this.pro_seq = (this.pro_seq == 0) ? this.promotionList.get(this.pro_seq).getPro_seq() : this.pro_seq;  
 		
-		this.searchMap.put("main_type", this.main_type);
+		this.searchMap.put("pro_seq", this.pro_seq);
 		this.paramMap.put("searchMap", this.searchMap);
 		this.paramMap.put("whereMap", this.whereMap);
 		paramMap.put("isCount",true);
-		int totalCount = (int)this.mainProductListDAO.getList(paramMap);
+		int totalCount = (int)this.promotionMapDAO.getList(paramMap);
 		
 		this.pageNum = this.pageNum == 0 || (this.pageNum*this.countPerPage>totalCount && this.pageNum*this.countPerPage-totalCount >= this.countPerPage)  ? 1  : this.pageNum;
 		this.sortCol = this.sortColKindMap.containsKey(this.sortCol) ? this.sortCol : 0;
@@ -127,7 +127,7 @@ public class LabelProduct extends ActionSupport  {
 		paramMap.put("countPerPage",this.countPerPage);
 		this.paramMap.put("sortCol", this.sortColKindMap.get(this.sortCol));
 		this.paramMap.put("sortVal", this.sortVal);
-		this.dataList = (List<MainProductListDTO>)this.mainProductListDAO.getList(paramMap);
+		this.dataList = (List<PromotionMapDTO>)this.promotionMapDAO.getList(paramMap);
 		
 		this.queryIncode = StringUtil.stringToHex(this.request.getQueryString()==null ? "" : this.request.getQueryString());
 		this.pagingHTML = paging.getPaging(totalCount, this.pageNum, this.countPerPage);
@@ -135,13 +135,13 @@ public class LabelProduct extends ActionSupport  {
 		return SUCCESS;
 	}
 	
-	public void setLabelList() throws Exception{
+	public void setPromotionList() throws Exception{
 		init();
 		
-		this.paramMap.put("sortCol", "label_order");
+		this.paramMap.put("sortCol", "pro_seq");
 		this.paramMap.put("sortVal", "ASC");
 		this.paramMap.put("isCount",false);
-		this.labelList = (List<MainLabelListDTO>)this.labelListDAO.getList(paramMap);
+		this.promotionList = (List<PromotionListDTO>)this.promotionListDAO.getList(paramMap);
 		this.paramMap.clear();
 	}
 	
@@ -150,11 +150,11 @@ public class LabelProduct extends ActionSupport  {
 		
 		this.whereMap.clear();
 		if(paramMap.containsKey("seq")){
-			this.whereMap.put("m_p_seq", paramMap.get("seq"));
+			this.whereMap.put("pro_map_seq", paramMap.get("seq"));
 			this.paramMap.put("whereMap", this.whereMap);
 		}
 
-		return (MainProductListDTO) this.mainProductListDAO.getOneRow(this.paramMap);
+		return (PromotionMapDTO) this.promotionMapDAO.getOneRow(this.paramMap);
 	}
 	
 	public String getEditor() throws Exception{
@@ -162,7 +162,7 @@ public class LabelProduct extends ActionSupport  {
 		
 		if(Boolean.valueOf(this.isUpdateMode).booleanValue()){
 			this.paramMap.put("seq", this.seq);
-			this.mainProductListDTO = (MainProductListDTO) getData(this.paramMap);
+			this.promotionMapDTO = (PromotionMapDTO) getData(this.paramMap);
 		}
 		
 		this.queryDecode = StringUtil.hexToString(this.queryIncode);
@@ -215,24 +215,24 @@ public class LabelProduct extends ActionSupport  {
 //			return "validation";
 //		}
 		
-		for(int i=0; i<this.m_p_seq.size(); i++){
-			this.mainProductListDTO.setP_id(Integer.parseInt(this.p_id.get(i)));
-			this.mainProductListDTO.setMain_type(this.main_type);
-			this.mainProductListDTO.setProduct_order(i+1);
-			this.mainProductListDTO.setM_p_seq(Integer.parseInt(this.m_p_seq.get(i)));
-			int result = this.mainProductListDAO.update(this.mainProductListDTO);
+		for(int i=0; i<this.pro_map_seq.size(); i++){
+			this.promotionMapDTO.setP_id(Integer.parseInt(this.p_id.get(i)));
+			this.promotionMapDTO.setPro_seq(this.pro_seq);
+			this.promotionMapDTO.setMap_order(i+1);
+			this.promotionMapDTO.setPro_map_seq(Integer.parseInt(this.pro_map_seq.get(i)));
+			int result = this.promotionMapDAO.update(this.promotionMapDTO);
 			if(result==0){
-				this.mainProductListDAO.write(this.mainProductListDTO);
+				this.promotionMapDAO.write(this.promotionMapDTO);
 			}
 		}
 		
 		for(String seq : deleteContentList){
-			this.paramMap.put("m_p_seq", Integer.parseInt(seq));
-			this.mainProductListDAO.delete(this.paramMap);
+			this.paramMap.put("pro_map_seq", Integer.parseInt(seq));
+			this.promotionMapDAO.delete(this.paramMap);
 			this.paramMap.clear();
 		}
 		
-		this.session.put("alertMsg", this.alertMessage.getLabelProductUpdateOK());
+		this.session.put("alertMsg", this.alertMessage.getPromotionContentUpdateOK());
 		this.context.setSession(this.session);
 		
 		return SUCCESS;

@@ -70,6 +70,10 @@ public class Ajax extends ActionSupport  {
 			validateMsgMap = formValidate.generalProductEditorForm(jsonObject);
 		}else if(formID.equals("eventBannerEditorForm")){
 			validateMsgMap = formValidate.eventBannerEditorForm(jsonObject);
+		}else if(formID.equals("promotionEditorForm")){
+			validateMsgMap = formValidate.promotionEditorForm(jsonObject);
+		}else if(formID.equals("promotionContentEditorForm")){
+			validateMsgMap = formValidate.promotionContentEditorForm(jsonObject);
 		}else if(formID.equals("mainLabelEditorForm")){
 			validateMsgMap = formValidate.mainLabelEditorForm(jsonObject);
 		}else if(formID.equals("labelProductEditorForm")){

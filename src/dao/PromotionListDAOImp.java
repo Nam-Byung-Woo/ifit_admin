@@ -18,36 +18,36 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import dto.PromotionListDTO;
+
 import util.system.StringUtil;
 
-import dto.MainProductListDTO;
-
 @Repository
-public class MainProductListDAOImp implements IfitDAO {
+public class PromotionListDAOImp implements IfitDAO {
 
-	private MainProductListDTO mainProductListDTO; 
+	private PromotionListDTO promotionListDTO; 
 	private NamedParameterJdbcTemplate jdbcTemplate;
-	private String table_name = " main_product_list  ";
+	private String table_name = " promotion_list  ";
 	
 	@Autowired
 	public void setDataSource(DataSource dataSource){ 
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
-	public MainProductListDAOImp(){
+	public PromotionListDAOImp(){
 	
 	}
 	
 	//	조건에 맞는 관리자목록
 	public Object getOneRow(Map<String, Object> paramMap) {	
 		Map<String,Object> sqlMap = new HashMap<String,Object>();
-		List<MainProductListDTO> list = new ArrayList<MainProductListDTO>();
+		List<PromotionListDTO> list = new ArrayList<PromotionListDTO>();
 		Map<String, Object> whereMap = (Map<String, Object>) (paramMap.containsKey("whereMap") ? paramMap.get("whereMap") : null);
 		String sql = "";
 		
 		sqlMap.put("one", 1);
 		
-        sql = "	SELECT * FROM"+ table_name + "WHERE :one = :one	\n";
+        sql = "	SELECT *, SUBSTRING_INDEX(pro_url, '/', -1) AS pro_url_name FROM"+ table_name + "WHERE :one = :one	\n";
         if(whereMap!=null && !whereMap.isEmpty()){
             for( String key : whereMap.keySet() ){
             	sqlMap.put(key, whereMap.get(key));
@@ -55,15 +55,15 @@ public class MainProductListDAOImp implements IfitDAO {
             }
         }
         
-        list  = this.jdbcTemplate.query(sql,sqlMap,new BeanPropertyRowMapper(MainProductListDTO.class));
-        this.mainProductListDTO = (list.size() == 1) ? list.get(0) : null;
-        return this.mainProductListDTO;
+        list  = this.jdbcTemplate.query(sql,sqlMap,new BeanPropertyRowMapper(PromotionListDTO.class));
+        this.promotionListDTO = (list.size() == 1) ? list.get(0) : null;
+        return this.promotionListDTO;
 	}
 	
 //	LIST
 	public Object getList(Map<String, Object> paramMap) {
 		Map<String,Object> sqlMap = new HashMap<String,Object>();
-		List<MainProductListDTO> list = new ArrayList<MainProductListDTO>();
+		List<PromotionListDTO> list = new ArrayList<PromotionListDTO>();
 		boolean isCount = paramMap.containsKey("isCount") ? (boolean)paramMap.get("isCount") : false;
 		Map<String, Object> whereMap = (Map<String, Object>) (paramMap.containsKey("whereMap") ? paramMap.get("whereMap") : null);
 		Map<String, Object> searchMap = (Map<String, Object>) (paramMap.containsKey("searchMap") ? paramMap.get("searchMap") : null);
@@ -82,9 +82,10 @@ public class MainProductListDAOImp implements IfitDAO {
 		if(isCount){
 			sql += "	SELECT COUNT(*)	\n";
 		}else{
-			sql += "	SELECT MPL.*, PL.p_name as p_name	\n";
+			sql += "	SELECT pro_url, pro_name, pro_use, 	\n";
+			sql += "	pro_seq	\n";
 		}
-        sql += " FROM "+ table_name + " MPL JOIN product_list PL ON MPL.p_id = PL.p_id WHERE :one = :one \n";
+        sql += " FROM "+ table_name + " T WHERE :one = :one \n";
         if(whereMap!=null && !whereMap.isEmpty()){
             for( String key : whereMap.keySet() ){
             	sqlMap.put(key, whereMap.get(key));
@@ -112,7 +113,7 @@ public class MainProductListDAOImp implements IfitDAO {
         if(isCount){
         	return this.jdbcTemplate.queryForInt(sql,sqlMap);
 		}else{
-			list  = this.jdbcTemplate.query(sql, sqlMap, new BeanPropertyRowMapper(MainProductListDTO.class));
+			list  = this.jdbcTemplate.query(sql, sqlMap, new BeanPropertyRowMapper(PromotionListDTO.class));
 	        return list;
 		}
 	}
@@ -121,13 +122,13 @@ public class MainProductListDAOImp implements IfitDAO {
 	public int write(Object dto) {
 		String sql = "";
 		sql += "	INSERT INTO " + table_name + "	\n";
-		sql += "	(p_id, main_type, product_order)	\n";
-		sql += "	values(:p_id, :main_type, :product_order)	\n";
+		sql += "	(pro_url, pro_name, pro_use)	\n";
+		sql += "	values(:pro_url, :pro_name, :pro_use)	\n";
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("p_id", ((MainProductListDTO) dto).getP_id(), Types.NUMERIC);
-		paramSource.addValue("main_type", ((MainProductListDTO) dto).getMain_type(), Types.NUMERIC);
-		paramSource.addValue("product_order", ((MainProductListDTO) dto).getProduct_order(), Types.NUMERIC);
+		paramSource.addValue("pro_url", ((PromotionListDTO) dto).getPro_url(), Types.VARCHAR);
+		paramSource.addValue("pro_name", ((PromotionListDTO) dto).getPro_name(), Types.VARCHAR);
+		paramSource.addValue("pro_use", ((PromotionListDTO) dto).getPro_use(), Types.NUMERIC);
 		
 		int rtnInt = 0;
 		
@@ -147,15 +148,17 @@ public class MainProductListDAOImp implements IfitDAO {
 	public int update(Object dto) {
 		String sql = "";
 		sql += "	UPDATE " + table_name + " SET	\n";
-		sql += "	product_order = :product_order 	\n";
-		sql += "	where m_p_seq = :m_p_seq	\n";
+		sql += "	pro_url = :pro_url, pro_name = :pro_name, pro_use = :pro_use	\n";
+		sql += "	where pro_seq = :pro_seq	\n";
 		
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("product_order", ((MainProductListDTO) dto).getProduct_order(), Types.NUMERIC);
-		paramSource.addValue("m_p_seq", ((MainProductListDTO) dto).getM_p_seq(), Types.NUMERIC);
+		paramSource.addValue("pro_url", ((PromotionListDTO) dto).getPro_url(), Types.VARCHAR);
+		paramSource.addValue("pro_name", ((PromotionListDTO) dto).getPro_name(), Types.VARCHAR);
+		paramSource.addValue("pro_use", ((PromotionListDTO) dto).getPro_use(), Types.NUMERIC);
+		paramSource.addValue("pro_seq", ((PromotionListDTO) dto).getPro_seq(), Types.NUMERIC);
 		
 		if(this.jdbcTemplate.update(sql, paramSource) > 0){
-			return ((MainProductListDTO) dto).getM_p_seq();
+			return ((PromotionListDTO) dto).getPro_seq();
 		}else{
 			return 0;
 		}
@@ -167,16 +170,16 @@ public class MainProductListDAOImp implements IfitDAO {
 //		if(next_seq == 0){
 //			next_seq = 1;
 //		}
-		int m_p_seq = paramMap.containsKey("m_p_seq") ? (int)paramMap.get("m_p_seq") : 0;
+		int pro_seq = paramMap.containsKey("pro_seq") ? (int)paramMap.get("pro_seq") : 0;
 		
 		String sql = "";
 		sql += "	DELETE FROM " + table_name + "	\n";
-		sql += "	WHERE m_p_seq = :m_p_seq	\n";
+		sql += "	WHERE pro_seq = :pro_seq	\n";
 
 //		SqlLobValue lobValue = new SqlLobValue(dto.getBbs_content(), lobHandler);
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		paramSource.addValue("m_p_seq", m_p_seq, Types.NUMERIC);
+		paramSource.addValue("pro_seq", pro_seq, Types.NUMERIC);
 		int rtnInt = this.jdbcTemplate.update(sql, paramSource);
 		if(rtnInt > 0){
 			return rtnInt;
