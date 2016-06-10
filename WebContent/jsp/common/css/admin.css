@@ -378,19 +378,21 @@ form[name="generalProductEditor"] textarea#detail_info{
 
 .generalProductViewPop .photoArea{
 	margin:0;
-	width:130px;
+	width:200px;
 }
 
 /* 이벤트배너 */
 form[name="eventBannerList"] img#banner_img_preview{
 	width: 200px;
     height: 100%;
+    max-height: 80px;
 }
 
 /* 프로모션 */
 form[name="promotionList"] img#pro_img_preview{
 	width: 200px;
     height: 100%;
+    max-height: 80px;
 }
 form#promotion #searchCol + div{ 
 	width:150px !important; 
@@ -812,4 +814,26 @@ form[name="sizeList"] #sizeDetailAreaInput input[type="button"]{
     text-indent: 0;
     border: 1px solid #000000;
     border-radius: 0;
+}
+
+/* 에러메세지 */
+.errorArea{
+	width: 410px;
+    margin: 80px auto 0;
+    padding: 57px 0 0 0;
+    font-size: 12px;
+    text-align: left;
+    line-height: 14px;
+    background: url(http://static.naver.com/common/error/090610/bg_thumb.gif) no-repeat center top;
+    white-space: nowrap;
+}
+
+.errorArea p{
+	margin:0;
+}
+
+.errorArea .error_desc{
+	margin-bottom: 21px;
+    overflow: hidden;
+    text-align: center;
 }

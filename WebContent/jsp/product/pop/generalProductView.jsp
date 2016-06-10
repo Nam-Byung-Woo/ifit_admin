@@ -7,7 +7,6 @@
 	$(function(){
 	    $("#jsonObj").change(function(){
 	    	var jsonObj = JSON.parse($(this).val());
-	    	console.log(jsonObj);
 	    	var colorData = jsonObj.colorData;
 	    	var detailPhotoData = jsonObj.detailPhotoData;
 	    	var productData = jsonObj.productData;
@@ -16,19 +15,28 @@
 	    	var tagData = jsonObj.tagData;
 	    	
 	    	$("#view_p_name").html(productData.p_name);
-	    	console.log(subPhotoData);
+	    	
 	    	for(key in subPhotoData) {
 	    		var subPhotoDataHTML = '';
 	    		subPhotoDataHTML += '<div data-p="225.00" style="display: none;">';
-	    		subPhotoDataHTML += '<img data-u="image" src="../jsp/common/img/logo.png" />';
+	    		subPhotoDataHTML += '<img data-u="image" src="http://' + subPhotoData[key].photo_url + '" />';
 	    		subPhotoDataHTML += '</div>';
 	    		$("#jssor_1_container").append(subPhotoDataHTML);
 	    	}
-	    	var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+            jssor_slider1_starter('jssor_1');
+            $('#test')[0].reset();
 	    });
 	});
 </script>
+<style>
+.slider_image {
+    width: 343px;
+    height: 437px;
+}
+</style>
 <div class="layer layer-generalProductView" data-close-answer="false">
+	<form id="test">
+	<input id="popHTML" type="hidden" />
 	<input id="jsonObj" type="hidden" />
 	<div class="bg"></div>
 	<div id="popLayer" class="pop-layer generalProductViewPop">
@@ -37,12 +45,9 @@
 				<!--content //-->
 				<p id="view_p_name" class="pop-title mb20 pb10"></p>
 				<div class="pl20 pr20 contentsArea">
-					<div class="photoArea" style="width:100px;">	
+					<div class="photoArea">	
 						<div id="jssor_1" class="slider_image">
-					        <div id="jssor_1_container" class="slider_image" data-u="slides">
-					        	<div data-p="225.00" style="display: none;">
-					        		<img data-u="image" src="../jsp/common/img/logo.png" />
-					        	</div>
+					        <div id="jssor_1_container" class="slider_image closeReset" data-u="slides">
 					        </div>
 					        <!-- Bullet Navigator -->
 					        <div data-u="navigator" class="jssorb05" data-autocenter="1">
@@ -100,4 +105,5 @@
 			</div>
 		</div>
 	</div>
+	</form>
 </div>
