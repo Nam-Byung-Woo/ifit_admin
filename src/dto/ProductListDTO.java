@@ -11,7 +11,6 @@ public class ProductListDTO {
 	private String p_main_url;	
 	private String lookup_url;			
 	private int p_price;				
-	private String color_list;			
 	private String detail_info;
 	private int category;
 	private int like_cnt;
