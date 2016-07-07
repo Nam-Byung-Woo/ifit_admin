@@ -63,6 +63,11 @@
 	background-color:#A5FFEB;
 	border:1px solid #78C7F4;
 }
+
+.checkItemDeleteBtn{
+	border:1px solid #CC3D3D;
+	background-color:#F15F5F;
+}
 .simpleBtn{
 	width: 100px;
 }
@@ -101,6 +106,7 @@
 /* admin table */
 table{border-collapse: collapse;width:100%;  border-top:2px solid #CCCCCC; border-bottom:2px solid #CCCCCC;}
 table thead th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }
+table thead th.checkCol{padding:5px 0;}
 table tbody th{background-color:#EBEBEB;}
 table td{padding:10px 0; border-bottom:1px solid #CCCCCC;}
 table td img{height: 150px;}
@@ -203,6 +209,37 @@ table.table_editor tr td input[type="text"], table.table_editor tr td input[type
 .paging a.btnOff {display:inline-block; width:30px; height:34px; padding:10px 14px 0; border:1px solid #dddddd; font-size:13px; color:#000; line-height:25px; margin-left: -1px;}
 .paging a.btnOff:hover {border: 1px solid #EBEBEB; background-color:#EBEBEB; color:#000000;}
 
+/* 탭관련 */
+ul.tabArea{
+	width:100%;
+	height:50px;
+	margin-bottom:20px;
+	text-align: center;
+    line-height: 50px;
+}
+
+ul.tabArea li{
+	border: 1px solid #CCCCCC;
+    float: left;
+    background-color:#EBEBEB;
+    height:100%;
+}
+
+ul.tabArea li.on{
+	border-top: 3px solid #4A4A4A;
+    background-color:white;
+    border-bottom:none;
+}
+
+ul.tabArea li:not(.on):hover{
+	cursor:pointer;
+	background-color:#9B9B9B;
+}
+
+ul.tabArea li:not(:last-child){
+	border-right: none;
+}
+
 /* 입점회원 */
 form#shopMember #searchCol + div{ 
 	width:130px !important; 
@@ -280,6 +317,29 @@ form#faq #searchCol + div>.wSelect-options-holder{
 }
 form[name="faqEditor"] input#title, form[name="faqEditor"] input#content{
 	width:99%;
+}
+
+/* QNA */
+form#qna ul.tabArea li{
+	width:298px;
+}
+form#qna #searchCol + div{ 
+	width:100px !important; 
+}
+form#qna #searchCol + div>.wSelect-options-holder{ 
+	width:100px !important; 
+}
+.layer-qnaView>.pop-layer{
+	width:700px;
+	height: 560px;
+}
+.layer-qnaView>.pop-layer form textarea#reply{
+	width: 94%;
+	height: 200px;
+	resize:none;
+}
+form[name="qnaEditor"]{
+	width:100%;
 }
 
 /* 일반상품 */
@@ -814,6 +874,11 @@ form[name="sizeList"] #sizeDetailAreaInput input[type="button"]{
     text-indent: 0;
     border: 1px solid #000000;
     border-radius: 0;
+}
+
+/* 주문관리 */
+form#order ul.tabArea li{
+	width:298px;
 }
 
 /* 에러메세지 */

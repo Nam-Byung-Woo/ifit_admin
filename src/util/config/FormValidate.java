@@ -151,6 +151,21 @@ public class FormValidate{
 		return this.rtnMap;
 	}
 	
+	// QNA 답변 등록/수정 체크(validation)
+	public Map<String, Object> qnaEditorForm(Map<String, Object> paramMap){
+		if(!paramMap.containsKey("reply") || paramMap.get("reply").equals("")){
+			// 내용 체크
+			this.rtnMap.put("msg", alertMessage.getQnaReplyError());
+			this.rtnMap.put("elementID", "reply_check");
+		}else if(false){
+			// 추가 가능
+		}else{
+			this.rtnMap.put("res", true);
+		}
+		
+		return this.rtnMap;
+	}
+	
 	// 일반상품 등록/수정 체크(validation)
 	public Map<String, Object> generalProductEditorForm(Map<String, Object> paramMap){
 		// 파일체크는 단순 객체 크기만 비교하고 client는 script plugin으로, server는 fileuploader에서 한다.

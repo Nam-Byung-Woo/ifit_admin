@@ -41,6 +41,11 @@ public class AlertMessage{
 	private String FaqTitleError = "올바른 제목을 입력해 주세요.";
 	private String FaqContentError = "내용을 입력해 주세요.";
 	
+	//*******************QNA관련*******************/
+	private String QnaReplyWriteOK = "답변이 등록되었습니다.";
+	private String QnaReplyUpdateOK = "답변이 수정되었습니다.";
+	private String QnaReplyError = "내용을 입력해 주세요.";
+	
 	//*******************일반상품관련*******************/
 	private String GeneralProductWriteOK = "상품이 등록되었습니다.";
 	private String GeneralProductUpdateOK = "상품이 수정되었습니다.";

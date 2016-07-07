@@ -67,22 +67,18 @@ $(function(){
 		$(location).attr("href",$(this).parents("form").attr("id")+"List.ifit?" + queryDecode);
 	});
 	
-	$(".writeActionBtn").click(function(){
-		if(validateCheck($(this).parents("form"))){
-			if(confirm($(this).parents("form").attr("data-confirm-msg"))){
-				return true;
-			}
-		}
-		return false;
+	$(".listAllCheck").change(function(){
+		if($(this).is(":checked")){
+			$(".listItemCheck").prop("checked",true);
+			$(".listItemCheck").attr("checked",true);
+        }else{
+        	$(".listItemCheck").prop("checked",false);
+        	$(".listItemCheck").attr("checked",false);
+        }
 	});
 	
-	$(".updateActionBtn").click(function(){
-		if(validateCheck($(this).parents("form"))){
-			if(confirm($(this).parents("form").attr("data-confirm-msg"))){
-				return true;
-			}
-		}
-		return false;
+	$(".tabArea li").click(function(){
+		$(location).attr("href",$(location).attr("pathname")+"?tabID="+$(this).attr("data-tabID"));
 	});
 
 });
@@ -103,6 +99,24 @@ $(document).on("click",".paging ul li a.btnOff",function(e){
 	pageNum = pageNum.replace("page_","");
 	$(this).parents("form").find("#pageNum").val(pageNum);
 	$(this).parents("form").submit();
+});
+
+$(document).on("click",".writeActionBtn",function(e){
+	if(validateCheck($(this).parents("form"))){
+		if(confirm($(this).parents("form").attr("data-confirm-msg"))){
+			return true;
+		}
+	}
+	return false;
+});
+
+$(".updateActionBtn").click(function(){
+	if(validateCheck($(this).parents("form"))){
+		if(confirm($(this).parents("form").attr("data-confirm-msg"))){
+			return true;
+		}
+	}
+	return false;
 });
 
 function getAjaxData(data){
@@ -135,7 +149,6 @@ function getAjaxData(data){
 function validateCheck(obj){
 	var rtn = false;
 	var data = {"formID":obj.attr("id")+obj.attr("data-mode")};
-	
 	obj.find("input[name!='']").each(function(){
 		if($(this).attr("type")=="file"){
 			data[$(this).attr("name")] = $(this)[0].jFiler.files_list.length;
@@ -150,6 +163,9 @@ function validateCheck(obj){
 		}
 	});
 	obj.find("select[name!='']").each(function(){
+		data[$(this).attr("name")] = $(this).val();
+	});
+	obj.find("textarea").each(function(){
 		data[$(this).attr("name")] = $(this).val();
 	});
 	

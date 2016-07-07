@@ -7,23 +7,20 @@ $(function(){
 	
 	// 글 보기 레이어팝업
 	$(".viewBtn").click(function(){
-//		var dataKind = $(this).parents("form").attr("id");
-//		var layerObj = $(".layer-"+dataKind+"View");
-//		layer_init(layerObj);
-//		
-//		var data = {
-//				"dataKind":dataKind,
-//				"seq":$(this).attr("data-seq"),
-//				"url":"/ajaxGetData.ifit"
-//		};
-//
-//		if(layerObj.find("#popHTML").val() != ""){
-//			layerObj.html(layerObj.find("#popHTML").val());
-//		}
-//		layerObj.find("#popHTML").val(layerObj.html());
-//		layerObj.find("#jsonObj").val(getAjaxData(data));
-//		layerObj.find("#jsonObj").trigger("change");
-//		
+		
+		var dataKind = $(this).parents("form").attr("id");
+		var layerObj = $(".layer-"+dataKind+"View");
+		layer_init(layerObj);
+		
+		var data = {
+				"dataKind":dataKind,
+				"seq":$(this).attr("data-seq"),
+				"url":"/ajaxGetData.ifit"
+		};
+
+		layerObj.find("#jsonObj").val(getAjaxData(data));
+		layerObj.find("#jsonObj").trigger("change");
+		
 ////		for(key in jsonObj) {
 ////			if((jsonObj[key]).constructor == Object){
 ////				console.log("Object::" + key);

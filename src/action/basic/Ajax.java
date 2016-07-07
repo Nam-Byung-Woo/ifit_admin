@@ -17,6 +17,7 @@ import util.system.MySqlFunction;
 import util.system.StringUtil;
 
 import action.help.Faq;
+import action.help.Qna;
 import action.member.ShopMember;
 import action.product.GeneralProduct;
 
@@ -84,6 +85,8 @@ public class Ajax extends ActionSupport  {
 			validateMsgMap = formValidate.colorListEditorForm(jsonObject);
 		}else if(formID.equals("sizeListEditorForm")){
 			validateMsgMap = formValidate.sizeListEditorForm(jsonObject);
+		}else if(formID.equals("qnaEditorForm")){
+			validateMsgMap = formValidate.qnaEditorForm(jsonObject);
 		}
 		
 		Gson gson = new Gson();
@@ -116,6 +119,9 @@ public class Ajax extends ActionSupport  {
 		}else if(dataKind.equals("generalProductList")){
 			GeneralProduct generalProduct = new GeneralProduct();
 			this.rtnString = gson.toJson(generalProduct.getData(jsonObject));
+		}else if(this.isAdmin && dataKind.equals("qna")){
+			Qna qna = new Qna();
+			this.rtnString = gson.toJson(qna.getData(jsonObject));
 		}
 		
 		System.out.println("AJAX!!!!!!!!!" + this.rtnString);

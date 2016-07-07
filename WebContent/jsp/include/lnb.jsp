@@ -40,7 +40,7 @@
 			<p class="bold">주문관리</p>
 			<ul>
 				<li>
-					<p><a class="yet" href="#">- 판매리스트</a></p>
+					<p><a href="<s:url namespace="/order" action="orderList" />">- 판매현황</a></p>
 				</li>
 			</ul>
 		</li>
@@ -60,7 +60,7 @@
 				<ul>
 					<li>
 						<p><a href="<s:url namespace="/help" action="faqList" />">- 자주하는질문</a></p>
-						<p><a class="yet" href="#">- 1:1문의</a></p>
+						<p><a href="<s:url namespace="/help" action="qnaList" />">- 1:1문의</a></p>
 					</li>
 				</ul>
 			</li>
@@ -68,7 +68,6 @@
 				<p class="bold">거래현황</p>
 				<ul>
 					<li>
-						<p><a class="yet" href="#">- 업체별 판매현황</a></p>
 						<p><a class="yet" href="#">- 두비 매출</a></p>
 					</li>
 				</ul>

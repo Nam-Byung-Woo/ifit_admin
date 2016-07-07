@@ -43,12 +43,19 @@ public class ActionConfig{
 		hashmap.put("generalProductUpdateAction",		"needSession => true,		needAdmin => false,		pageTitle => ");
 		hashmap.put("generalProductDeleteAction",		"needSession => true,		needAdmin => false,		pageTitle => ");
 		
+		// ----------------------------order.xml-----------------------------
+		hashmap.put("orderList",								"needSession => true,		needAdmin => false,		pageTitle => ");
+		
 		// ----------------------------help.xml-----------------------------
 		hashmap.put("faqList",									"needSession => true,		needAdmin => true,		pageTitle => ");
 		hashmap.put("faqEditor",								"needSession => true,		needAdmin => true,		pageTitle => ");
 		hashmap.put("faqWriteAction",						"needSession => true,		needAdmin => true,		pageTitle => ");
 		hashmap.put("faqUpdateAction",						"needSession => true,		needAdmin => true,		pageTitle => ");
 		hashmap.put("faqDeleteAction",						"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("qnaList",									"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("qnaReplyWriteAction",					"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("qnaReplyUpdateAction",				"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("qnaDeleteAction",						"needSession => true,		needAdmin => true,		pageTitle => ");
 		
 		// ----------------------------banner.xml-----------------------------
 		hashmap.put("eventBannerList",						"needSession => true,		needAdmin => true,		pageTitle => ");
