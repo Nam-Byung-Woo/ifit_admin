@@ -26,12 +26,18 @@
 						<input type="hidden" id="queryIncode" name="queryIncode" value="<s:property value='queryIncode' />"  disabled />	
 						보기 : <s:select id="countPerPage" name="countPerPage" cssClass="" list="Code.countPerPageMap" headerKey="" headerValue="" />
 						<input type="button" class="writeBtn simpleBtn mb10 btn2 clear fr" value="등록" />
+						<input type="button" class="deleteBtn simpleBtn mb10 btn2 fr mr20" value="선택삭제" />
+						<div class="clear"></div>
+						<span>전체 : <s:property value="totalCount"/>개</span>
 						<table class="table_list tc">
 							<colgroup>
-								<col width="70px"><col width="70px"><col width="70px"><col width="70px">
+								<col width="20px"><col width="50px"><col width="70px"><col width="70px"><col width="70px">
 							</colgroup>
 							<thead>
 								<tr>
+									<th scope="col" class="checkCol">
+										<input type="checkbox" class="listAllCheck db" id="listAllCheck" />
+									</th>
 									<th scope="col">번호</th>
 									<th scope="col">이미지</th>
 									<th scope="col"><p class="listSort" data-sort-col="1">타입<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=1">hide</s:if>" aria-hidden="true"></i></p></th>
@@ -41,19 +47,19 @@
 							<tbody>
 								<s:if test = "dataList.size==0">
 									<tr>
-										<td colspan="4" align="center">
+										<td colspan="5" align="center">
 											등록된 이벤트배너가 없습니다.
 										</td>
 									</tr>
 								</s:if>
 								<s:iterator value="dataList" status="stat">
 									<tr>
+										<td class="center"><input type="checkbox" name="listItemCheck" class="listItemCheck" value="<s:property value="banner_seq"/>" /></td>
 										<td class="center"><s:property value="banner_seq"/></td>
 										<td class="center"><p class="viewBtn pointer" data-seq="<s:property value="banner_seq"/>"><img src="http://<s:property value="banner_url"/>" id="banner_img_preview" /></p></td>
 										<td class="center"><s:property value="code.getEventBannerTypeMap().get(banner_type)"/></td>
 										<td class="center">
 											<i class="editBtn mr10 fa fa-pencil-square-o" aria-hidden="true" title="편집" data-seq="<s:property value="banner_seq"/>" > </i>
-											<i class="deleteBtn fa fa-trash-o" aria-hidden="true" title="삭제" data-seq="<s:property value="banner_seq"/>" data-title="<s:property value="banner_seq"/>번 배너"></i>
 										</td>
 									</tr>
 								</s:iterator>

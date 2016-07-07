@@ -26,13 +26,19 @@
 						<input type="hidden" id="queryIncode" name="queryIncode" value="<s:property value='queryIncode' />"  disabled />	
 						보기 : <s:select id="countPerPage" name="countPerPage" cssClass="" list="Code.countPerPageMap" headerKey="" headerValue="" />
 						<input type="button" class="writeBtn simpleBtn mb10 btn2 clear fr" value="등록" />
+						<input type="button" class="deleteBtn simpleBtn mb10 btn2 fr mr20" value="선택삭제" />
+						<div class="clear"></div>
+						<span>전체 : <s:property value="totalCount"/>개</span>
 						<table class="table_list tc">
 							<colgroup>
-								<col width="70px"><col width="70px"><col width="70px"><col width="70px">
+								<col width="20px"><col width="50px"><col width="70px"><col width="70px"><col width="70px">
 								<s:if test = "#session.isAdmin"><col width="70px"></s:if>
 							</colgroup>
 							<thead>
 								<tr>
+									<th scope="col" class="checkCol">
+										<input type="checkbox" class="listAllCheck db" id="listAllCheck" />
+									</th>
 									<th scope="col">번호</th>
 									<th scope="col"><p class="listSort" data-sort-col="1">상품명<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=1">hide</s:if>" aria-hidden="true"></i></p></th>
 									<s:if test = "#session.isAdmin">
@@ -45,13 +51,14 @@
 							<tbody>
 								<s:if test = "dataList.size==0">
 									<tr>
-										<td colspan="<s:if test = "#session.isAdmin">5</s:if><s:else>4</s:else>" align="center">
+										<td colspan="<s:if test = "#session.isAdmin">6</s:if><s:else>5</s:else>" align="center">
 											등록된 상품이 없습니다.
 										</td>
 									</tr>
 								</s:if>
 								<s:iterator value="dataList" status="stat">
 									<tr>
+										<td class="center"><input type="checkbox" name="listItemCheck" class="listItemCheck" value="<s:property value="p_id"/>" /></td>
 										<td class="center"><s:property value="p_id"/></td>
 										<td class="center"><p class="viewBtn pointer hoverLine" data-seq="<s:property value="p_id"/>"><s:property value="p_name"/></p></td>
 										<s:if test = "#session.isAdmin">
@@ -60,7 +67,6 @@
 										<td class="center"><s:property value="regdate"/></td>
 										<td class="center">
 											<i class="editBtn mr10 fa fa-pencil-square-o" aria-hidden="true" title="편집" data-seq="<s:property value="p_id"/>" > </i>
-											<i class="deleteBtn fa fa-trash-o" aria-hidden="true" title="삭제" data-seq="<s:property value="p_id"/>" data-title="<s:property value="p_name"/>"></i>
 										</td>
 									</tr>
 								</s:iterator>

@@ -56,6 +56,7 @@ public class Promotion extends ActionSupport  {
     private int sortCol = 0;											// 	정렬 컬럼
     private String sortVal = "";										// 	정렬 내용
     private int countPerPage = Code.deFaultcountPerPage;		//	한페이지에 보일 리스트 수
+    private int totalCount = 0;
 	
     private HttpServletRequest request = ServletActionContext.getRequest();
     private String queryIncode = "";						//	쿼리스트링(인코딩)
@@ -64,6 +65,7 @@ public class Promotion extends ActionSupport  {
     private String pro_name;
 	private int pro_use;		
 	private int seq;
+	private String[] listItemCheck;		// 복수선택
 	
 	// 첨부파일 영역
 	private List<File> pro_url = new ArrayList<File>();								//	프로모션 이미지
@@ -121,7 +123,7 @@ public class Promotion extends ActionSupport  {
 		this.paramMap.put("searchMap", this.searchMap);
 		this.paramMap.put("whereMap", this.whereMap);
 		paramMap.put("isCount",true);
-		int totalCount = (int)this.promotionListDAO.getList(paramMap);
+		this.totalCount = (int)this.promotionListDAO.getList(paramMap);
 		
 		this.pageNum = this.pageNum == 0 || (this.pageNum*this.countPerPage>totalCount && this.pageNum*this.countPerPage-totalCount >= this.countPerPage)  ? 1  : this.pageNum;
 		this.sortCol = this.sortColKindMap.containsKey(this.sortCol) ? this.sortCol : 0;
@@ -270,16 +272,19 @@ public class Promotion extends ActionSupport  {
 		
 		FileManager fileManager = new FileManager("image", "promotion");
 
-		this.paramMap.put("pro_seq", this.seq);
-		this.paramMap.put("seq", this.seq);
-		
-		this.promotionListDTO = (PromotionListDTO) getData(this.paramMap);
-		
-		this.promotionListDAO.delete(this.paramMap);
-		
-		/****************** 기존 데이터 삭제 START ******************/		
-		fileManager.fileDelete(this.promotionListDTO.getPro_url_name());
-		/****************** 기존 데이터 삭제 END ******************/
+		for(String item : listItemCheck){
+			int itemSeq = Integer.parseInt(item);
+			this.paramMap.put("pro_seq", itemSeq);
+			this.paramMap.put("seq", itemSeq);
+			
+			this.promotionListDTO = (PromotionListDTO) getData(this.paramMap);
+			
+			this.promotionListDAO.delete(this.paramMap);
+			
+			/****************** 기존 데이터 삭제 START ******************/		
+			fileManager.fileDelete(this.promotionListDTO.getPro_url_name());
+			/****************** 기존 데이터 삭제 END ******************/
+		}
 		
 		this.session.put("alertMsg", this.alertMessage.getDeleteOK());
 		this.context.setSession(this.session);

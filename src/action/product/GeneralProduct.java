@@ -78,12 +78,15 @@ public class GeneralProduct extends ActionSupport  {
     private int sortCol = 0;											// 	정렬 컬럼
     private String sortVal = "";										// 	정렬 내용
     private int countPerPage = Code.deFaultcountPerPage;		//	한페이지에 보일 리스트 수
+    private int totalCount = 0;
 	
     private HttpServletRequest request = ServletActionContext.getRequest();
     private String queryIncode = "";						//	쿼리스트링(인코딩)
     private String queryDecode = "";						//	쿼리스트링(디코딩)
     
     private int seq;											// view/update시 seq
+	private String[] listItemCheck;		// 복수선택
+	
 	private String isUpdateMode = "";					// 편집모드
     
     private LinkedHashMap searchColKindMap = new LinkedHashMap() {{	// 검색 가능한 종류
@@ -95,7 +98,7 @@ public class GeneralProduct extends ActionSupport  {
     
     private LinkedHashMap sortColKindMap = new LinkedHashMap() {{	// 정렬항목 정의
     	// db상의 name과 매칭
-		put(0,"orig_regdate");		// 기본값 정렬
+		put(0,"p_id");					// 기본값 정렬
 		put(1,"p_name");				// 상품명 정렬
 		put(2,"ADMIN_NAME");	 	// 입점 업체명 정렬
 		put(3,"orig_regdate"); 		// 등록일 정렬
@@ -178,7 +181,7 @@ public class GeneralProduct extends ActionSupport  {
 		this.paramMap.put("searchMap", this.searchMap);
 		this.paramMap.put("whereMap", this.whereMap);
 		this.paramMap.put("isCount",true);
-		int totalCount = (int)this.productListDAO.getList(paramMap);
+		this.totalCount = (int)this.productListDAO.getList(paramMap);
 		
 		this.pageNum = this.pageNum == 0 || (this.pageNum*this.countPerPage>totalCount && this.pageNum*this.countPerPage-totalCount >= this.countPerPage)  ? 1  : this.pageNum;
 		this.sortCol = this.sortColKindMap.containsKey(this.sortCol) ? this.sortCol : 0;
@@ -669,31 +672,36 @@ public class GeneralProduct extends ActionSupport  {
 		
 		Gson gson = new Gson();
 		
-		this.paramMap.put("p_id", this.seq);
+		for(String item : listItemCheck){
+			int itemSeq = Integer.parseInt(item);
+			
+			this.paramMap.put("p_id", itemSeq);
+			
+			Map<String, Object> data = getOriginalData(itemSeq);
+			this.productListDTO = (ProductListDTO) data.get("productData");
+			this.subPhotoList = (List<SubPhotoDTO>) data.get("subPhotoData");
+			this.detailPhotoList = (List<SubPhotoDTO>) data.get("detailPhotoData");
+			
+			if(this.productListDTO == null){
+				validateMsgMap = formValidate.accessError();
+				this.rtnString = gson.toJson(validateMsgMap);
+				return "validation";
+			}
+			
+			this.productListDAO.delete(this.paramMap);
+			
+			/****************** 기존 데이터 삭제 START ******************/		
+			fileManager.fileDelete(this.productListDTO.getP_main_url_name());
+			fileManager.fileDelete(this.productListDTO.getLookup_url_name());
+			for(SubPhotoDTO subPhoto : this.subPhotoList){
+				fileManager.fileDelete(subPhoto.getPhoto_url_name());
+			}
+			for(SubPhotoDTO detailPhoto : this.detailPhotoList){
+				fileManager.fileDelete(detailPhoto.getPhoto_url_name());
+			}
+			/****************** 기존 데이터 삭제 END ******************/
 		
-		Map<String, Object> data = getOriginalData(this.seq);
-		this.productListDTO = (ProductListDTO) data.get("productData");
-		this.subPhotoList = (List<SubPhotoDTO>) data.get("subPhotoData");
-		this.detailPhotoList = (List<SubPhotoDTO>) data.get("detailPhotoData");
-		
-		if(this.productListDTO == null){
-			validateMsgMap = formValidate.accessError();
-			this.rtnString = gson.toJson(validateMsgMap);
-			return "validation";
 		}
-		
-		this.productListDAO.delete(this.paramMap);
-		
-		/****************** 기존 데이터 삭제 START ******************/		
-		fileManager.fileDelete(this.productListDTO.getP_main_url_name());
-		fileManager.fileDelete(this.productListDTO.getLookup_url_name());
-		for(SubPhotoDTO subPhoto : this.subPhotoList){
-			fileManager.fileDelete(subPhoto.getPhoto_url_name());
-		}
-		for(SubPhotoDTO detailPhoto : this.detailPhotoList){
-			fileManager.fileDelete(detailPhoto.getPhoto_url_name());
-		}
-		/****************** 기존 데이터 삭제 END ******************/
 		
 		this.session.put("alertMsg", this.alertMessage.getDeleteOK());
 		this.context.setSession(this.session);

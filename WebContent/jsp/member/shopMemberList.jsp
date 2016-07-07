@@ -25,13 +25,19 @@
 						<input type="hidden" id="sortVal" name="sortVal" value="<s:property value='sortVal' />" />
 						<input type="hidden" id="queryIncode" name="queryIncode" value="<s:property value='queryIncode' />"  disabled />	
 						보기 : <s:select id="countPerPage" name="countPerPage" cssClass="" list="Code.countPerPageMap" headerKey="" headerValue="" />
-						<input type="button" class="writeBtn simpleBtn mb10 btn2 clear fr" value="등록" />
+						<input type="button" class="writeBtn simpleBtn mb10 btn2 fr" value="등록" />
+						<input type="button" class="deleteBtn simpleBtn mb10 btn2 fr mr20" value="선택삭제" />
+						<div class="clear"></div>
+						<span>전체 : <s:property value="totalCount"/>개</span>
 						<table class="table_list tc">
 							<colgroup>
-								<col width="50px"><col width="70px"><col width="70px"><col width="70px"><col width="90px"><col width="70px">
+								<col width="20px"><col width="50px"><col width="70px"><col width="70px"><col width="70px"><col width="90px"><col width="70px">
 							</colgroup>
 							<thead>
 								<tr>
+									<th scope="col" class="checkCol">
+										<input type="checkbox" class="listAllCheck db" id="listAllCheck" />
+									</th>
 									<th scope="col">번호</th>
 									<th scope="col"><p class="listSort" data-sort-col="1">아이디<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=1">hide</s:if>" aria-hidden="true"></i></p></th>
 									<th scope="col"><p class="listSort" data-sort-col="2">입점 업체명<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=2">hide</s:if>" aria-hidden="true"></i></p></th>
@@ -43,13 +49,14 @@
 							<tbody>
 								<s:if test = "dataList.size==0">
 									<tr>
-										<td colspan="6" align="center">
+										<td colspan="7" align="center">
 											등록된 회원이 없습니다.
 										</td>
 									</tr>
 								</s:if>
 								<s:iterator value="dataList" status="stat">
 									<tr>
+										<td class="center"><input type="checkbox" name="listItemCheck" class="listItemCheck" value="<s:property value="seq"/>" /></td>
 										<td class="center"><s:property value="seq"/></td>
 										<td class="center"><s:property value="id"/></td>
 										<td class="center"><s:property value="name"/></td>
@@ -57,7 +64,6 @@
 										<td class="center"><s:property value="regdate"/></td>
 										<td class="center">
 											<i class="editBtn mr10 fa fa-pencil-square-o" aria-hidden="true" title="편집" data-seq="<s:property value="seq"/>" > </i>
-											<i class="deleteBtn fa fa-trash-o" aria-hidden="true" title="삭제" data-seq="<s:property value="seq"/>" data-title="<s:property value="name"/>"></i>
 										</td>
 									</tr>
 								</s:iterator>

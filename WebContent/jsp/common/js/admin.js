@@ -54,14 +54,6 @@ $(function(){
 		$(location).attr("href",$(this).parents("form").attr("id")+"Editor.ifit?queryIncode=" + queryIncode + "&isUpdateMode=" + true + "&seq=" + $(this).attr("data-seq"));
 	});
 	
-	$(".deleteBtn").click(function(){
-		var seq = $(this).attr("data-seq");
-		var	 title = $(this).attr("data-title");
-		if(confirm("[" + title + "] 항목을 삭제하시겠습니까?")){
-			$(location).attr("href",$(this).parents("form").attr("id")+"DeleteAction.ifit?seq="+seq);
-		}
-	});
-	
 	$(".listBtn").click(function(){
 		var queryDecode = $(this).parents("form").find("#queryDecode").val();
 		$(location).attr("href",$(this).parents("form").attr("id")+"List.ifit?" + queryDecode);
@@ -75,6 +67,23 @@ $(function(){
         	$(".listItemCheck").prop("checked",false);
         	$(".listItemCheck").attr("checked",false);
         }
+	});
+	
+	$(".deleteBtn").click(function(){
+		var itemCount = 0;
+		$(".listItemCheck").each(function(){
+			if($(this).is(":checked")){
+				itemCount++;
+			}
+		});
+		if(itemCount <= 0){
+			alert("선택한 항목이 없습니다.");
+			return false;
+		}
+		if(confirm("선택한 " + itemCount + "개 항목을 삭제하시겠습니까?")){
+			$(this).parents("form").attr("action", $(this).parents("form").attr("id")+"DeleteAction.ifit");
+			$(this).parents("form").submit();
+		}
 	});
 	
 	$(".tabArea li").click(function(){

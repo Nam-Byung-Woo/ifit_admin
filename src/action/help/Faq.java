@@ -53,6 +53,7 @@ public class Faq extends ActionSupport  {
     private int sortCol = 0;											// 	정렬 컬럼
     private String sortVal = "";										// 	정렬 내용
     private int countPerPage = Code.deFaultcountPerPage;		//	한페이지에 보일 리스트 수
+    private int totalCount = 0;
 	
     private HttpServletRequest request = ServletActionContext.getRequest();
     private String queryIncode = "";						//	쿼리스트링(인코딩)
@@ -61,6 +62,7 @@ public class Faq extends ActionSupport  {
 	private String title;			//	제목
 	private String content;		//	내용
 	private int seq;
+	private String[] listItemCheck;		// 복수선택
 	
 	private String isUpdateMode = "";					// 편집모드
     
@@ -113,7 +115,7 @@ public class Faq extends ActionSupport  {
 		this.paramMap.put("searchMap", this.searchMap);
 		this.paramMap.put("whereMap", this.whereMap);
 		paramMap.put("isCount",true);
-		int totalCount = (int)this.faqDAO.getList(paramMap);
+		this.totalCount = (int)this.faqDAO.getList(paramMap);
 		
 		this.pageNum = this.pageNum == 0 || (this.pageNum*this.countPerPage>totalCount && this.pageNum*this.countPerPage-totalCount >= this.countPerPage)  ? 1  : this.pageNum;
 		this.sortCol = this.sortColKindMap.containsKey(this.sortCol) ? this.sortCol : 0;
@@ -218,9 +220,12 @@ public class Faq extends ActionSupport  {
 	public String deleteAction(){
 		init();
 
-		this.paramMap.put("faq_seq", this.seq);
-		
-		this.faqDAO.delete(this.paramMap);
+		for(String item : listItemCheck){
+			int itemSeq = Integer.parseInt(item);
+			this.paramMap.put("faq_seq", itemSeq);
+			
+			this.faqDAO.delete(this.paramMap);
+		}
 		
 		this.session.put("alertMsg", this.alertMessage.getDeleteOK());
 		this.context.setSession(this.session);

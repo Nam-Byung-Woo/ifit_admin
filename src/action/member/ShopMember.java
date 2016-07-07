@@ -54,6 +54,7 @@ public class ShopMember extends ActionSupport  {
     private int sortCol = 0;											// 	정렬 컬럼
     private String sortVal = "";										// 	정렬 내용
     private int countPerPage = Code.deFaultcountPerPage;		//	한페이지에 보일 리스트 수
+    private int totalCount = 0;
     
     private HttpServletRequest request = ServletActionContext.getRequest();
     private String queryIncode;						//	쿼리스트링(인코딩)
@@ -66,6 +67,7 @@ public class ShopMember extends ActionSupport  {
 	private String tel2;			//	업체 연락처2
 	private String tel3;			//	업체 연락처3
 	private int seq;				//	선택된 업체 seq
+	private String[] listItemCheck;		// 복수선택
 	
 	private String isUpdateMode = "";			// 편집모드
     
@@ -120,7 +122,7 @@ public class ShopMember extends ActionSupport  {
 		this.paramMap.put("searchMap", this.searchMap);
 		this.paramMap.put("whereMap", this.whereMap);
 		this.paramMap.put("isCount",true);
-		int totalCount = (int)this.shopMemberDAO.getList(paramMap);
+		this.totalCount = (int)this.shopMemberDAO.getList(paramMap);
 		
 		this.pageNum = this.pageNum == 0 || (this.pageNum*this.countPerPage>totalCount && this.pageNum*this.countPerPage-totalCount >= this.countPerPage)  ? 1  : this.pageNum;
 		this.sortCol = this.sortColKindMap.containsKey(this.sortCol) ? this.sortCol : 0;
@@ -273,13 +275,17 @@ public class ShopMember extends ActionSupport  {
 	public String deleteAction(){
 		init();
 
-		if(this.seq!=0 && this.seq!=1){
-			this.paramMap.put("seq", this.seq);
-			this.shopMemberDAO.delete(this.paramMap);
+		for(String item : listItemCheck){
+			int itemSeq = Integer.parseInt(item);
+			if(itemSeq!=0 && itemSeq!=1){
+				this.paramMap.put("seq", itemSeq);
+				this.shopMemberDAO.delete(this.paramMap);
+			}
 		}
+		
 		this.session.put("alertMsg", this.alertMessage.getDeleteOK());
 		this.context.setSession(this.session);
-		
+
 		return SUCCESS;	
 	}
 
