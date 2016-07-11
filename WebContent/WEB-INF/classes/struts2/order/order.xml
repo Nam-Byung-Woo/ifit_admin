@@ -1,13 +1,11 @@
 <!DOCTYPE struts PUBLIC    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"    
 "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<package name="help" namespace="/help" extends="iFitAdmin">
-		<!-- faq 리스트-->
-		<action name="orderList" class="action.help.Faq" method="getList">
-			<result>/jsp/help/faqList.jsp</result>
+	<package name="order" namespace="/order" extends="iFitAdmin">
+		<action name="orderList" class="action.order.Order" method="getList">
+			<result>/jsp/order/orderList.jsp</result>
 		</action>
 		
-		<!-- faq 등록/편집 폼-->
 		<action name="faqEditor" class="action.help.Faq" method="getEditor">
 			<result>/jsp/help/faqEditor.jsp</result>
 		</action>

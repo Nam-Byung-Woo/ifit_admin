@@ -28,6 +28,7 @@ public class ActionConfig{
 		hashmap.put("logoutAction",							"needSession => true, 	needAdmin => false,		pageTitle => ");
 		hashmap.put("ajaxFormValidate",						"needSession => true, 	needAdmin => false,		pageTitle => ");
 		hashmap.put("ajaxGetData",							"needSession => true, 	needAdmin => false,		pageTitle => ");
+		hashmap.put("ajaxAction",								"needSession => true, 	needAdmin => false,		pageTitle => ");
 		
 		// ----------------------------member.xml-----------------------------
 		hashmap.put("shopMemberList",						"needSession => true,		needAdmin => true,		pageTitle => ");

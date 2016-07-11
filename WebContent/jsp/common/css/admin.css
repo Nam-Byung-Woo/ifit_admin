@@ -879,8 +879,32 @@ form[name="sizeList"] #sizeDetailAreaInput input[type="button"]{
 
 /* 주문관리 */
 form#order ul.tabArea li{
-	width:298px;
+	width:223px;
 }
+form#order #searchCol + div{ 
+	width:100px !important; 
+}
+form#order #searchCol + div>.wSelect-options-holder{ 
+	width:100px !important; 
+}
+.layer-orderView>.pop-layer{
+	width:700px;
+	height: 600px;
+}
+.layer-orderView>.pop-layer form textarea#reply{
+	width: 94%;
+	height: 200px;
+	resize:none;
+}
+.layer-orderView .contentsArea{
+	height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+form[name="orderEditor"]{
+	width:100%;
+}
+
 
 /* 에러메세지 */
 .errorArea{

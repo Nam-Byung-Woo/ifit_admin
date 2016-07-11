@@ -19,6 +19,7 @@ import util.system.StringUtil;
 import action.help.Faq;
 import action.help.Qna;
 import action.member.ShopMember;
+import action.order.Order;
 import action.product.GeneralProduct;
 
 import com.google.gson.Gson;
@@ -126,5 +127,21 @@ public class Ajax extends ActionSupport  {
 		
 		System.out.println("AJAX!!!!!!!!!" + this.rtnString);
 		return SUCCESS;		
+	}
+	
+	public String ajaxAction() throws Exception{
+		init();
+		JSONObject jsonObject = (JSONObject) JSONValue.parse(data);
+		String actionName = jsonObject.get("actionName").toString();
+		if(actionName.equals("deliveryOK")){
+			Order order = new Order();
+			order.deliveryOK(jsonObject);
+//			this.rtnString = true;
+		}
+		
+		Gson gson = new Gson();
+		this.rtnString = gson.toJson(validateMsgMap);
+		
+		return SUCCESS;	
 	}
 }
