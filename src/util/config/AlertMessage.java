@@ -35,6 +35,15 @@ public class AlertMessage{
 	private String ShopDuplicateError = "이미 등록되어있는 아이디 입니다.";
 	private String ShopTelError = "올바른 연락처를 입력해 주세요.";
 	
+	//*******************일반회원관련*******************/
+	private String UserWriteOK = "일반회원이 등록되었습니다.";
+	private String UserEditOK = "정보가 수정되었습니다.";
+	private String UserIdError = "올바른 아이디를 입력해 주세요.\n아이디는 5~19자의 영문 대 소문자, 숫자만 사용 가능합니다.";
+	private String UserPwError = "올바른 비밀번호를 입력해 주세요.\n비밀번호는 6~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+	private String UserEmailError = "올바른 이메일을 입력해 주세요.";
+	private String UserDuplicateError = "이미 등록되어있는 아이디 입니다.";
+	private String UserTelError = "올바른 연락처를 입력해 주세요.";
+	
 	//*******************FAQ관련*******************/
 	private String FaqWriteOK = "자주하는질문이 등록되었습니다.";
 	private String FaqUpdateOK = "자주하는질문이 수정되었습니다.";

@@ -119,7 +119,7 @@ $(document).on("click",".writeActionBtn",function(e){
 	return false;
 });
 
-$(".updateActionBtn").click(function(){
+$(document).on("click",".updateActionBtn",function(e){
 	if(validateCheck($(this).parents("form"))){
 		if(confirm($(this).parents("form").attr("data-confirm-msg"))){
 			return true;

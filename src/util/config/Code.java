@@ -53,6 +53,14 @@ public class Code{
     	put("070","070");
     }};
     
+    //	회원 가입 경로
+    private LinkedHashMap userJoinRouteMap = new LinkedHashMap() {{
+    	put("f", "페이스북");
+    	put("k", "카카오톡");
+    	put("i", "직접입력");
+    	put("a", "관리자등록");
+    }};
+    
     //	상품 카테고리
     private LinkedHashMap productCategoryMap = new LinkedHashMap() {{
     	put(1,"TOP");
@@ -79,4 +87,5 @@ public class Code{
     	put(1,"상단배너");
     	put(2,"하단배너");
     }};
+    
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import dto.AdminDTO;
+import dto.UserListDTO;
 
 import util.system.StringUtil;
 
@@ -15,6 +16,7 @@ import lombok.Setter;
 import lombok.AccessLevel;
 
 import action.member.ShopMember;
+import action.member.User;
 import action.product.GeneralProduct;
 
 @Data
@@ -83,6 +85,7 @@ public class FormValidate{
 		if(seq!=0){
 			paramMap.put("seq",seq);
 		}
+		
 		if(!paramMap.containsKey("id") || paramMap.get("id").equals("") || !stringUtil.id_validation(paramMap.get("id").toString())){
 			// 업체아이디 체크
 			this.rtnMap.put("msg", alertMessage.getShopIdError());
@@ -122,6 +125,65 @@ public class FormValidate{
 		}else if(!stringUtil.mobileNumber_validation(paramMap.get("tel1").toString(), paramMap.get("tel2").toString(), paramMap.get("tel3").toString(), code.getTelNumberMap())){
 			// 업체번호 전체 체크
 			this.rtnMap.put("msg", alertMessage.getShopTelError());
+			this.rtnMap.put("elementID", "tel_check");
+		}else if(false){
+			// 추가 가능
+		}else{
+			this.rtnMap.put("res", true);
+		}
+		
+		return this.rtnMap;
+	}
+	
+	// 일반회원 등록 체크(validation)
+	public Map<String, Object> userEditorForm(Map<String, Object> paramMap){
+		User user = new User();
+		int seq = !paramMap.containsKey("seq") ? 0 : Integer.parseInt(paramMap.get("seq").toString());
+		paramMap.remove("seq");
+		boolean idCheckNull = (user.getData(paramMap)==null);
+		if(seq!=0){
+			paramMap.put("seq",seq);
+		}
+		
+		if(!paramMap.containsKey("user_id") || paramMap.get("user_id").equals("") || !stringUtil.id_validation(paramMap.get("user_id").toString())){
+			// 아이디 체크
+			this.rtnMap.put("msg", alertMessage.getUserIdError());
+			this.rtnMap.put("elementID", "id_check");
+		}else if(seq==0 && user.getData(paramMap)!=null){
+			// 아이디 중복 체크(등록)
+			this.rtnMap.put("msg", alertMessage.getUserDuplicateError());
+			this.rtnMap.put("elementID", "id_check");
+		}else if(seq!=0 && !paramMap.get("user_id").equals(((UserListDTO)user.getData(paramMap)).getUser_id()) && !idCheckNull){
+			// 아이디 중복 체크(수정)
+			this.rtnMap.put("msg", alertMessage.getUserDuplicateError());
+			this.rtnMap.put("elementID", "id_check");
+		}else if(seq==0 && (!paramMap.containsKey("user_pw") || paramMap.get("user_pw").equals("") || !stringUtil.pw_validation(paramMap.get("user_pw").toString())) ){
+			// 비밀번호 입력 체크(등록)
+			this.rtnMap.put("msg", alertMessage.getUserPwError());
+			this.rtnMap.put("elementID", "pw_check");
+		}else if(seq!=0 && !paramMap.get("user_pw").equals("") && !stringUtil.pw_validation(paramMap.get("user_pw").toString())){
+			// 비밀번호 입력 체크(수정)
+			this.rtnMap.put("msg", alertMessage.getUserPwError());
+			this.rtnMap.put("elementID", "pw_check");
+		}else if(!paramMap.containsKey("email") || paramMap.get("email").equals("")){
+			// 이메일 체크
+			this.rtnMap.put("msg", alertMessage.getUserEmailError());
+			this.rtnMap.put("elementID", "email_check");
+		}else if(!paramMap.containsKey("tel1") || paramMap.get("tel1").equals("")){
+			// 번호 앞자리 체크
+			this.rtnMap.put("msg", alertMessage.getUserTelError());
+			this.rtnMap.put("elementID", "tel_check");
+		}else if(!paramMap.containsKey("tel2") || paramMap.get("tel2").equals("")){
+			// 번호 중간자리 체크
+			this.rtnMap.put("msg", alertMessage.getUserTelError());
+			this.rtnMap.put("elementID", "tel_check");
+		}else if(!paramMap.containsKey("tel3") || paramMap.get("tel3").equals("")){
+			// 번호 뒷자리 체크
+			this.rtnMap.put("msg", alertMessage.getUserTelError());
+			this.rtnMap.put("elementID", "tel_check");
+		}else if(!stringUtil.mobileNumber_validation(paramMap.get("tel1").toString(), paramMap.get("tel2").toString(), paramMap.get("tel3").toString(), code.getTelNumberMap())){
+			// 업체번호 전체 체크
+			this.rtnMap.put("msg", alertMessage.getUserTelError());
 			this.rtnMap.put("elementID", "tel_check");
 		}else if(false){
 			// 추가 가능

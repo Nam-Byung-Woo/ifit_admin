@@ -36,6 +36,11 @@ public class ActionConfig{
 		hashmap.put("shopMemberWriteAction",			"needSession => true,		needAdmin => true,		pageTitle => ");
 		hashmap.put("shopMemberUpdateAction",			"needSession => true,		needAdmin => true,		pageTitle => ");
 		hashmap.put("shopMemberDeleteAction",			"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("userList",								"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("userEditor",								"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("userWriteAction",						"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("userUpdateAction",					"needSession => true,		needAdmin => true,		pageTitle => ");
+		hashmap.put("userDeleteAction",						"needSession => true,		needAdmin => true,		pageTitle => ");
 		
 		// ----------------------------product.xml-----------------------------
 		hashmap.put("generalProductList",					"needSession => true,		needAdmin => false,		pageTitle => ");

@@ -309,6 +309,21 @@ input#shop_tel2,input#shop_tel3{
 	width:100px;
 }
 
+/*일반회원*/
+form#user #searchCol + div{ 
+	width:130px !important; 
+}
+form#user #searchCol + div>.wSelect-options-holder{ 
+	width:130px !important; 
+}
+
+form[name="userEditor"] #tel1 + div{ 
+	width:120px !important; 
+}
+form[name="userEditor"] #tel1 + div>.wSelect-options-holder{ 
+	width:120px !important; 
+}
+
 /* FAQ */
 form#faq #searchCol + div{ 
 	width:100px !important; 

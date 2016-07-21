@@ -52,7 +52,9 @@
 						<input type="hidden" id="queryIncode" name="queryIncode" value="<s:property value='queryIncode' />"  disabled />	
 						보기 : <s:select id="countPerPage" name="countPerPage" cssClass="" list="Code.countPerPageMap" headerKey="" headerValue="" />
 						<input type="hidden" class="validate" id="admin_seq" name="admin_seq" value="${admin_seq}" />
-						<div class="fr">업체 선택 : <input type="text" class="pointer openPop" data-pop-id="shopSearch" autocomplete="off" placeholder="업체 검색" id="admin_name" name="admin_name" value="<s:if test='admin_seq != 0'><s:property value="admin_name"/></s:if>" readonly /></div>
+						<s:if test = "#session.isAdmin">
+							<div class="fr">업체 선택 : <input type="text" class="pointer openPop" data-pop-id="shopSearch" autocomplete="off" placeholder="업체 검색" id="admin_name" name="admin_name" value="<s:if test='admin_seq != 0'><s:property value="admin_name"/></s:if>" readonly /></div>
+						</s:if>
 						<div class="clear mb10"></div>
 						<span>전체 : <s:property value="totalCount"/>개</span>
 						<table class="table_list tc">

@@ -85,6 +85,8 @@ public class Index extends ActionSupport  {
 			return "validation";
 		}else if(!this.adminDTO.getPw().equals(passwordEncode)){
 			//비밀번호 불일치
+			System.out.println("DB:" + this.adminDTO.getPw());
+			System.out.println("입력:" + passwordEncode);
 			validateMsgMap = formValidate.loginAuthError();
 			this.rtnString = gson.toJson(validateMsgMap);
 			return "validation";

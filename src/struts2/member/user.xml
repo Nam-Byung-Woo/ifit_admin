@@ -1,0 +1,41 @@
+<!DOCTYPE struts PUBLIC    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"    
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="user" namespace="/member" extends="iFitAdmin">
+		<action name="userList" class="action.member.User" method="getList">
+			<result>/jsp/member/userList.jsp</result>
+		</action>
+		
+		<action name="userEditor" class="action.member.User" method="getEditor">
+			<result>/jsp/member/userEditor.jsp</result>
+		</action>
+		
+		<action name="userWriteAction" class="action.member.User" method="writeAction">
+			<result type="redirectAction">
+		  		<param name="actionName">userList</param>
+    	  	</result>
+			<result name="validation">/jsp/member/userList.jsp</result>
+		</action>
+		
+		<action name="userUpdateAction" class="action.member.User" method="updateAction">
+			<result type="redirectAction">
+		  		<param name="actionName">userList</param>
+    	  	</result>
+			<result name="validation">/jsp/member/userList.jsp</result>
+		</action>
+		
+		<action name="userDeleteAction" class="action.member.User" method="deleteAction">
+			<result type="redirectAction">
+		  		<param name="actionName">userList</param>
+    	  	</result>
+    	  	<result name="validation">/jsp/member/userList.jsp</result>
+		</action>
+		
+		<!--예시
+		<action name="ipApporveList" class="action.ip.IpAction" method="IpList">
+		  <result>/jsp/admin/ip/ipApporveList.jsp</result>
+		  <result name="EXCEL">/jsp/admin/ip/ipListExcelDownload.jsp</result>
+		</action>
+		-->
+	</package>
+</struts>

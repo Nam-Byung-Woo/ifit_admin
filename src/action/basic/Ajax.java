@@ -66,6 +66,8 @@ public class Ajax extends ActionSupport  {
 		String formID = jsonObject.get("formID").toString();
 		if(formID.equals("shopMemberEditorForm")){
 			validateMsgMap = this.isAdmin ? formValidate.shopMemberEditorForm(jsonObject) : null;
+		}else if(formID.equals("userEditorForm")){
+			validateMsgMap = formValidate.userEditorForm(jsonObject);
 		}else if(formID.equals("faqEditorForm")){
 			validateMsgMap = this.isAdmin ? formValidate.faqEditorForm(jsonObject) : null;
 		}else if(formID.equals("generalProductEditorForm")){

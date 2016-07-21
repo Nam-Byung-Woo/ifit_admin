@@ -239,6 +239,16 @@ public class StringUtil {
 		return temp;
 	}
 	
+	/**
+	 * TODO DATE정보 간단히 표시(년월일까지)
+	 * 
+	 * @param date : date형 string <br>
+	 * @return String <br>
+	 */
+	public static String simpleDate(String date){
+		return date.substring(0,10);
+	}
+	
 //	/**
 //	 * TODO 이름 validation 체크.
 //	 * 

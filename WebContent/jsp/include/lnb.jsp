@@ -9,7 +9,7 @@
 				<ul>
 					<li>
 						<p><a href="<s:url namespace="/member" action="shopMemberList" />">- 입점회원</a></p>
-						<p><a class="yet" href="#">- 일반회원</a></p>
+						<p><a href="<s:url namespace="/member" action="userList" />">- 일반회원</a></p>
 					</li>
 				</ul>
 			</li>
