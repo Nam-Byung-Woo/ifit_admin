@@ -284,6 +284,10 @@ public class FormValidate{
 			// 일반상품 태그 체크
 			this.rtnMap.put("msg", alertMessage.getGeneralProductTagError());
 			this.rtnMap.put("elementID", "tag_list_check");
+		}else if(!paramMap.containsKey("state") || paramMap.get("state").equals("") || !code.getProductStateMap().containsKey(Integer.parseInt(paramMap.get("state").toString()))){
+			// 일반상품 상태 체크
+			this.rtnMap.put("msg", alertMessage.getGeneralProductStateError());
+			this.rtnMap.put("elementID", "state_check");
 		}else if(false){
 			// 추가 가능
 		}else{

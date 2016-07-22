@@ -264,17 +264,17 @@
 								</tr>
 								<tr>
 									<th scope="col">3D 코드</th>
-									<td class="tl"><input type="text" class="validate" autocomplete="off" id="cat_ref" name="cat_ref" value="${productData.cat_ref}" /></td>
+									<td class="tl" tabIndex="11"><input type="text" class="validate" autocomplete="off" id="cat_ref" name="cat_ref" value="${productData.cat_ref}" /></td>
 								</tr>
 								<tr>
 									<th scope="col">상세설명</th>
-									<td class="tl">
+									<td class="tl" tabIndex="12">
 										<textarea id="detail_info" name="detail_info" class="validate">${productData.detail_info}</textarea>
 									</td>
 								</tr>
 								<tr>
 									<th scope="col">태그</th>
-									<td class="tl" tabIndex="10" id="tag_list_check">
+									<td class="tl" tabIndex="13" id="tag_list_check">
 										<s:iterator value="tagData" status="stat">
 											<p class="mb10">
 												<input type="text" name="tag_list" class="validate arrayData" autocomplete="off" value="${tag}" />
@@ -290,6 +290,12 @@
 											</p>
 										</s:if>
 										<span class="ml5">(최대 10개 입력)</span>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col">판매상태</th>
+									<td class="tl" tabIndex="14" id="state_check">
+										<s:radio id="state" name="state" cssClass="validate" list="Code.productStateMap" value="%{#productData.state}" />
 									</td>
 								</tr>
 							</tbody>

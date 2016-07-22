@@ -87,7 +87,7 @@ public class ProductListDAOImp implements IfitDAO {
 		if(isCount){
 			sql += "	SELECT COUNT(*)	\n";
 		}else{
-			sql += "	SELECT PL.admin_seq, A.name AS ADMIN_NAME, PL.p_name, PL.p_price, PL.detail_info, 	\n";
+			sql += "	SELECT PL.admin_seq, A.name AS ADMIN_NAME, PL.p_name, PL.p_price, PL.detail_info, PL.state, 	\n";
 			sql += "	PL.p_id,	\n";
 			sql += "	CASE		\n";
 			sql += "	WHEN DATE_FORMAT(PL.regdate,'%p') = 'AM' THEN 		\n";
@@ -133,8 +133,8 @@ public class ProductListDAOImp implements IfitDAO {
 	public int write(Object dto) {
 		String sql = "";
 		sql += "	INSERT INTO " + table_name + "	\n";
-		sql += "	(p_name, p_main_url, lookup_url, p_price, detail_info, category, cat_ref, admin_seq)	\n";
-		sql += "	values(:p_name, :p_main_url, :lookup_url, :p_price, :detail_info, :category, :cat_ref, :admin_seq)	\n";
+		sql += "	(p_name, p_main_url, lookup_url, p_price, detail_info, category, cat_ref, admin_seq, state)	\n";
+		sql += "	values(:p_name, :p_main_url, :lookup_url, :p_price, :detail_info, :category, :cat_ref, :admin_seq, :state)	\n";
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("p_name", ((ProductListDTO) dto).getP_name(), Types.VARCHAR);
@@ -145,6 +145,7 @@ public class ProductListDAOImp implements IfitDAO {
 		paramSource.addValue("category", ((ProductListDTO) dto).getCategory(), Types.NUMERIC);
 		paramSource.addValue("cat_ref", ((ProductListDTO) dto).getCat_ref(), Types.VARCHAR);
 		paramSource.addValue("admin_seq", ((ProductListDTO) dto).getAdmin_seq(), Types.NUMERIC);
+		paramSource.addValue("state", ((ProductListDTO) dto).getState(), Types.NUMERIC);
 		
 		int rtnInt = 0;
 		
@@ -167,7 +168,7 @@ public class ProductListDAOImp implements IfitDAO {
 	public int update(Object dto) {
 		String sql = "";
 		sql += "	UPDATE " + table_name + " SET	\n";
-		sql += "	admin_seq = :admin_seq, p_name = :p_name, p_price = :p_price, detail_info = :detail_info, category = :category, cat_ref = :cat_ref, p_main_url = :p_main_url, lookup_url = :lookup_url		\n";
+		sql += "	admin_seq = :admin_seq, p_name = :p_name, p_price = :p_price, detail_info = :detail_info, category = :category, cat_ref = :cat_ref, p_main_url = :p_main_url, lookup_url = :lookup_url, state = :state		\n";
 		sql += "	where p_id = :p_id	\n";
 		
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
@@ -179,6 +180,7 @@ public class ProductListDAOImp implements IfitDAO {
 		paramSource.addValue("cat_ref", ((ProductListDTO) dto).getCat_ref(), Types.VARCHAR);
 		paramSource.addValue("p_main_url", ((ProductListDTO) dto).getP_main_url(), Types.VARCHAR);
 		paramSource.addValue("lookup_url", ((ProductListDTO) dto).getLookup_url(), Types.VARCHAR);
+		paramSource.addValue("state", ((ProductListDTO) dto).getState(), Types.NUMERIC);
 		
 		paramSource.addValue("p_id", ((ProductListDTO) dto).getP_id(), Types.NUMERIC);
 		

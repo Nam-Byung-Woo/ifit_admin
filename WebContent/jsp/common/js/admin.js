@@ -162,7 +162,7 @@ function validateCheck(obj){
 		if($(this).attr("type")=="file"){
 			data[$(this).attr("name")] = $(this)[0].jFiler.files_list.length;
 		}else if($(this).attr("type")=="radio"){
-			data[$(this).attr("name")] = $(':radio[name="banner_type"]:checked').val();
+			data[$(this).attr("name")] = $(':radio[name="'+$(this).attr("name")+'"]:checked').val();
 		}else{
 			if($(this).attr("name") in data && $.isArray(data[$(this).attr("name")])){
 				data[$(this).attr("name")].push($(this).val());

@@ -61,6 +61,12 @@ public class Code{
     	put("a", "관리자등록");
     }};
     
+    //	상품 상태
+    private LinkedHashMap productStateMap = new LinkedHashMap() {{
+    	put(0,"판매중지");
+    	put(1,"판매 중");
+    }};
+    
     //	상품 카테고리
     private LinkedHashMap productCategoryMap = new LinkedHashMap() {{
     	put(1,"TOP");

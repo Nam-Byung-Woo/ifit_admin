@@ -16,6 +16,7 @@ public class ProductListDTO {
 	private int like_cnt;
 	private String cat_ref;
 	private int admin_seq;
+	private int state;
 	private String regdate;
 	
 	// make data

@@ -31,7 +31,7 @@
 						<span>전체 : <s:property value="totalCount"/>개</span>
 						<table class="table_list tc">
 							<colgroup>
-								<col width="20px"><col width="50px"><col width="70px"><col width="70px"><col width="70px">
+								<col width="20px"><col width="50px"><col width="70px"><col width="70px"><col width="70px"><col width="70px">
 								<s:if test = "#session.isAdmin"><col width="70px"></s:if>
 							</colgroup>
 							<thead>
@@ -44,14 +44,15 @@
 									<s:if test = "#session.isAdmin">
 										<th scope="col"><p class="listSort" data-sort-col="2">업체명<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=2">hide</s:if>" aria-hidden="true"></i></p></th>
 									</s:if>
-									<th scope="col"><p class="listSort" data-sort-col="3">등록일<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=0&&sortCol!=3">hide</s:if>" aria-hidden="true"></i></p></th>
+									<th scope="col"><p class="listSort" data-sort-col="3">상태<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=0&&sortCol!=3">hide</s:if>" aria-hidden="true"></i></p></th>
+									<th scope="col"><p class="listSort" data-sort-col="4">등록일<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=0&&sortCol!=4">hide</s:if>" aria-hidden="true"></i></p></th>
 									<th scope="col">추가작업</th>
 								</tr>
 							</thead>
 							<tbody>
 								<s:if test = "dataList.size==0">
 									<tr>
-										<td colspan="<s:if test = "#session.isAdmin">6</s:if><s:else>5</s:else>" align="center">
+										<td colspan="<s:if test = "#session.isAdmin">7</s:if><s:else>6</s:else>" align="center">
 											등록된 상품이 없습니다.
 										</td>
 									</tr>
@@ -64,6 +65,7 @@
 										<s:if test = "#session.isAdmin">
 											<td class="center"><s:property value="admin_name"/></td>
 										</s:if>
+										<td class="center"><s:if test='state'>판매 중</s:if><s:else>판매중지</s:else></td>
 										<td class="center"><s:property value="regdate"/></td>
 										<td class="center">
 											<i class="editBtn mr10 fa fa-pencil-square-o" aria-hidden="true" title="편집" data-seq="<s:property value="p_id"/>" > </i>

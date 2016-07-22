@@ -101,7 +101,8 @@ public class GeneralProduct extends ActionSupport  {
 		put(0,"p_id");					// 기본값 정렬
 		put(1,"p_name");				// 상품명 정렬
 		put(2,"ADMIN_NAME");	 	// 입점 업체명 정렬
-		put(3,"orig_regdate"); 		// 등록일 정렬
+		put(3,"state");			 		// 상태 정렬
+		put(4,"orig_regdate"); 		// 등록일 정렬
 	}};
     
 	private int admin_seq;													//	업체seq
@@ -113,6 +114,7 @@ public class GeneralProduct extends ActionSupport  {
 	private String cat_ref;													//	3D코드
 	private String detail_info;												//	상품상세설명
 	private List<String> tag_list = new ArrayList<String>();			//	태그
+	private int state;														//	상품상태
 	
 	// 첨부파일 영역
 	private List<File> p_main_url = new ArrayList<File>();								//	상품 메인이미지
@@ -389,6 +391,7 @@ public class GeneralProduct extends ActionSupport  {
 		paramMap.put("cat_ref", this.cat_ref);
 		paramMap.put("detail_info", this.detail_info);
 		paramMap.put("tag_list", this.tag_list);
+		paramMap.put("state", this.state);
 		this.validateMsgMap = formValidate.generalProductEditorForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
@@ -418,6 +421,7 @@ public class GeneralProduct extends ActionSupport  {
 		this.productListDTO.setP_price(Integer.parseInt(StringUtil.removeStrType(this.p_price)));
 		this.productListDTO.setDetail_info(this.detail_info);
 		this.productListDTO.setCat_ref(this.cat_ref);
+		this.productListDTO.setState(this.state);
 		
 		/****************** 이미지파일 Insert & upload START ******************/
 		String saveFileName = "";
@@ -530,6 +534,7 @@ public class GeneralProduct extends ActionSupport  {
 		paramMap.put("cat_ref", this.cat_ref);
 		paramMap.put("detail_info", this.detail_info);
 		paramMap.put("tag_list", this.tag_list);
+		paramMap.put("state", this.state);
 		this.validateMsgMap = formValidate.generalProductEditorForm(paramMap);
 		paramMap.clear();
 		if(!(boolean)validateMsgMap.get("res")){
@@ -592,6 +597,7 @@ public class GeneralProduct extends ActionSupport  {
 		this.productListDTO.setP_price(Integer.parseInt(StringUtil.removeStrType(this.p_price)));
 		this.productListDTO.setDetail_info(this.detail_info);
 		this.productListDTO.setCat_ref(this.cat_ref);
+		this.productListDTO.setState(this.state);
 		
 		/****************** 이미지파일 update & upload START ******************/
 		

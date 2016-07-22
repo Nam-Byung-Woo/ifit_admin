@@ -69,6 +69,7 @@ public class AlertMessage{
 	private String GeneralProductDetailImageError = "상세이미지를 등록해 주세요.";
 	private String GeneralProductCodiImageError = "코디이미지를 등록해 주세요.";
 	private String GeneralProductTagError = "올바른 태그를 입력해 주세요.";
+	private String GeneralProductStateError = "올바른 상태를 입력해 주세요.";
 	
 	//*******************이벤트 배너 관련*******************/
 	private String EventBannerWriteOK = "배너가 등록되었습니다.";

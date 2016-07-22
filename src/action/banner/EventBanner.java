@@ -111,7 +111,6 @@ public class EventBanner extends ActionSupport  {
 		this.rtnString = "";
 	}
 	
-	// faq 목록
 	public String getList() throws Exception{
 		init();
 		
@@ -166,7 +165,6 @@ public class EventBanner extends ActionSupport  {
 		return SUCCESS;
 	}
 	
-	//	faq 등록
 	public String writeAction() throws Exception {	
 		init();
 		
