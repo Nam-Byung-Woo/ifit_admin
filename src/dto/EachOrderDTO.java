@@ -20,4 +20,5 @@ public class EachOrderDTO {
 	
 	// join data
 	private String p_name;
+	private String admin_name;
 }

@@ -7,6 +7,7 @@ input[type="text"], input[type="password"], input[type="file"]{width:227px; heig
 input[type="button"], input[type="submit"]{cursor:pointer;}
 input[type="checkbox"]{width: 15px;height: 15px;vertical-align: middle;}
 input[type="radio"]{width: 40px;height: 25px;vertical-align: middle;}
+input[type="text"].datepicker{width:90px; font-size:16px; text-align:center;}
 select{display:none;}
 textarea{padding:10px;}
 ul,dl{list-style:none;}

@@ -82,7 +82,7 @@ public class EachOrderDAOImp implements IfitDAO {
 		if(isCount){
 			sql += "	SELECT COUNT(*)	\n";
 		}else{
-			sql += "	SELECT EO.order_seq, EO.pay_seq, EO.p_id, EO.color_id, EO.size_id, EO.amount, EO.price, EO.delivery_number, EO.admin_seq, EO.state, PL.p_name,  	\n";
+			sql += "	SELECT EO.order_seq, EO.pay_seq, EO.p_id, EO.color_id, EO.size_id, EO.amount, EO.price, EO.delivery_number, EO.admin_seq, EO.state, PL.p_name, A.name AS admin_name,  	\n";
 			sql += "	CASE		\n";
 			sql += "	WHEN DATE_FORMAT(EO.success_date,'%p') = 'AM' THEN 		\n";
 			sql += "	DATE_FORMAT(EO.success_date, '%Y.%m.%d 오전 %h:%i:%s')		\n";
@@ -90,7 +90,7 @@ public class EachOrderDAOImp implements IfitDAO {
 			sql += "	DATE_FORMAT(EO.success_date, '%Y.%m.%d 오후 %h:%i:%s')		\n";
 			sql += "	END AS success_date		\n";
 		}
-		sql += " FROM "+ table_name + " EO join product_list PL ON EO.p_id = PL.p_id \n";
+		sql += " FROM "+ table_name + " EO join product_list PL ON EO.p_id = PL.p_id join ADMIN A ON EO.admin_seq = A.seq \n";
         sql += " WHERE :one = :one \n";
         
         if(whereMap!=null && !whereMap.isEmpty()){

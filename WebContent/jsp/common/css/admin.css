@@ -109,8 +109,11 @@ table{border-collapse: collapse;width:100%;  border-top:2px solid #CCCCCC; borde
 table thead th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }
 table thead th.checkCol{padding:5px 0;}
 table tbody th{background-color:#EBEBEB;}
+table tfoot th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }
 table td{padding:10px 0; border-bottom:1px solid #CCCCCC;}
 table td img{height: 150px;}
+
+table.table_list_foot tbody{border-bottom:2px solid #CCCCCC;}
 
 /* list */
 table.table_write tbody th{background-color:#EBEBEB; border-bottom:1px solid #CCCCCC; padding:14px 0; }

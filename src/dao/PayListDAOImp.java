@@ -84,6 +84,8 @@ public class PayListDAOImp implements IfitDAO {
 		int countPerPage = paramMap.containsKey("countPerPage") ? (int)paramMap.get("countPerPage") : 0;
 		int startNum = (pageNum-1)*countPerPage;
 		int tabID = paramMap.containsKey("tabID") ? (int)paramMap.get("tabID") : 0;
+		String date_start = paramMap.containsKey("date_start") ? (String)paramMap.get("date_start") : "";
+		String date_end = paramMap.containsKey("date_end") ? (String)paramMap.get("date_end") : "";
 		String sortCol = paramMap.containsKey("sortCol") ? (String)paramMap.get("sortCol") : "";
 		String sortVal = paramMap.containsKey("sortVal") ? (String)paramMap.get("sortVal") : "";
 		
@@ -121,6 +123,16 @@ public class PayListDAOImp implements IfitDAO {
         if(tabID!=0){
         	sqlMap.put("tabID", tabID);
             sql += " and EO.state = :tabID	\n";
+        }
+        
+        if(!date_start.equals("")){
+        	sql += "	and DATE_FORMAT(order_date,  '%Y.%m.%d') >= :date_start	\n";
+        	sqlMap.put("date_start", date_start);
+        }
+        
+        if(!date_end.equals("")){
+        	sql += "	and DATE_FORMAT(order_date,  '%Y.%m.%d') <= :date_end	\n";
+        	sqlMap.put("date_end", date_end);
         }
         
         if(!sortCol.equals("")){

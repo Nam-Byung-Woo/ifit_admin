@@ -10,18 +10,29 @@
 	    	var target = $(".orderViewPop");
 	    	var jsonObj = JSON.parse($(this).val());
 	    	
-	    	var tbody = target.find(".table_list tbody");
+	    	var tbody = target.find("#dataTable tbody");
+	    	var tfoot = target.find("#dataTable tfoot");
+	    	var sum = new Array(0,0,0);
 	    	target.find("#eachOrderCount").html("전체: "+ jsonObj.length +"개");
 	    	$.each(jsonObj, function(key, value){
 	    		addHTML += '<tr>';
 		    	addHTML += '<td class="center">' + value.p_name + '</td>';
 		    	addHTML += '<td class="center">' + value.order_seq + '</td>';
+		    	addHTML += '<td class="center">' + value.admin_name + '</td>';
 		    	addHTML += '<td class="center">' + value.amount + '</td>';
 		    	addHTML += '<td class="center">' + value.price + '</td>';
+		    	addHTML += '<td class="center">' + value.amount*value.price + '</td>';
 		    	addHTML += '</tr>';
+		    	sum[0] += value.amount;
+		    	sum[1] += value.price;
+		    	sum[2] += value.amount*value.price;
     		});
 	    	
-	    	tbody.append(addHTML)
+	    	tbody.append(addHTML);
+	    	
+	    	tfoot.find("td").eq(0).html(sum[0]);
+	    	tfoot.find("td").eq(1).html(sum[1]);
+	    	tfoot.find("td").eq(2).html(sum[2]);
 	    });
 	    
 	    $(document).on("click","#deliveryOK",function(e){
@@ -43,7 +54,7 @@
 	    });
 	    
 	    $(document).on("click",".layerClose",function(e){
-	    	$(".orderViewPop .table_list tbody").html("");
+	    	$(".orderViewPop #dataTable tbody").html("");
 	    	$(".orderViewPop .eachOrderCount").html("");
 	    	$("#pay_seq").html("");
 	    	$("#order_date").html("");
@@ -94,20 +105,30 @@
 						</table>
 					
 						<span id="eachOrderCount"></span>
-						<table class="table_list tc">
+						<table id="dataTable" class="table_list_foot tc">
 							<colgroup>
-								<col width="70px"><col width="70px"><col width="70px"><col width="70px">
+								<col width="70px"><col width="70px"><col width="70px"><col width="70px"><col width="70px"><col width="70px">
 							</colgroup>
 							<thead>
 								<tr>
 									<th scope="col">주문상품정보</th>
 									<th scope="col">상품별 주문번호</th>
+									<th scope="col">업체명</th>
 									<th scope="col">수량</th>
 									<th scope="col">가격</th>
+									<th scope="col">총 금액</th>
 								</tr>
 							</thead>
 							<tbody>
 							</tbody>
+							<tfoot>
+								<tr>
+									<th scope="col" colspan="3">합계</th>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
 				</s:form>

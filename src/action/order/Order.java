@@ -68,6 +68,8 @@ public class Order extends ActionSupport  {
 	private int tabID;
 	private int admin_seq;
 	private String admin_name;
+	private String date_start;
+	private String date_end;
 	private String[] listItemCheck;		// 복수선택
 	
 	private String isUpdateMode = "";					// 편집모드
@@ -130,6 +132,14 @@ public class Order extends ActionSupport  {
 			this.whereMap.put("EO.admin_seq", session.get("admin_seq"));
 		}else if(this.admin_seq != 0){
 			this.whereMap.put("EO.admin_seq", this.admin_seq);
+		}
+		
+		if(!(StringUtil.isNullOrSpace(this.date_start,"").trim()).equals("")){
+			this.paramMap.put("date_start",this.date_start);
+		}
+		
+		if(!(StringUtil.isNullOrSpace(this.date_end,"").trim()).equals("")){
+			this.paramMap.put("date_end",this.date_end);
 		}
 		
 		this.paramMap.put("searchMap", this.searchMap);
