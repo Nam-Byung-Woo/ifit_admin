@@ -10,6 +10,7 @@
 	    	var jsonObj = JSON.parse($(this).val());
 
 	    	target.find("#seq").val(jsonObj.quest_seq);
+	    	target.find("#phoneNum").val(jsonObj.phoneNum);
 	    	target.find("#title").html(jsonObj.title);
 	    	target.find("#user_id").html(jsonObj.user_id);
 	    	target.find("#content").html(jsonObj.content);
@@ -48,6 +49,7 @@
 				<s:form id="qna" name="qnaEditor" data-mode="EditorForm" data-confirm-msg="" cssClass="dib" method="post" namespace="/help" action="" theme="simple" enctype="multipart/form-data">
 					<input id="jsonObj" type="hidden" />
 					<input type="hidden" id="seq" name="seq" value=""  /> 
+					<input type="hidden" id="phoneNum" name="phoneNum" value=""  />
 					<!--content //-->
 					<p id="title" class="pop-title mb20 pb10"></p>
 					<div class="pl20 pr20 contentsArea">

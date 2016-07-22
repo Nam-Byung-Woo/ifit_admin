@@ -46,24 +46,23 @@ public class QuestionPersonDAOImp implements IfitDAO {
 		
 		sqlMap.put("one", 1);
 
-		sql += "	SELECT quest_seq, state, user_id, title, content, reply,  	\n";
+		sql += "	SELECT QP.quest_seq, QP.state, QP.user_id, QP.title, QP.content, QP.reply, concat(UL.tel1,'-',UL.tel2,'-',UL.tel3) AS phoneNum, 	\n";
 		sql += "	CASE		\n";
-		sql += "	WHEN DATE_FORMAT(quest_date,'%p') = 'AM' THEN 		\n";
-		sql += "	DATE_FORMAT(quest_date, '%Y.%m.%d 오전 %h:%i:%s')		\n";
+		sql += "	WHEN DATE_FORMAT(QP.quest_date,'%p') = 'AM' THEN 		\n";
+		sql += "	DATE_FORMAT(QP.quest_date, '%Y.%m.%d 오전 %h:%i:%s')		\n";
 		sql += "	ELSE		\n";
-		sql += "	DATE_FORMAT(quest_date, '%Y.%m.%d 오후 %h:%i:%s')		\n";
+		sql += "	DATE_FORMAT(QP.quest_date, '%Y.%m.%d 오후 %h:%i:%s')		\n";
 		sql += "	END AS quest_date,		\n";
 		sql += "	CASE		\n";
-		sql += "	WHEN DATE_FORMAT(reply_date,'%p') = 'AM' THEN 		\n";
-		sql += "	DATE_FORMAT(reply_date, '%Y.%m.%d 오전 %h:%i:%s')		\n";
+		sql += "	WHEN DATE_FORMAT(QP.reply_date,'%p') = 'AM' THEN 		\n";
+		sql += "	DATE_FORMAT(QP.reply_date, '%Y.%m.%d 오전 %h:%i:%s')		\n";
 		sql += "	ELSE		\n";
-		sql += "	DATE_FORMAT(reply_date, '%Y.%m.%d 오후 %h:%i:%s')		\n";
+		sql += "	DATE_FORMAT(QP.reply_date, '%Y.%m.%d 오후 %h:%i:%s')		\n";
 		sql += "	END AS reply_date		\n";
-				
-				
-				
-				
-        sql += "	FROM "+ table_name + " WHERE :one = :one	\n";
+		sql += "	FROM "+ table_name + " QP join user_list UL ON QP.user_id = UL.user_id 	\n";
+		
+		
+		sql += "	WHERE :one = :one	\n";
         if(whereMap!=null && !whereMap.isEmpty()){
             for( String key : whereMap.keySet() ){
             	sqlMap.put(key, whereMap.get(key));

@@ -14,4 +14,7 @@ public class QuestionPersonDTO {
 	private String reply;
 	private String quest_date;
 	private String reply_date;
+	
+	// make data
+	private String phoneNum;
 }

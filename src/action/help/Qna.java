@@ -17,6 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import util.config.*;
 import util.system.AESCrypto;
 import util.system.MySqlFunction;
+import util.system.SMSUtil;
 import util.system.StringUtil;
 
 import com.google.gson.Gson;
@@ -60,6 +61,7 @@ public class Qna extends ActionSupport  {
     private String queryDecode = "";						//	쿼리스트링(디코딩)
     
 	private String reply;
+	private String phoneNum;
 	private int seq;
 	private int tabID;
 	private String[] listItemCheck;		// 복수선택
@@ -172,6 +174,7 @@ public class Qna extends ActionSupport  {
 		init();
 		
 		Gson gson = new Gson();
+		SMSUtil smsUtil = new SMSUtil();
 		
 		this.reply = StringUtil.isNullOrSpace(this.reply,"").trim();
 		paramMap.put("reply", this.reply);
@@ -188,6 +191,8 @@ public class Qna extends ActionSupport  {
 		this.questionPersonDTO.setQuest_seq(this.seq);
 		
 		this.questionPersonDAO.update(this.questionPersonDTO);
+		
+		smsUtil.send("qnaReply", this.phoneNum);
 		
 		this.session.put("alertMsg", this.alertMessage.getQnaReplyWriteOK());
 		this.context.setSession(this.session);
