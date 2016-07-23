@@ -133,6 +133,7 @@ public class Order extends ActionSupport  {
 			// 업체 접근시
 			this.whereMap.put("EO.admin_seq", session.get("admin_seq"));
 		}else if(this.admin_seq != 0){
+			// 업체 선택시
 			this.whereMap.put("EO.admin_seq", this.admin_seq);
 		}
 		
@@ -169,7 +170,7 @@ public class Order extends ActionSupport  {
 		
 		if(Boolean.valueOf(this.isExcelDownloadMode).booleanValue()){
 			this.excelChainMap.put("type", "orderList");
-			this.excelChainMap.put("fileName", "판매현황.xlsx");
+			this.excelChainMap.put("fileName", "판매현황" + (this.admin_seq != 0 ? "_" + this.admin_name : "") + ".xlsx");
 			this.excelChainMap.put("data", this.dataList);
 			return "EXCEL";
 		}else{

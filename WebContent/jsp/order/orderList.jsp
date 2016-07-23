@@ -47,6 +47,7 @@
 				$(".excelFileDownBtn").click(function(){
 					$("#isExcelDownloadMode").val(true);
 					$(this).parents("form").submit();
+					$("#isExcelDownloadMode").val(false);
 				});
 			});
 		</script>
@@ -69,6 +70,7 @@
 							<input type="hidden" id="pageNum" name="pageNum" value="<s:property value="pageNum"/>" />
 							<input type="hidden" id="sortCol" name="sortCol" value="<s:property value='sortCol' />" />	
 							<input type="hidden" id="sortVal" name="sortVal" value="<s:property value='sortVal' />" />
+							<input type="hidden" id="tabID" name="tabID" value="<s:property value='tabID' />" />
 							<input type="hidden" id="isExcelDownloadMode" name="isExcelDownloadMode" value="" />
 							<input type="hidden" id="queryIncode" name="queryIncode" value="<s:property value='queryIncode' />"  disabled />	
 							보기 : <s:select id="countPerPage" name="countPerPage" cssClass="" list="Code.countPerPageMap" headerKey="" headerValue="" />

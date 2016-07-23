@@ -28,6 +28,7 @@
 						<input type="hidden" id="pageNum" name="pageNum" value="<s:property value="pageNum"/>" />
 						<input type="hidden" id="sortCol" name="sortCol" value="<s:property value='sortCol' />" />	
 						<input type="hidden" id="sortVal" name="sortVal" value="<s:property value='sortVal' />" />
+						<input type="hidden" id="tabID" name="tabID" value="<s:property value='tabID' />" />
 						<input type="hidden" id="queryIncode" name="queryIncode" value="<s:property value='queryIncode' />"  disabled />	
 						보기 : <s:select id="countPerPage" name="countPerPage" cssClass="" list="Code.countPerPageMap" headerKey="" headerValue="" />
 						<input type="button" class="deleteBtn simpleBtn mb10 btn2 fr mr20" value="선택삭제" />
