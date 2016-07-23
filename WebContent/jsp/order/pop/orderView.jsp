@@ -20,8 +20,8 @@
 		    	addHTML += '<td class="center">' + value.order_seq + '</td>';
 		    	addHTML += '<td class="center">' + value.admin_name + '</td>';
 		    	addHTML += '<td class="center">' + value.amount + '</td>';
-		    	addHTML += '<td class="center">' + value.price + '</td>';
-		    	addHTML += '<td class="center">' + value.amount*value.price + '</td>';
+		    	addHTML += '<td class="center">' + addMoneyComma(value.price) + '</td>';
+		    	addHTML += '<td class="center">' + addMoneyComma(value.amount*value.price) + '</td>';
 		    	addHTML += '</tr>';
 		    	sum[0] += value.amount;
 		    	sum[1] += value.price;
@@ -31,8 +31,8 @@
 	    	tbody.append(addHTML);
 	    	
 	    	tfoot.find("td").eq(0).html(sum[0]);
-	    	tfoot.find("td").eq(1).html(sum[1]);
-	    	tfoot.find("td").eq(2).html(sum[2]);
+	    	tfoot.find("td").eq(1).html(addMoneyComma(sum[1]));
+	    	tfoot.find("td").eq(2).html(addMoneyComma(sum[2]));
 	    });
 	    
 	    $(document).on("click","#deliveryOK",function(e){
@@ -49,8 +49,7 @@
 	    		getAjaxData(data);
 	    	}
 	    	alert("적용되었습니다.");
-	    	$("#delivery_number").html($(this).prev().val());
-			$("#state").html("배송처리완료");
+			location.reload();
 	    });
 	    
 	    $(document).on("click",".layerClose",function(e){

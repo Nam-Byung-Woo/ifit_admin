@@ -22,13 +22,14 @@ public class ActionConfig{
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// ----------------------------basic.xml-----------------------------
-		hashmap.put("index", 									"needSession => true,		needAdmin => false,		pageTitle => 인덱스");
-		hashmap.put("login", 									"needSession => false,		needAdmin => false,		pageTitle => global");
+		hashmap.put("index", 									"needSession => true,		needAdmin => false,		pageTitle => ");
+		hashmap.put("login", 									"needSession => false,		needAdmin => false,		pageTitle => ");
 		hashmap.put("loginAction", 							"needSession => false,		needAdmin => false,		pageTitle => ");
 		hashmap.put("logoutAction",							"needSession => true, 	needAdmin => false,		pageTitle => ");
 		hashmap.put("ajaxFormValidate",						"needSession => true, 	needAdmin => false,		pageTitle => ");
 		hashmap.put("ajaxGetData",							"needSession => true, 	needAdmin => false,		pageTitle => ");
 		hashmap.put("ajaxAction",								"needSession => true, 	needAdmin => false,		pageTitle => ");
+		hashmap.put("excelFileDownload",					"needSession => true, 	needAdmin => false,		pageTitle => ");
 		
 		// ----------------------------member.xml-----------------------------
 		hashmap.put("shopMemberList",						"needSession => true,		needAdmin => true,		pageTitle => ");
@@ -51,6 +52,7 @@ public class ActionConfig{
 		
 		// ----------------------------order.xml-----------------------------
 		hashmap.put("orderList",								"needSession => true,		needAdmin => false,		pageTitle => ");
+		hashmap.put("orderListExcelDownload",				"needSession => true,		needAdmin => false,		pageTitle => ");
 		
 		// ----------------------------help.xml-----------------------------
 		hashmap.put("faqList",									"needSession => true,		needAdmin => true,		pageTitle => ");

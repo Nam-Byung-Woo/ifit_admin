@@ -42,6 +42,15 @@
 		<action name="ajaxAction" class="action.basic.Ajax" method="ajaxAction">
 			<result>/jsp/common/json_result.jsp</result>
 		</action>
+		
+		<action name="excelFileDownload" class="action.basic.ExcelManager" method="excelExport">
+			<result type="stream">
+			    <param name="inputName">excelStream</param>
+			    <param name="contentType">application/octet-stream</param>
+			    <param name="contentDisposition">attachment; filename=${fileName}</param>
+			    <param name="bufferSize">10240000</param>
+			</result>
+		</action>
 
 		<!--예시
 		<action name="ipApporveList" class="action.ip.IpAction" method="IpList">

@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -209,6 +210,16 @@ public class StringUtil {
 	public static String removeStrType(String str) {
 		String strRegex = "[^0-9]";
 		return str.replaceAll(strRegex, "");
+	}
+	
+	/**
+	 * TODO 천단위 콤마표시
+	 * 
+	 * @param str : 표시할 str <br>
+	 * @return String <br>
+	 */
+	public static String addMoneyComma(String str) {
+		return String.format("%,d", Integer.parseInt(str));
 	}
 	
 	/**

@@ -43,6 +43,11 @@
 				$("#date_end").change(function(){
 					$(this).parents("form").submit();
 				});
+				
+				$(".excelFileDownBtn").click(function(){
+					$("#isExcelDownloadMode").val(true);
+					$(this).parents("form").submit();
+				});
 			});
 		</script>
 	</head>
@@ -64,6 +69,7 @@
 							<input type="hidden" id="pageNum" name="pageNum" value="<s:property value="pageNum"/>" />
 							<input type="hidden" id="sortCol" name="sortCol" value="<s:property value='sortCol' />" />	
 							<input type="hidden" id="sortVal" name="sortVal" value="<s:property value='sortVal' />" />
+							<input type="hidden" id="isExcelDownloadMode" name="isExcelDownloadMode" value="" />
 							<input type="hidden" id="queryIncode" name="queryIncode" value="<s:property value='queryIncode' />"  disabled />	
 							보기 : <s:select id="countPerPage" name="countPerPage" cssClass="" list="Code.countPerPageMap" headerKey="" headerValue="" />
 							<input type="hidden" class="validate" id="admin_seq" name="admin_seq" value="${admin_seq}" />
@@ -76,6 +82,7 @@
 							</div>
 							<div class="clear mb10"></div>
 							<span>전체 : <s:property value="totalCount"/>개</span>
+							<span class="excelFileDownBtn fr"><i class="mr5 fa fa-file-excel-o" aria-hidden="true" title="엑셀 저장하기" ></i>엑셀 저장하기</span>
 							<table class="table_list tc">
 								<colgroup>
 									<col width="70px"><col width="70px"><col width="70px"><col width="70px"><col width="70px"><col width="70px">
@@ -112,7 +119,7 @@
 												<s:iterator value="eachOrderList" status="stat2">
 													<s:set name="totalPrice" value='%{#totalPrice+(price*amount)}' />
 												</s:iterator>
-												${totalPrice}
+												<s:property value="@util.system.StringUtil@addMoneyComma(#totalPrice)"/>
 											</td>
 											<td class="center"><s:if test='eachOrderList.get(0).state == 1'>접수대기</s:if><s:else>배송처리완료</s:else></td>
 											<td class="center"><s:property value="@util.system.StringUtil@simpleDate(order_date)"/></td>

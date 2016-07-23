@@ -48,6 +48,7 @@ public class Order extends ActionSupport  {
 	private Map<String, Object> searchMap = new HashMap<String, Object>();
 	private Map<String, Object> whereMap = new HashMap<String, Object>();
 	private Map<String, Object> validateMsgMap = new HashMap<String, Object>();
+	private Map<String, Object> excelChainMap = new HashMap<String, Object>();
 	private String rtnString;
 	
 	private int pageNum;				//	페이지번호
@@ -73,7 +74,8 @@ public class Order extends ActionSupport  {
 	private String[] listItemCheck;		// 복수선택
 	
 	private String isUpdateMode = "";					// 편집모드
-    
+	private String isExcelDownloadMode = "";	
+	
 	private LinkedHashMap tabIDMap = new LinkedHashMap() {{
     	put(0,0);					// 기본값
     	put(1,1);					
@@ -152,11 +154,12 @@ public class Order extends ActionSupport  {
 		this.sortCol = this.sortColKindMap.containsKey(this.sortCol) ? this.sortCol : 0;
 		this.sortVal = this.sortVal.equals("ASC") ? "ASC" : "DESC";
 		paramMap.put("isCount",false);
-		paramMap.put("pageNum",this.pageNum);
+		paramMap.put("pageNum",Boolean.valueOf(this.isExcelDownloadMode).booleanValue() ? 0 : this.pageNum);
 		paramMap.put("countPerPage",this.countPerPage);
 		paramMap.put("tabID",this.tabID);
 		this.paramMap.put("sortCol", this.sortColKindMap.get(this.sortCol));
 		this.paramMap.put("sortVal", this.sortVal);
+		
 		this.dataList = (List<PayListDTO>)this.payListDAO.getList(paramMap);
 		
 		getEachOrderData();
@@ -164,7 +167,14 @@ public class Order extends ActionSupport  {
 		this.queryIncode = StringUtil.stringToHex(this.request.getQueryString()==null ? "" : this.request.getQueryString());
 		this.pagingHTML = paging.getPaging(totalCount, this.pageNum, this.countPerPage);
 		
-		return SUCCESS;
+		if(Boolean.valueOf(this.isExcelDownloadMode).booleanValue()){
+			this.excelChainMap.put("type", "orderList");
+			this.excelChainMap.put("fileName", "판매현황.xlsx");
+			this.excelChainMap.put("data", this.dataList);
+			return "EXCEL";
+		}else{
+			return SUCCESS;
+		}
 	}
 	
 	public void getData(Map<String, Object> paramMap){

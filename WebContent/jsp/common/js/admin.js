@@ -99,7 +99,7 @@ $(document).on("keyup",".number",function(e){
 		$(this).val("1000000000");
 	}
 	$(this).val($(this).val().replace(/(^0+)/,""));		// 앞의 0제거
-	$(this).val($(this).val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));	// 3자리마다 콤마 
+	$(this).val(addMoneyComma($(this).val()));
 });
 
 $(document).on("click",".paging ul li a.btnOff",function(e){
@@ -188,4 +188,9 @@ function validateCheck(obj){
 	}
 	
 	return rtn;
+}
+
+function addMoneyComma(num){
+	var temp = num+"";
+	return temp.replace(/\B(?=(\d{3})+(?!\d))/g, ",");	// 3자리마다 콤마 
 }
