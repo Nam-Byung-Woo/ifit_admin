@@ -87,7 +87,25 @@ $(function(){
 	});
 	
 	$(".tabArea li").click(function(){
-		$(location).attr("href",$(location).attr("pathname")+"?tabID="+$(this).attr("data-tabID"));
+		if(!$(this).hasClass("on")){
+			$(location).attr("href",$(location).attr("pathname")+"?tabID="+$(this).attr("data-tabID"));
+		}
+	});
+	
+	$(".chartDisplayBtn").click(function(){
+		var mode = $(this).hasClass("fa-chevron-up") ? "hide" : "show";
+
+		if(mode=="hide"){
+			// 접기
+			$(this).parents(".chartArea").find(".chartContent").hide();
+			$(this).removeClass("fa-chevron-up");
+			$(this).addClass("fa-chevron-down");
+		}else{
+			// 펼치기
+			$(this).parents(".chartArea").find(".chartContent").show();
+			$(this).removeClass("fa-chevron-down");
+			$(this).addClass("fa-chevron-up");
+		}
 	});
 
 });

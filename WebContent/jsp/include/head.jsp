@@ -18,8 +18,10 @@
 <script type="text/javascript" src='/jsp/common/plugin/farbtastic-1.2/farbtastic.js'></script>
 <script type="text/javascript" src="/jsp/common/plugin/jQuery.filer-1.0.5/js/jquery.filer.js"></script>
 <script type="text/javascript" src="/jsp/common/plugin/waitMe/waitMe.min.js"></script>
+<script type="text/javascript" src='/jsp/common/plugin/googleCharts/loaders.js'></script>
 <script type="text/javascript" src='/jsp/common/js/admin.js'></script>
 <script type="text/javascript" src='/jsp/common/js/layerPopup.js'></script>
+<script type="text/javascript" src='/jsp/common/js/chartData.js'></script>
 <script type="text/javascript">
 <!--
 	var alertMsg = "<s:property value="#session.alertMsg"/>";

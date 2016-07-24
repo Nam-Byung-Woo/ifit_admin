@@ -4,10 +4,14 @@
 	<package name="order" namespace="/order" extends="iFitAdmin">
 		<action name="orderList" class="action.order.Order" method="getList">
 			<result>/jsp/order/orderList.jsp</result>
+			<result name="CHART" type="chain">orderChart</result>
 			<result name="EXCEL" type="chain">
 			    <param name="actionName">excelFileDownload</param>
 		  		<param name="namespace">/</param>
 			</result>
+		</action>
+		<action name="orderChart" class="action.order.Order" method="getChartData">
+			<result>/jsp/order/orderChart.jsp</result>
 		</action>
 		
 		<!--예시

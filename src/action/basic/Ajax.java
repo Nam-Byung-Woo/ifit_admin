@@ -125,9 +125,11 @@ public class Ajax extends ActionSupport  {
 		}else if(this.isAdmin && dataKind.equals("qna")){
 			Qna qna = new Qna();
 			this.rtnString = gson.toJson(qna.getData(jsonObject));
+		}else if(dataKind.equals("chartData")){
+			ChartData chartData = new ChartData();
+			this.rtnString = gson.toJson(chartData.getData(jsonObject));
 		}
 		
-		System.out.println("AJAX!!!!!!!!!" + this.rtnString);
 		return SUCCESS;		
 	}
 	

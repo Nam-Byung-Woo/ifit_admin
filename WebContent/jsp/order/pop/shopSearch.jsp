@@ -18,7 +18,6 @@ $(document).ready(function() {
 		};
 		var jsonObj = JSON.parse(getAjaxData(data));
 		if(jsonObj!=""){
-			console.log(jsonObj);
 			var listHtml;
 			for(var i=0; i<jsonObj.length; i++){
 				listHtml = "";

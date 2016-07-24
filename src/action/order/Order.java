@@ -124,6 +124,10 @@ public class Order extends ActionSupport  {
 	public String getList() throws Exception{
 		init();
 		
+		if(this.tabID==3){
+			return "CHART";
+		}
+		
 		if(this.searchColKindMap.containsKey(this.searchCol)){
 			this.searchMap.put(this.searchColKindMap.get(this.searchCol).toString(), this.searchVal);
 		}
@@ -176,6 +180,12 @@ public class Order extends ActionSupport  {
 		}else{
 			return SUCCESS;
 		}
+	}
+	
+	public String getChartData() throws Exception{
+		init();
+		
+		return SUCCESS;
 	}
 	
 	public void getData(Map<String, Object> paramMap){

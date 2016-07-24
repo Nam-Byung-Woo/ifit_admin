@@ -53,6 +53,7 @@ public class ActionConfig{
 		// ----------------------------order.xml-----------------------------
 		hashmap.put("orderList",								"needSession => true,		needAdmin => false,		pageTitle => ");
 		hashmap.put("orderListExcelDownload",				"needSession => true,		needAdmin => false,		pageTitle => ");
+		hashmap.put("orderChart",							"needSession => true,		needAdmin => false,		pageTitle => ");
 		
 		// ----------------------------help.xml-----------------------------
 		hashmap.put("faqList",									"needSession => true,		needAdmin => true,		pageTitle => ");
