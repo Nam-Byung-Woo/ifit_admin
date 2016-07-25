@@ -56,7 +56,8 @@
 									<tr>
 										<td class="center"><input type="checkbox" name="listItemCheck" class="listItemCheck" value="<s:property value="banner_seq"/>" /></td>
 										<td class="center"><s:property value="banner_seq"/></td>
-										<td class="center"><p class="viewBtn pointer" data-seq="<s:property value="banner_seq"/>"><img src="http://<s:property value="banner_url"/>" id="banner_img_preview" /></p></td>
+										<!--  <td class="center"><p class="viewBtn pointer" data-seq="<s:property value="banner_seq"/>"><img src="http://<s:property value="banner_url"/>" id="banner_img_preview" /></p></td>-->
+										<td class="center"><img src="http://<s:property value="banner_url"/>" id="banner_img_preview" /></td>
 										<td class="center"><s:property value="code.getEventBannerTypeMap().get(banner_type)"/></td>
 										<td class="center">
 											<i class="editBtn mr10 fa fa-pencil-square-o" aria-hidden="true" title="편집" data-seq="<s:property value="banner_seq"/>" > </i>

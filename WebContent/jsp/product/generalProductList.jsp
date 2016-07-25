@@ -61,7 +61,8 @@
 									<tr>
 										<td class="center"><input type="checkbox" name="listItemCheck" class="listItemCheck" value="<s:property value="p_id"/>" /></td>
 										<td class="center"><s:property value="p_id"/></td>
-										<td class="center"><p class="viewBtn pointer hoverLine" data-seq="<s:property value="p_id"/>"><s:property value="p_name"/></p></td>
+										<!--  <td class="center"><p class="viewBtn pointer hoverLine" data-seq="<s:property value="p_id"/>"><s:property value="p_name"/></p></td>-->
+										<td class="center"><s:property value="p_name"/></td>
 										<s:if test = "#session.isAdmin">
 											<td class="center"><s:property value="admin_name"/></td>
 										</s:if>
