@@ -45,14 +45,21 @@ $(document).ready(function() {
 	});
 	
 	$(document).on("click",".productSelect",function(e){
-		var inputHTML = '<li class="pointer ui-state-default">';
-		inputHTML += '<input type="hidden" name="pro_map_seq" value="0" />';
-		inputHTML += '<input type="hidden" name="p_id" value="' + $(this).parent().attr("data-idx") + '" />';
-		inputHTML += '<input type="hidden" name="p_name" value="' + $(this).parent().attr("data-name") + '" />';
-		inputHTML += '<span>' + $(this).parent().attr("data-name") + '</span>';
-		inputHTML += '</li>';
-		$("#sortable").append(inputHTML);
-		$("#sortable li").last().trigger("click");
+		var parent = $(".openPop[data-pop-id=productSearch]").parents("form").attr("id");
+		
+		if(parent=="promotionContent"){
+			var inputHTML = '<li class="pointer ui-state-default">';
+			inputHTML += '<input type="hidden" name="pro_map_seq" value="0" />';
+			inputHTML += '<input type="hidden" name="p_id" value="' + $(this).parent().attr("data-idx") + '" />';
+			inputHTML += '<input type="hidden" name="p_name" value="' + $(this).parent().attr("data-name") + '" />';
+			inputHTML += '<span>' + $(this).parent().attr("data-name") + '</span>';
+			inputHTML += '</li>';
+			$("#sortable").append(inputHTML);
+			$("#sortable li").last().trigger("click");
+		}else if("eventBanner"){
+			$("#p_id").val($(this).parent().attr("data-idx"));
+			$("#p_name").val($(this).parent().attr("data-name"));
+		}
 		
 		$('.layer-productSearch .layerClose').trigger('click');
 		$("#listEmpty").show();
@@ -63,7 +70,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-<div class="layer layer-productSearch" data-close-answer="false" >
+<div class="layer layer-productSearch" data-close-answer="false" data-parent-id="">
 	<div class="bg"></div>
 	<div id="popLayer" class="pop-layer">
 		<div class="pop-container">

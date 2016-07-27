@@ -298,6 +298,10 @@ public class FormValidate{
 	
 	// 이벤트배너 등록/수정 체크(validation)
 	public Map<String, Object> eventBannerEditorForm(Map<String, Object> paramMap){
+		GeneralProduct generalProduct = new GeneralProduct();
+
+		paramMap.put("seq", (!paramMap.containsKey("p_id") || paramMap.get("p_id").equals("")) ? 0 : paramMap.get("p_id"));
+		
 		if(!paramMap.containsKey("banner_type") || paramMap.get("banner_type").equals("") || !code.getEventBannerTypeMap().containsKey(Integer.parseInt(paramMap.get("banner_type").toString()))){
 			// 배너 타입 체크
 			this.rtnMap.put("msg", alertMessage.getEventBannerTypeError());
@@ -306,6 +310,10 @@ public class FormValidate{
 			// 배너 이미지 체크
 			this.rtnMap.put("msg", alertMessage.getEventBannerImageError());
 			this.rtnMap.put("elementID", "banner_url_check");
+		}else if(generalProduct.getData(paramMap)==null){
+			// 배너 연결상품 체크
+			this.rtnMap.put("msg", alertMessage.getEventBannerProductError());
+			this.rtnMap.put("elementID", "p_name_check");
 		}else if(false){
 			// 추가 가능
 		}else{

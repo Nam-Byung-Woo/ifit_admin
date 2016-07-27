@@ -31,7 +31,7 @@
 						<span>전체 : <s:property value="totalCount"/>개</span>
 						<table class="table_list tc">
 							<colgroup>
-								<col width="20px"><col width="50px"><col width="70px"><col width="70px"><col width="70px">
+								<col width="20px"><col width="50px"><col width="70px"><col width="70px"><col width="70px"><col width="70px">
 							</colgroup>
 							<thead>
 								<tr>
@@ -40,14 +40,15 @@
 									</th>
 									<th scope="col">번호</th>
 									<th scope="col">이미지</th>
-									<th scope="col"><p class="listSort" data-sort-col="1">타입<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=1">hide</s:if>" aria-hidden="true"></i></p></th>
+									<th scope="col"><p class="listSort" data-sort-col="1">타입<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=0&&sortCol!=1">hide</s:if>" aria-hidden="true"></i></p></th>
+									<th scope="col"><p class="listSort" data-sort-col="2">연결상품(상품번호)<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=2">hide</s:if>" aria-hidden="true"></i></p></th>
 									<th scope="col">추가작업</th>
 								</tr>
 							</thead>
 							<tbody>
 								<s:if test = "dataList.size==0">
 									<tr>
-										<td colspan="5" align="center">
+										<td colspan="6" align="center">
 											등록된 이벤트배너가 없습니다.
 										</td>
 									</tr>
@@ -59,6 +60,7 @@
 										<!--  <td class="center"><p class="viewBtn pointer" data-seq="<s:property value="banner_seq"/>"><img src="http://<s:property value="banner_url"/>" id="banner_img_preview" /></p></td>-->
 										<td class="center"><img src="http://<s:property value="banner_url"/>" id="banner_img_preview" /></td>
 										<td class="center"><s:property value="code.getEventBannerTypeMap().get(banner_type)"/></td>
+										<td class="center"><s:property value="p_name"/>(<s:property value="p_id"/>)</td>
 										<td class="center">
 											<i class="editBtn mr10 fa fa-pencil-square-o" aria-hidden="true" title="편집" data-seq="<s:property value="banner_seq"/>" > </i>
 										</td>

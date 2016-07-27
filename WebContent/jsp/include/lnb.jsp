@@ -64,14 +64,6 @@
 					</li>
 				</ul>
 			</li>
-			<li>
-				<p class="bold">거래현황</p>
-				<ul>
-					<li>
-						<p><a class="yet" href="#">- 두비 매출</a></p>
-					</li>
-				</ul>
-			</li>
 		</s:if>
 	</ul>
 </div>

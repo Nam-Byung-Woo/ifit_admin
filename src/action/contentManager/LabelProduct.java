@@ -111,7 +111,7 @@ public class LabelProduct extends ActionSupport  {
 		init();
 		setLabelList();
 		
-		this.main_type = (this.main_type == 0) ? this.labelList.get(this.main_type).getMain_type() : this.main_type;  
+		this.main_type = (this.main_type == 0 && this.labelList.size()>0) ? this.labelList.get(this.main_type).getMain_type() : this.main_type;  
 		
 		this.searchMap.put("main_type", this.main_type);
 		this.paramMap.put("searchMap", this.searchMap);

@@ -47,7 +47,7 @@
 									<th scope="col"><p class="listSort" data-sort-col="1">제목<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=1">hide</s:if>" aria-hidden="true"></i></p></th>
 									<th scope="col"><p class="listSort" data-sort-col="2">아이디<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=2">hide</s:if>" aria-hidden="true"></i></p></th>
 									<th scope="col"><p class="listSort" data-sort-col="3">상태<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=3">hide</s:if>" aria-hidden="true"></i></p></th>
-									<th scope="col"><p class="listSort" data-sort-col="4">등록일<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=4">hide</s:if>" aria-hidden="true"></i></p></th>
+									<th scope="col"><p class="listSort" data-sort-col="4">등록일<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=0&&sortCol!=4">hide</s:if>" aria-hidden="true"></i></p></th>
 									<th scope="col"><p class="listSort" data-sort-col="5">답변일<i class="ml5 fa <s:if test='sortVal.equals("DESC")'>fa-caret-down</s:if><s:else>fa-caret-up</s:else> <s:if test="sortCol!=5">hide</s:if>" aria-hidden="true"></i></p></th>
 								</tr>
 							</thead>

@@ -78,6 +78,13 @@
 										<input type="file" id="banner_url" class="validate banner_url" name="banner_url" autocomplete="off" multiple="multiple" />
 									</td>
 								</tr>
+								<tr>
+									<th scope="col">연결상품</th>
+									<td class="tl" tabIndex="2" id="p_name_check">
+										<input type="text" id="p_name" class="pointer openPop" data-pop-id="productSearch" autocomplete="off" multiple="multiple" placeholder="상품 검색" value="${eventBannerData.p_name}" readonly />
+										<input type="hidden" id="p_id" class="validate p_id" name="p_id" autocomplete="off" multiple="multiple" value="${eventBannerData.p_id}" />
+									</td>
+								</tr>
 							</tbody>
 						</table>
 						<div class="mt20 clear">
@@ -93,5 +100,6 @@
 				</div>
 			</div>
 		</div>
+		<jsp:include page="/jsp/banner/pop/productSearch.jsp" flush="false" />
 	</body>
 </html>

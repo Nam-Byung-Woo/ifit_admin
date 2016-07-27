@@ -63,6 +63,7 @@ public class EventBanner extends ActionSupport  {
     private String queryDecode = "";						//	쿼리스트링(디코딩)
     
 	private int banner_type;		
+	private int p_id;
 	private int seq;
 	private String[] listItemCheck;		// 복수선택
 	
@@ -76,14 +77,16 @@ public class EventBanner extends ActionSupport  {
     
     private LinkedHashMap searchColKindMap = new LinkedHashMap() {{	// 검색 가능한 종류
     	// db상의 name과 매칭 
-    	put(0,"banner_url");					// 기본값
-    	put(1,"banner_url");						
+    	put(0,"EB.banner_url");					// 기본값
+    	put(1,"EB.banner_url");
+    	put(2,"PL.p_name");
     }};
     
     private LinkedHashMap sortColKindMap = new LinkedHashMap() {{	// 정렬항목 정의
     	// db상의 name과 매칭
-		put(0,"banner_seq");		// 기본값 정렬
-		put(1,"banner_type");		// 베너 타입 정렬
+		put(0,"EB.banner_seq");			// 기본값 정렬
+		put(1,"EB.banner_type");		// 베너 타입 정렬
+		put(2,"PL.p_name");				
 	}};
 	
 	public EventBanner() {
@@ -174,6 +177,7 @@ public class EventBanner extends ActionSupport  {
 		
 		paramMap.put("banner_type", this.banner_type);
 		paramMap.put("banner_url", this.banner_url.size());
+		paramMap.put("p_id", this.p_id);
 		
 		this.validateMsgMap = formValidate.eventBannerEditorForm(paramMap);
 		paramMap.clear();
@@ -187,6 +191,7 @@ public class EventBanner extends ActionSupport  {
 		}
 		
 		this.eventBannerDTO.setBanner_type(this.banner_type);
+		this.eventBannerDTO.setP_id(this.p_id);
 		
 		/****************** 이미지파일 Insert & upload START ******************/
 		String saveFileName = "";
@@ -219,6 +224,7 @@ public class EventBanner extends ActionSupport  {
 		
 		paramMap.put("banner_type", this.banner_type);
 		paramMap.put("banner_url", 1 - (banner_urlDeleteFileName.contains(bannerData.getBanner_url_name()) ? 1 : 0) + this.banner_url.size() );
+		paramMap.put("p_id", this.p_id);
 		
 		this.validateMsgMap = formValidate.eventBannerEditorForm(paramMap);
 		paramMap.clear();
@@ -239,6 +245,7 @@ public class EventBanner extends ActionSupport  {
 		
 		this.eventBannerDTO.setBanner_seq(this.seq);
 		this.eventBannerDTO.setBanner_type(this.banner_type);
+		this.eventBannerDTO.setP_id(this.p_id);
 		
 		/****************** 이미지파일 update & upload START ******************/
 		String saveFileName = "";

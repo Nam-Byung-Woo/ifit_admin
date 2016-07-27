@@ -111,7 +111,7 @@ public class PromotionContent extends ActionSupport  {
 		init();
 		setPromotionList();
 		
-		this.pro_seq = (this.pro_seq == 0) ? this.promotionList.get(this.pro_seq).getPro_seq() : this.pro_seq;  
+		this.pro_seq = (this.pro_seq == 0 && this.promotionList.size()>0) ? this.promotionList.get(this.pro_seq).getPro_seq() : this.pro_seq;  
 		
 		this.searchMap.put("pro_seq", this.pro_seq);
 		this.paramMap.put("searchMap", this.searchMap);

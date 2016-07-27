@@ -47,7 +47,10 @@ public class EventBannerDAOImp implements IfitDAO {
 		
 		sqlMap.put("one", 1);
 		
-        sql = "	SELECT *, SUBSTRING_INDEX(banner_url, '/', -1) AS banner_url_name FROM"+ table_name + "WHERE :one = :one	\n";
+        sql = "	SELECT EB.*, PL.p_name, SUBSTRING_INDEX(banner_url, '/', -1) AS banner_url_name		\n";
+        sql += " FROM "+ table_name + " EB join product_list PL ON EB.p_id = PL.p_id \n";
+        sql += " WHERE :one = :one \n";
+        
         if(whereMap!=null && !whereMap.isEmpty()){
             for( String key : whereMap.keySet() ){
             	sqlMap.put(key, whereMap.get(key));
@@ -82,10 +85,13 @@ public class EventBannerDAOImp implements IfitDAO {
 		if(isCount){
 			sql += "	SELECT COUNT(*)	\n";
 		}else{
-			sql += "	SELECT banner_type, banner_url, 	\n";
-			sql += "	banner_seq	\n";
+			sql += "	SELECT EB.banner_type, EB.banner_url, EB.p_id, PL.p_name,	\n";
+			sql += "	EB.banner_seq	\n";
 		}
-        sql += " FROM "+ table_name + " T WHERE :one = :one \n";
+		
+		sql += " FROM "+ table_name + " EB join product_list PL ON EB.p_id = PL.p_id \n";
+        sql += " WHERE :one = :one \n";
+		
         if(whereMap!=null && !whereMap.isEmpty()){
             for( String key : whereMap.keySet() ){
             	sqlMap.put(key, whereMap.get(key));
@@ -122,12 +128,13 @@ public class EventBannerDAOImp implements IfitDAO {
 	public int write(Object dto) {
 		String sql = "";
 		sql += "	INSERT INTO " + table_name + "	\n";
-		sql += "	(banner_type, banner_url)	\n";
-		sql += "	values(:banner_type, :banner_url)	\n";
+		sql += "	(banner_type, banner_url, p_id)	\n";
+		sql += "	values(:banner_type, :banner_url, :p_id)	\n";
 
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("banner_type", ((EventBannerDTO) dto).getBanner_type(), Types.NUMERIC);
 		paramSource.addValue("banner_url", ((EventBannerDTO) dto).getBanner_url(), Types.VARCHAR);
+		paramSource.addValue("p_id", ((EventBannerDTO) dto).getP_id(), Types.NUMERIC);
 		
 		int rtnInt = 0;
 		
@@ -147,12 +154,13 @@ public class EventBannerDAOImp implements IfitDAO {
 	public int update(Object dto) {
 		String sql = "";
 		sql += "	UPDATE " + table_name + " SET	\n";
-		sql += "	banner_type = :banner_type, banner_url = :banner_url	\n";
+		sql += "	banner_type = :banner_type, banner_url = :banner_url, p_id = :p_id	\n";
 		sql += "	where banner_seq = :banner_seq	\n";
 		
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("banner_type", ((EventBannerDTO) dto).getBanner_type(), Types.NUMERIC);
 		paramSource.addValue("banner_url", ((EventBannerDTO) dto).getBanner_url(), Types.VARCHAR);
+		paramSource.addValue("p_id", ((EventBannerDTO) dto).getP_id(), Types.NUMERIC);
 		paramSource.addValue("banner_seq", ((EventBannerDTO) dto).getBanner_seq(), Types.NUMERIC);
 		
 		if(this.jdbcTemplate.update(sql, paramSource) > 0){
